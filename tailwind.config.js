@@ -51,9 +51,6 @@ export default {
           900: "#040815",
         },
       },
-      fontFamily: {
-        jakarta: ["Plus Jakarta Sans", "sans-serif"],
-      },
     },
   },
   plugins: [],

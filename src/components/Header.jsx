@@ -6,10 +6,7 @@ const Header = () => {
   return (
     <header className=" bg-white flex flex-col justify-center px-7">
       <div className="flex justify-between items-center mt-5">
-        <Link
-          to="/"
-          className="font-bold text-primary-500 text-[24px] font-jakarta"
-        >
+        <Link to="/" className="font-bold text-primary-500 text-[24px]">
           MORENT
         </Link>
         <button>
@@ -19,7 +16,7 @@ const Header = () => {
       <div className="flex gap-3 my-5 relative">
         <label
           htmlFor="search"
-          className="absolute left-6 top-0 bottom-0 flex items-center z-50"
+          className="absolute left-6 top-0 bottom-0 flex items-center z-50 opacity-80"
         >
           <SearchIcon />
         </label>
