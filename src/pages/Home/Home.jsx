@@ -24,12 +24,11 @@ const Home = () => {
         {/* Recommended cars*/}
 
         <div>
-          <header>
+          <header className="my-5">
             <h3>Recommended cars</h3>
           </header>
           {/* recommended car cards */}
-          {/* !!! todo: remove my-10 from below div !!! */}
-          <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+          <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-5">
             <CarCard />
             <CarCard />
             <CarCard />
