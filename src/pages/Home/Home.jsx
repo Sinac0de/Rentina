@@ -29,7 +29,13 @@ const Home = () => {
           </header>
           {/* recommended car cards */}
           {/* !!! todo: remove my-10 from below div !!! */}
-          <div className="my-10">
+          <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+            <CarCard />
+            <CarCard />
+            <CarCard />
+            <CarCard />
+            <CarCard />
+            <CarCard />
             <CarCard />
             <CarCard />
             <CarCard />

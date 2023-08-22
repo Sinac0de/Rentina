@@ -3,6 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        sm: "576px",
+        // => @media (min-width: 576px) { ... }
+      },
       backgroundColor: {
         primary: {
           100: "#D6E4FD",
