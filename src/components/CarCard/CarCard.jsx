@@ -4,7 +4,7 @@ import FuelIcon from "../Icons/FuelIcon";
 import TransmissionIcon from "../Icons/TransmissionIcon";
 import PeopleIcon from "../Icons/PeopleIcon";
 
-const CarCard = () => {
+const CarCard = ({ isSlideCard = false }) => {
   const carInfo = [
     { id: 1, name: "Fuel Capacity", desc: "70L", icon: <FuelIcon /> },
     {
@@ -33,18 +33,30 @@ const CarCard = () => {
       </div>
 
       {/* card body */}
-      <div className="flex justify-between gap-5 mb-5">
+      <div
+        className={`flex ${
+          isSlideCard ? "flex-col" : "mb-5"
+        } justify-between gap-5`}
+      >
         {/* car image & shadow */}
-        <div className="relative flex justify-center items-end flex-1">
+        <div
+          className={`relative flex ${
+            isSlideCard ? "mb-5" : ""
+          } justify-center items-end flex-1`}
+        >
           <img
             src={carImgUrl}
-            className="w-fit object-contain"
+            className="object-contain"
             alt="Picture of a car"
           />
           <div className="car-shadow"></div>
         </div>
         {/* car info */}
-        <div className="flex flex-col gap-[16px]">
+        <div
+          className={`flex whitespace-nowrap ${
+            !isSlideCard ? "flex-col gap-[16px]" : "gap-5"
+          } `}
+        >
           {carInfo.map((info) => {
             return (
               <div
@@ -64,7 +76,7 @@ const CarCard = () => {
         {/* price and discount */}
         <div>
           <h3 className="font-semibold text-base text-secondary-500">
-            $74.00/{" "}
+            $74.00/
             <span className="font-medium text-xs text-secondary-300">day</span>
           </h3>
           <h4 className="text-xs text-secondary-300 line-through">$80.00</h4>
