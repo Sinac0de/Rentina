@@ -17,7 +17,7 @@ const CarCard = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-5 bg-white rounded-lg p-3 max-w-[300px]">
+    <div className="flex flex-col gap-5 bg-white rounded-lg p-3">
       {/* card header */}
       <div className="flex justify-between">
         <div className="flex flex-col p-0">
@@ -27,7 +27,7 @@ const CarCard = () => {
           <h5 className="text-xs font-medium text-secondary-300">SUV</h5>
         </div>
         {/* favorite icon */}
-        <button className="h-fit">
+        <button className="h-fit mt-1">
           <HeartOutlined />
         </button>
       </div>
