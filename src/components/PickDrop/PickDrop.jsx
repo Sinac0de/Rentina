@@ -6,7 +6,7 @@ const PickDrop = () => {
       {/* Pick Up */}
       <div>Pick Up</div>
 
-      <button className="bg-primary-500 rounded-lg w-fit">
+      <button className="bg-primary-500 rounded-lg w-fit p-4">
         <PickDropIcon />
       </button>
 
