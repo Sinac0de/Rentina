@@ -1,6 +1,6 @@
-import PicIcon from "../components/Icons/PicIcon";
-import PickDrop from "../components/PickDrop/PickDrop";
-import Slider from "../components/Slider/Slider";
+import PicIcon from "../../components/Icons/PicIcon";
+import PickDrop from "../../components/PickDrop/PickDrop";
+import Slider from "../../components/Slider/Slider";
 
 const Home = () => {
   return (
@@ -23,16 +23,18 @@ const Home = () => {
         {/* Recommended cars*/}
 
         <div>
-          <header>Recommended cars</header>
+          <header>
+            <h3>Recommended cars</h3>
+          </header>
           {/* recommended car cards */}
           <div>{}</div>
           <footer className="flex justify-center items-center relative">
-            <button className="bg-primary-500 py-2 px-[20px] rounded-[4px] text-[12px]">
+            <button className="bg-primary-500 py-2 px-[20px] rounded-[4px] text-xs">
               Show More Cars
             </button>
-            <span className="font-bold text-secondary-300 text-[14px] absolute right-5">
+            <h3 className="font-bold text-secondary-300 absolute text-sm right-5">
               120 cars
-            </span>
+            </h3>
           </footer>
         </div>
       </section>
