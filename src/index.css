@@ -10,3 +10,14 @@
   box-sizing: border-box;
   font-family: "Plus Jakarta Sans", "sans-serif";
 }
+
+body {
+  background-color: #f6f7f9;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
