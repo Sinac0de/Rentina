@@ -23,7 +23,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#F6F7F9] p-5">
+    <footer className="p-5">
       {/* topper section (Logo + Links) */}
       <div className="flex flex-col gap-10 mb-10">
         <div className="w-[220px]">
@@ -35,7 +35,7 @@ const Footer = () => {
         </div>
 
         {/* Links */}
-        <div className="flex gap-10 flex-wrap">
+        <div className="flex gap-10 flex-wrap justify-between">
           {/*---ABOUT---*/}
           <div className="flex flex-col gap-3">
             <h2 className="mb-2 text-secondary-500 font-semibold">About</h2>
