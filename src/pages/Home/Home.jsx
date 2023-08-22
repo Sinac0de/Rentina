@@ -1,3 +1,4 @@
+import CarCard from "../../components/CarCard/CarCard";
 import PicIcon from "../../components/Icons/PicIcon";
 import PickDrop from "../../components/PickDrop/PickDrop";
 import Slider from "../../components/Slider/Slider";
@@ -27,7 +28,12 @@ const Home = () => {
             <h3>Recommended cars</h3>
           </header>
           {/* recommended car cards */}
-          <div>{}</div>
+          {/* !!! todo: remove my-10 from below div !!! */}
+          <div className="my-10">
+            <CarCard />
+            <CarCard />
+            <CarCard />
+          </div>
           <footer className="flex justify-center items-center relative">
             <button className="bg-primary-500 py-2 px-[20px] rounded-[4px] text-xs">
               Show More Cars
