@@ -5,7 +5,9 @@ const Slider = ({ title }) => {
     <section>
       <header className="flex justify-between">
         <h3>{title}</h3>
-        <Link to=".">View all</Link>
+        <Link to="." className="text-primary-500 font-semibold">
+          <p>View all</p>
+        </Link>
       </header>
       {/* slides */}
       <div>{}</div>
