@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import NavBar from "../components/Sidebar/NavBar";
 
 const Layout = () => {
-  const [isNavCollapsed, setIsNavCollapsed] = useState(false);
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 
   return (
     <>
