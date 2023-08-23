@@ -1,8 +1,8 @@
-const HeartOutlined = () => {
+const HeartOutlined = ({ isBig = false }) => {
   return (
     <svg
-      width="16"
-      height="16"
+      width={`${!isBig ? "16px" : "24px"}`}
+      height={`${!isBig ? "16px" : "24px"}`}
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
