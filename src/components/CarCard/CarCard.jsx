@@ -3,6 +3,8 @@ import carImgUrl from "../../assets/images/Cars/All_New_Rush-SUV.png";
 import FuelIcon from "../Icons/FuelIcon";
 import TransmissionIcon from "../Icons/TransmissionIcon";
 import PeopleIcon from "../Icons/PeopleIcon";
+import { useState } from "react";
+import HeartFilled from "../Icons/HeartFilled";
 
 const CarCard = ({ isSlideCard = false }) => {
   const carInfo = [
@@ -15,6 +17,12 @@ const CarCard = ({ isSlideCard = false }) => {
     },
     { id: 3, name: "Capacity", desc: "6 People", icon: <PeopleIcon /> },
   ];
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  // to add item to the favorites
+  const handleFavorite = () => {
+    setIsFavorite((prev) => !prev);
+  };
 
   return (
     <div className="flex flex-col gap-5 bg-white rounded-lg p-3">
@@ -27,8 +35,12 @@ const CarCard = ({ isSlideCard = false }) => {
           <h5 className="text-xs font-medium text-secondary-300">SUV</h5>
         </div>
         {/* favorite icon */}
-        <button className="h-fit mt-1">
-          <HeartOutlined />
+        <button className="h-fit mt-1 text-9xl" onClick={handleFavorite}>
+          {isFavorite ? (
+            <HeartFilled isBig={isSlideCard} />
+          ) : (
+            <HeartOutlined isBig={isSlideCard} />
+          )}
         </button>
       </div>
 
