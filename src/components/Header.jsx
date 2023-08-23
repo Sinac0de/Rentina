@@ -2,14 +2,19 @@ import { Link } from "react-router-dom";
 import HamMenuIcon from "./Icons/HamMenuIcon";
 import SearchIcon from "./Icons/SearchIcon";
 import FilterIcon from "./Icons/FilterIcon";
-const Header = () => {
+import { useState } from "react";
+const Header = ({ setIsNavCollapsed }) => {
+  const handleNavCollapse = () => {
+    setIsNavCollapsed(false);
+  };
+
   return (
     <header className=" bg-white flex flex-col justify-center px-7">
       <div className="flex justify-between items-center mt-5">
         <Link to="/" className="font-bold text-primary-500 text-[24px]">
           MORENT
         </Link>
-        <button>
+        <button onClick={handleNavCollapse}>
           <HamMenuIcon />
         </button>
       </div>
