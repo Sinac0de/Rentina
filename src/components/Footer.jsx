@@ -27,7 +27,7 @@ const Footer = () => {
       {/* topper section (Logo + Links) */}
       <div className="flex flex-col gap-10 mb-10">
         <div className="w-[220px]">
-          <h2 className="font-bold text-primary-500 text-[24px]">MORENT</h2>
+          <h2 className="font-bold text-primary-500 text-[24px]">Rentina</h2>
           <p className="font-medium text-secondary-300 text-[12px]">
             Our vision is to provide convenience and help increase your sales
             business.
@@ -89,7 +89,7 @@ const Footer = () => {
           <Link to={"."}>Privacy & Policy</Link>
           <Link to={"."}>Terms & Condition</Link>
         </div>
-        <p>©2022 MORENT. All rights reserved</p>
+        <p>©2023 Rentina. All rights reserved</p>
       </div>
     </footer>
   );
