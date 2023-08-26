@@ -1,4 +1,4 @@
-const FilterIcon = () => {
+const BulletIcon = () => {
   return (
     <svg
       width="16"
@@ -13,4 +13,4 @@ const FilterIcon = () => {
   );
 };
 
-export default FilterIcon;
+export default BulletIcon;
