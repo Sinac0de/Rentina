@@ -25,8 +25,8 @@ const Footer = () => {
   return (
     <footer className="p-5 md:px-10 md:bg-white">
       {/* topper section (Logo + Links) */}
-      <div className="flex flex-col md:flex-row md:justify-between border-b-[1px] border-[#13131329] gap-10 mb-10 py-10">
-        <div className="w-[220px] md:w-[292px] flex flex-col gap-4">
+      <div className="flex flex-col md:flex-row md:justify-between md:border-b-[1px] md:border-[#13131329] gap-10 mb-10 py-10">
+        <div className="w-[220px] md:min-w-[292px] h-fit flex flex-col gap-4">
           <h2 className="font-bold text-primary-500 text-2xl md:text-[32px]">
             Rentina
           </h2>
