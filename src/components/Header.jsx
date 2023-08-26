@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import HamMenuIcon from "./Icons/HamMenuIcon";
 import SearchIcon from "./Icons/SearchIcon";
 import FilterIcon from "./Icons/FilterIcon";
-import { useState } from "react";
+import NavBar from "./NavBar/NavBar";
+
 const Header = ({ setIsNavCollapsed }) => {
   const handleNavCollapse = () => {
     setIsNavCollapsed(false);
@@ -10,9 +11,9 @@ const Header = ({ setIsNavCollapsed }) => {
 
   return (
     <header className="bg-white flex w-full">
-      <div className="flex flex-col justify-center px-7 md:flex-row md:items-center md:justify-start md:gap-12 md:w-4/6">
+      <div className="w-full flex flex-col justify-center px-7 md:pr-2 md:flex-row md:items-center md:justify-start md:gap-12 md:w-4/6 border border-green-400">
         {/* LOGO & SEARCH BAR */}
-        <div className="flex justify-between items-center mt-5 md:mt-0">
+        <div className="flex justify-between items-center mt-5 md:mt-0 ">
           <Link
             to="/"
             className="font-bold text-primary-500 text-2xl md:text-[32px]"
@@ -23,6 +24,7 @@ const Header = ({ setIsNavCollapsed }) => {
             <HamMenuIcon />
           </button>
         </div>
+        {/* search bar */}
         <div className="flex gap-3 my-5 relative md:flex-1 md:max-w-[492px]">
           <label
             htmlFor="search"
@@ -44,7 +46,9 @@ const Header = ({ setIsNavCollapsed }) => {
         </div>
       </div>
       {/* NAV BAR & PROFILE */}
-      <div className="hidden md:flex border border-blue-800 flex-1"></div>
+      <div className="hidden md:flex items-center justify-end pr-10 flex-1 border">
+        <NavBar />
+      </div>
     </header>
   );
 };
