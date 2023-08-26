@@ -2,14 +2,14 @@ import { useState } from "react";
 import { Outlet } from "react-router";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import NavBar from "../components/Sidebar/NavBar";
+import MobileNavBar from "../components/NavBar/MobileNavBar";
 
 const Layout = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 
   return (
     <>
-      <NavBar
+      <MobileNavBar
         isNavCollapsed={isNavCollapsed}
         setIsNavCollapsed={setIsNavCollapsed}
       />
