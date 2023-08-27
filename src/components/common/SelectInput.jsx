@@ -11,7 +11,7 @@ const SelectInput = ({ id, label, options, borderDir }) => {
       <select
         id={id}
         name={id}
-        className="text-secondary-300 focus:border-none focus:outline-none"
+        className="bg-transparent text-secondary-300 focus:border-none focus:outline-none"
       >
         {options.map((option) => {
           return (
