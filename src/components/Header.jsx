@@ -11,8 +11,8 @@ const Header = ({ setIsNavCollapsed }) => {
 
   return (
     <header className="bg-white flex w-full">
-      <div className="w-full flex flex-col justify-center px-7 md:pr-2 md:flex-row md:items-center md:justify-start md:gap-12 md:w-4/6 border border-green-400">
-        {/* LOGO & SEARCH BAR */}
+      <div className="w-full flex flex-col justify-center px-7 md:pr-2 md:flex-row md:items-center md:justify-start md:gap-12 md:w-4/6">
+        {/*----- LOGO & SEARCH BAR -----*/}
         <div className="flex justify-between items-center mt-5 md:mt-0 ">
           <Link
             to="/"
@@ -24,7 +24,7 @@ const Header = ({ setIsNavCollapsed }) => {
             <HamMenuIcon />
           </button>
         </div>
-        {/* search bar */}
+        {/*----- search bar -----*/}
         <div className="flex gap-3 my-5 relative md:flex-1 md:max-w-[492px]">
           <label
             htmlFor="search"
@@ -45,8 +45,8 @@ const Header = ({ setIsNavCollapsed }) => {
           </button>
         </div>
       </div>
-      {/* NAV BAR & PROFILE */}
-      <div className="hidden md:flex items-center justify-end pr-10 flex-1 border">
+      {/*----- NAV BAR & PROFILE -----*/}
+      <div className="hidden md:flex items-center justify-end pr-10 flex-1">
         <NavBar />
       </div>
     </header>
