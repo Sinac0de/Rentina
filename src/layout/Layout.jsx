@@ -18,7 +18,7 @@ const Layout = () => {
         onClick={() => !isNavCollapsed && setIsNavCollapsed(true)}
       >
         <Header setIsNavCollapsed={setIsNavCollapsed} />
-        <main className="min-h-screen">
+        <main className="min-h-screen md:p-10 px-7">
           <Outlet />
         </main>
         <Footer />
