@@ -28,7 +28,7 @@ const Header = ({ setIsNavCollapsed }) => {
         <div className="flex gap-3 my-5 relative md:flex-1 md:max-w-[492px]">
           <label
             htmlFor="search"
-            className="absolute left-6 top-0 bottom-0 flex items-center z-50 opacity-80"
+            className="absolute left-6 top-0 bottom-0 flex items-center z-10 opacity-80"
           >
             <SearchIcon />
           </label>
