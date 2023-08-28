@@ -3,12 +3,16 @@ import circlePatternUrl from "../../assets/images/Patterns/circularPattern.png";
 import heroCarImageUrl from "../../assets/images/Cars/Koenigsegg-Sport.png";
 import PickDrop from "../../components/PickDrop/PickDrop";
 import Slider from "../../components/Slider/Slider";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <>
+    <div className="px-5">
       {/* Hero */}
-      <div>
+      <div className="flex gap-7">
+        {/* behind the hero (white background) */}
+        <div className="bg-white h-[15%] w-full absolute -z-10 left-0"></div>
+
         <div className="bg-[#54A6FF] w-full rounded-lg flex justify-center items-center relative min-h-[260px] md:max-h-96">
           <img
             src={circlePatternUrl}
@@ -26,21 +30,24 @@ const Home = () => {
               </h5>
             </div>
             {/* hero footer */}
-            <button className="bg-primary-500 py-3 px-[20px] rounded-[4px] text-xs font-medium">
+            <Link
+              to="/shop"
+              className="bg-primary-500 py-3 px-[20px] rounded-[4px] text-xs font-medium"
+            >
               Go to store
-            </button>
+            </Link>
             <div className="w-full px-4 flex justify-center">
               <img src={heroCarImageUrl} className="w-full" />
             </div>
           </div>
         </div>
-        <div className="hidden md:block bg-[#54A6FF] w-full border rounded-lg flex justify-center items-center">
+        <div className="hidden md:block bg-[#ef3c3c] w-full border rounded-lg flex justify-center items-center">
           <img src="" alt="" />
         </div>
       </div>
 
       {/* Content */}
-      <section>
+      <div>
         {/* Pick - Drop */}
         <PickDrop />
         {/* Popular cars slider */}
@@ -74,8 +81,8 @@ const Home = () => {
             </h3>
           </footer>
         </div>
-      </section>
-    </>
+      </div>
+    </div>
   );
 };
 
