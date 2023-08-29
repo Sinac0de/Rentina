@@ -1,4 +1,5 @@
-import { Fragment } from "react";
+import Checkbox from "../common/Checkbox";
+import RangeInput from "../common/RangeInput";
 
 const FilterSidebar = () => {
   // fake data
@@ -36,65 +37,46 @@ const FilterSidebar = () => {
   ];
 
   return (
-    <div className="h-full w-full fixed bg-white z-50 p-5">
+    <>
       <div>
-        <h3>TYPE</h3>
+        <h3 className="text-xs text-secondary-300 tracking-widest">TYPE</h3>
         {/* checkboxes */}
-        <ul className="flex flex-col mb-4 gap-6 md:gap-8">
+        <ul className="flex flex-col gap-4 text-xl my-5 mb-10">
           {types.map((type) => {
             return (
-              <div key={type.id} className="flex items-center">
-                <input
-                  id={type.type}
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 rounded-lg text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label
-                  htmlFor={type.type}
-                  className="ml-2 text-sm font-medium text-secondary-400"
-                >
-                  {type.type}{" "}
-                  <span className="text-secondary-300">({type.count})</span>
-                </label>
-              </div>
+              <Checkbox
+                id={type.id}
+                key={type.id}
+                type={type.type}
+                count={type.count}
+              />
             );
           })}
         </ul>
       </div>
       <div>
-        <h3>CAPACITY</h3>
+        <h3 className="text-xs text-secondary-300 tracking-widest">CAPACITY</h3>
         {/* checkboxes */}
-        <ul className="flex flex-col mb-4 gap-6 md:gap-8">
+        <ul className="flex flex-col gap-4 text-xl my-5 mb-10">
           {types.map((type) => {
             return (
-              <div key={type.id} className="flex items-center">
-                <input
-                  id={type.type}
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 rounded-lg text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label
-                  htmlFor={type.type}
-                  className="ml-2 text-sm font-medium text-secondary-400"
-                >
-                  {type.type}{" "}
-                  <span className="text-secondary-300">({type.count})</span>
-                </label>
-              </div>
+              <Checkbox
+                id={type.id}
+                key={type.id}
+                type={type.type}
+                count={type.count}
+              />
             );
           })}
         </ul>
       </div>
       <div>
-        <h3>PRICE</h3>
-        <div>
-          <input type="range" max={100} />
-          <h2>Max. $100.00</h2>
+        <h3 className="text-xs text-secondary-300 tracking-widest">PRICE</h3>
+        <div className="my-5 mb-10">
+          <RangeInput />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
