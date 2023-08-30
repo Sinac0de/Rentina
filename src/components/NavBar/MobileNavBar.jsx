@@ -1,4 +1,4 @@
-const NavBar = ({ isNavCollapsed, setIsNavCollapsed }) => {
+const MobileNavBar = ({ isNavCollapsed, setIsNavCollapsed }) => {
   return (
     <div
       className={`${
@@ -16,4 +16,4 @@ const NavBar = ({ isNavCollapsed, setIsNavCollapsed }) => {
   );
 };
 
-export default NavBar;
+export default MobileNavBar;
