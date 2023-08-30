@@ -4,12 +4,14 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MobileNavBar from "../components/NavBar/MobileNavBar";
 import FilterSidebar from "../components/FilterSideBar/FilterSideBar";
+import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
 
 const Layout = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 
   return (
     <>
+      <ScrollToTop />
       <MobileNavBar
         isNavCollapsed={isNavCollapsed}
         setIsNavCollapsed={setIsNavCollapsed}
