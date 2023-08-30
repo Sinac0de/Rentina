@@ -5,6 +5,7 @@ import TransmissionIcon from "../Icons/TransmissionIcon";
 import PeopleIcon from "../Icons/PeopleIcon";
 import { useState } from "react";
 import HeartFilled from "../Icons/HeartFilled";
+import { motion } from "framer-motion";
 
 const CarCard = ({ isSlideCard = false }) => {
   const carInfo = [
@@ -25,7 +26,12 @@ const CarCard = ({ isSlideCard = false }) => {
   };
 
   return (
-    <div className="flex flex-col gap-5 bg-white rounded-lg p-3">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col gap-5 bg-white rounded-lg p-3"
+    >
       {/* card header */}
       <div className="flex justify-between">
         <div className="flex flex-col p-0">
@@ -98,7 +104,7 @@ const CarCard = ({ isSlideCard = false }) => {
           Rent now
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
