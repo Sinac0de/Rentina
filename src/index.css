@@ -9,6 +9,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Plus Jakarta Sans", "sans-serif";
+  scroll-behavior: smooth;
 }
 
 body {
@@ -46,4 +47,18 @@ input[type="range"]::-webkit-slider-thumb {
   background: #3563e9;
   box-shadow: -405px 0 0 400px #3563e9;
   border-radius: 50%;
+}
+
+.background {
+  background-image: url("./assets/images/Cars/heroBackground.png");
+  background-position: center;
+  background-repeat: repeat;
+}
+
+/* for the checkbox */
+input:checked + div {
+  @apply border-blue-500;
+}
+input:checked + div svg {
+  @apply block;
 }
