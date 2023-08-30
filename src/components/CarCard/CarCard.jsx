@@ -6,6 +6,7 @@ import PeopleIcon from "../Icons/PeopleIcon";
 import { useState } from "react";
 import HeartFilled from "../Icons/HeartFilled";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const CarCard = ({ isSlideCard = false }) => {
   const carInfo = [
@@ -34,12 +35,12 @@ const CarCard = ({ isSlideCard = false }) => {
     >
       {/* card header */}
       <div className="flex justify-between">
-        <div className="flex flex-col p-0">
+        <Link className="flex flex-col p-0" to="shop">
           <h3 className="text-base font-semibold text-secondary-500 mb-1">
             All New Rush
           </h3>
           <h5 className="text-xs font-medium text-secondary-300">SUV</h5>
-        </div>
+        </Link>
         {/* favorite icon */}
         <button className="h-fit mt-1 text-9xl" onClick={handleFavorite}>
           {isFavorite ? (
@@ -51,7 +52,8 @@ const CarCard = ({ isSlideCard = false }) => {
       </div>
 
       {/* card body */}
-      <div
+      <Link
+        to="shop"
         className={`flex ${
           isSlideCard ? "flex-col" : "mb-5"
         } justify-between gap-5`}
@@ -87,7 +89,7 @@ const CarCard = ({ isSlideCard = false }) => {
             );
           })}
         </div>
-      </div>
+      </Link>
 
       {/* card footer */}
       <div className="flex items-center justify-between">
