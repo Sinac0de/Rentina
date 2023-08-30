@@ -2,7 +2,7 @@ import CarCard from "../CarCard/CarCard";
 
 const AllCarsList = ({ hasHeader, header }) => {
   return (
-    <div className="mt-7 mb-14">
+    <div className="md:my-7 md:mb-14">
       <header className={`${!hasHeader ? "hidden" : ""}`}>
         <h3>{header}</h3>
       </header>
