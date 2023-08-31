@@ -4,9 +4,13 @@ import SearchIcon from "./Icons/SearchIcon";
 import FilterIcon from "./Icons/FilterIcon";
 import NavBar from "./NavBar/NavBar";
 
-const Header = ({ setIsNavCollapsed }) => {
+const Header = ({ setIsNavCollapsed, setIsFilterOpen }) => {
   const handleNavCollapse = () => {
     setIsNavCollapsed(false);
+  };
+
+  const handleToggleFilter = () => {
+    setIsFilterOpen((prev) => !prev);
   };
 
   return (
@@ -40,7 +44,10 @@ const Header = ({ setIsNavCollapsed }) => {
             className="w-full relative flex items-center flex-1 gap-2 p-3 pl-14 rounded-lg border md:rounded-full"
           />
 
-          <button className="p-3 border border-[#C3D4E9]/40 rounded-lg md:absolute md:right-4 md:border-none">
+          <button
+            className="p-3 border border-[#C3D4E9]/40 rounded-lg md:absolute md:right-4 md:border-none"
+            onClick={handleToggleFilter}
+          >
             <FilterIcon />
           </button>
         </div>
