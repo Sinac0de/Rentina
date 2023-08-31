@@ -9,6 +9,9 @@ import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
 const Layout = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 
+  // just for test
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
   return (
     <>
       <ScrollToTop />
@@ -16,12 +19,21 @@ const Layout = () => {
         isNavCollapsed={isNavCollapsed}
         setIsNavCollapsed={setIsNavCollapsed}
       />
-      {/* <FilterSidebar /> */}
+      <div
+        className={`${
+          !isFilterOpen && "hidden"
+        } fixed top-0 left-0 w-full h-full md:hidden`}
+      >
+        <FilterSidebar />
+      </div>
       <div
         className={`${!isNavCollapsed ? "fixed right-0 left-0 blur-lg" : ""}`}
         onClick={() => !isNavCollapsed && setIsNavCollapsed(true)}
       >
-        <Header setIsNavCollapsed={setIsNavCollapsed} />
+        <Header
+          setIsNavCollapsed={setIsNavCollapsed}
+          setIsFilterOpen={setIsFilterOpen}
+        />
         <main className="min-h-screen">
           <Outlet />
         </main>
