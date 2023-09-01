@@ -1,6 +1,5 @@
-import AllCarsList from "../../components/AllCarsList/AllCarsList";
+import { Outlet } from "react-router-dom";
 import FilterSidebar from "../../components/FilterSideBar/FilterSideBar";
-import PickDrop from "../../components/PickDrop/PickDrop";
 
 const Shop = () => {
   return (
@@ -9,10 +8,7 @@ const Shop = () => {
         <FilterSidebar />
       </div>
       <div className="flex-1 overflow-y-auto px-5">
-        <PickDrop />
-        <div>
-          <AllCarsList />
-        </div>
+        <Outlet />
       </div>
     </div>
   );
