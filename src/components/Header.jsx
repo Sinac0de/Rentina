@@ -14,7 +14,7 @@ const Header = ({ setIsNavCollapsed, setIsFilterOpen }) => {
   };
 
   return (
-    <header className="bg-white flex w-full">
+    <header className="bg-white flex w-full relative z-20">
       <div className="w-full flex flex-col justify-center px-7 md:pr-2 md:flex-row md:items-center md:justify-start md:gap-12 md:w-4/6">
         {/*----- LOGO & SEARCH BAR -----*/}
         <div className="flex justify-between items-center mt-5 md:mt-0 ">
