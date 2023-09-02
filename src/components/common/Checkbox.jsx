@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CheckBoxFilled from "../Icons/CheckBoxChecked";
 
-const Checkbox = ({ id, type, count }) => {
+const Checkbox = ({ id, label, count }) => {
   const [checked, setChecked] = useState(false);
 
   const handleCheck = () => {
@@ -12,7 +12,7 @@ const Checkbox = ({ id, type, count }) => {
     <div key={id} className="flex items-center">
       <div className="flex items-center mr-4 mb-2">
         <input
-          id={type}
+          id={label}
           type="checkbox"
           value=""
           className="opacity-0 absolute h-5 w-5 cursor-pointer"
@@ -27,10 +27,10 @@ const Checkbox = ({ id, type, count }) => {
           <CheckBoxFilled />
         </div>
         <label
-          htmlFor={type}
+          htmlFor={label}
           className="ml-2 text-sm text-secondary-400 font-semibold"
         >
-          {type} <span className="text-secondary-300">({count})</span>
+          {label} <span className="text-secondary-300">({count})</span>
         </label>
       </div>
     </div>
