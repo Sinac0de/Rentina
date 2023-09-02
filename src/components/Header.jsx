@@ -14,8 +14,8 @@ const Header = ({ setIsNavCollapsed, setIsFilterOpen }) => {
   };
 
   return (
-    <header className="bg-white flex w-full relative z-20">
-      <div className="w-full flex flex-col justify-center px-7 md:pr-2 md:flex-row md:items-center md:justify-start md:gap-12 md:w-4/6">
+    <header className="bg-white flex w-full sticky top-0 z-20 md:h-32 md:border md:border-[#C3D4E966]">
+      <div className="w-full flex flex-col justify-center px-7 md:pr-2 md:flex-row md:items-center md:justify-start md:gap-16 md:pl-16 md:w-4/6">
         {/*----- LOGO & SEARCH BAR -----*/}
         <div className="flex justify-between items-center mt-5 md:mt-0 ">
           <Link
@@ -29,7 +29,7 @@ const Header = ({ setIsNavCollapsed, setIsFilterOpen }) => {
           </button>
         </div>
         {/*----- search bar -----*/}
-        <div className="flex gap-3 my-5 relative md:flex-1 md:max-w-[492px]">
+        <div className="flex gap-3 my-5 relative md:flex-1 md:max-w-[492px] md:h-11">
           <label
             htmlFor="search"
             className="absolute left-6 top-0 bottom-0 flex items-center z-10 opacity-80"
@@ -45,7 +45,7 @@ const Header = ({ setIsNavCollapsed, setIsFilterOpen }) => {
           />
 
           <button
-            className="p-3 border border-[#C3D4E9]/40 rounded-lg md:absolute md:right-4 md:border-none"
+            className="p-3 border border-[#C3D4E9]/40 rounded-lg md:absolute md:right-4 md:border-none md:h-full"
             onClick={handleToggleFilter}
           >
             <FilterIcon />
