@@ -36,9 +36,33 @@ const FilterSidebar = () => {
     },
   ];
 
+  const capacities = [
+    {
+      id: 1,
+      capacity: "2 Person",
+      count: 10,
+    },
+    {
+      id: 2,
+      capacity: "4 Person",
+      count: 12,
+    },
+    {
+      id: 3,
+      capacity: "6 Person",
+      count: 16,
+    },
+    {
+      id: 4,
+      capacity: "8 or More",
+      count: 20,
+    },
+  ];
+
   return (
     <>
       <div>
+        {/* Type */}
         <h3 className="text-xs text-secondary-300 tracking-widest">TYPE</h3>
         {/* checkboxes */}
         <ul className="flex flex-col gap-4 text-xl my-5 mb-10">
@@ -47,29 +71,31 @@ const FilterSidebar = () => {
               <Checkbox
                 id={type.id}
                 key={type.id}
-                type={type.type}
+                label={type.type}
                 count={type.count}
               />
             );
           })}
         </ul>
       </div>
+      {/* Capacity */}
       <div>
         <h3 className="text-xs text-secondary-300 tracking-widest">CAPACITY</h3>
         {/* checkboxes */}
         <ul className="flex flex-col gap-4 text-xl my-5 mb-10">
-          {types.map((type) => {
+          {capacities.map((capacity) => {
             return (
               <Checkbox
-                id={type.id}
-                key={type.id}
-                type={type.type}
-                count={type.count}
+                id={capacity.id}
+                key={capacity.id}
+                label={capacity.capacity}
+                count={capacity.count}
               />
             );
           })}
         </ul>
       </div>
+      {/* Price */}
       <div>
         <h3 className="text-xs text-secondary-300 tracking-widest">PRICE</h3>
         <div className="my-5 mb-10">
