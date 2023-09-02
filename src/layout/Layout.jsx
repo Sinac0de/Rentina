@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import MobileNavBar from "../components/NavBar/MobileNavBar";
 import FilterSidebar from "../components/FilterSideBar/FilterSideBar";
 import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
+import CloseIcon from "../components/Icons/CloseIcon";
 
 const Layout = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
@@ -22,8 +23,14 @@ const Layout = () => {
       <div
         className={`${
           !isFilterOpen && "hidden"
-        } fixed top-0 left-0 w-full h-full md:hidden`}
+        } fixed top-0 left-0 w-full h-full overflow-visible p-10 bg-white z-30 md:hidden`}
       >
+        <div
+          className="absolute top-5 right-5"
+          onClick={() => setIsFilterOpen(false)}
+        >
+          <CloseIcon />
+        </div>
         <FilterSidebar />
       </div>
       <div
