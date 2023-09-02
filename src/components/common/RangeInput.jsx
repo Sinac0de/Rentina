@@ -1,4 +1,9 @@
 const RangeInput = () => {
+  const changeHandler = (e) => {
+    const priceFilter = e.target.value;
+    // Todo : Set form value
+  };
+
   return (
     <div className="flex flex-col gap-3">
       <input
@@ -8,7 +13,9 @@ const RangeInput = () => {
         min="1"
         max="100"
         step="1"
+        onMouseUp={changeHandler}
       />
+
       <label htmlFor="range" className="text-secondary-400 font-semibold">
         Max. $100.00
       </label>
