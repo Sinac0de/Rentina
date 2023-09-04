@@ -1,13 +1,38 @@
 import StarFilledIcon from "../../components/Icons/StarFilledIcon";
-import StarOutlineIcon from "../../components/Icons/StarFilledIcon";
+import StarOutlineIcon from "../../components/Icons/StarOutlineIcon";
+
+import bigImg from "../../assets/images/Cars/test/car-img-1.png";
+import smallImg1 from "../../assets/images/Cars/test/car-img-1.png";
+import smallImg2 from "../../assets/images/Cars/test/car-img-2.png";
+import smallImg3 from "../../assets/images/Cars/test/car-img-3.png";
 
 const CarDetails = () => {
   return (
-    <div>
+    <div className="pt-8">
       {/* car images */}
-      <div>
-        <img src="" />
-        <div>small images</div>
+      <div className="flex flex-col gap-6">
+        <img src={bigImg} className="w-full" />
+        <div className="grid grid-cols-3 grid-rows-1 w-full gap-5 h-16">
+          {/* active image */}
+          <div className="cursor-pointer p-1 border-[1.5px] border-primary-500 rounded-lg">
+            <img
+              src={bigImg}
+              className="h-full w-full object-cover object-center rounded-md"
+            />
+          </div>
+          <div className="cursor-pointer">
+            <img
+              src={smallImg2}
+              className="h-full w-full object-cover object-center rounded-md"
+            />
+          </div>
+          <div className="cursor-pointer">
+            <img
+              src={smallImg3}
+              className="h-full w-full object-cover object-center rounded-md"
+            />
+          </div>
+        </div>
       </div>
 
       {/* car info */}
