@@ -6,17 +6,17 @@ import {
 } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
-import Shop from "./pages/Shop/Shop";
 import Layout from "./layout/Layout";
-import RentalCars from "./pages/Shop/RentalCars";
-import CarDetails from "./pages/Shop/CarDetails";
+import RentalCars from "./pages/Cars/RentalCars";
+import CarDetails from "./pages/Cars/CarDetails";
+import Cars from "./pages/Cars/Cars";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="shop" element={<Shop />}>
+        <Route path="shop" element={<Cars />}>
           <Route index element={<RentalCars />} />
           <Route path=":id" element={<CarDetails />} />
         </Route>

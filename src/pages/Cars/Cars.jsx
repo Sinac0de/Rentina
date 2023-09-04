@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import FilterSidebar from "../../components/FilterSideBar/FilterSideBar";
 
-const Shop = () => {
+const Cars = () => {
   return (
     <div className="flex relative">
       <div className="hidden md:block bg-white p-5 px-10 w-[20%]">
@@ -14,4 +14,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default Cars;
