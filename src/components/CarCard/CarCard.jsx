@@ -35,7 +35,7 @@ const CarCard = ({ isSlideCard = false }) => {
     >
       {/* card header */}
       <div className="flex justify-between">
-        <Link className="flex flex-col p-0" to="shop">
+        <Link className="flex flex-col p-0" to="/shop/1">
           <h3 className="text-base font-semibold text-secondary-500 mb-1">
             All New Rush
           </h3>
@@ -53,7 +53,7 @@ const CarCard = ({ isSlideCard = false }) => {
 
       {/* card body */}
       <Link
-        to="shop"
+        to="/shop/1"
         className={`flex ${
           isSlideCard ? "flex-col" : "mb-5"
         } justify-between gap-5`}
