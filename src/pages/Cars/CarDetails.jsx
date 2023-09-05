@@ -2,13 +2,12 @@ import StarFilledIcon from "../../components/Icons/StarFilledIcon";
 import StarOutlineIcon from "../../components/Icons/StarOutlineIcon";
 
 import bigImg from "../../assets/images/Cars/test/car-img-1.png";
-import smallImg1 from "../../assets/images/Cars/test/car-img-1.png";
 import smallImg2 from "../../assets/images/Cars/test/car-img-2.png";
 import smallImg3 from "../../assets/images/Cars/test/car-img-3.png";
 
 const CarDetails = () => {
   return (
-    <div className="pt-8">
+    <div className="pt-8 flex flex-col gap-7">
       {/* car images */}
       <div className="flex flex-col gap-6">
         <img src={bigImg} className="w-full" />
@@ -36,45 +35,76 @@ const CarDetails = () => {
       </div>
 
       {/* car info */}
-      <div>
+      <div className="flex flex-col gap-5 bg-white p-4 rounded-[10px]">
         {/* info header */}
-        <div>
-          <h2></h2>
-          <div>
-            <div>
+        <div className="flex flex-col gap-1">
+          <h2 className="text-secondary-500 text-xl font-bold">
+            Nissan GT - R
+          </h2>
+          <div className="flex gap-2 items-center">
+            <div className="flex gap-1">
               <StarFilledIcon />
               <StarFilledIcon />
               <StarFilledIcon />
               <StarFilledIcon />
               <StarOutlineIcon />
             </div>
-            <h4>440+ Reviewer</h4>
+            <h4 className="text-xs text-secondary-300">440+ Reviewer</h4>
           </div>
         </div>
         {/* info body */}
-        <div>
-          <p>
+        <div className="flex flex-col gap-5">
+          <p className="text-secondary-300 text-xs font-normal">
             NISMO has become the embodiment of Nissan's outstanding performance,
             inspired by the most unforgiving proving ground, the "race track".
           </p>
           {/* car specs */}
-          <div>
-            <div>
-              <div>Type Car Sport</div>
-              <div>Steering Manual</div>
+          <div className="flex justify-between gap-4 items-center">
+            <div className="flex flex-col gap-4 w-1/2">
+              <div className="flex justify-between items-center">
+                <h3 className="text-secondary-300 font-medium text-xs">
+                  Type Car
+                </h3>
+                <span className="text-secondary-500 font-semibold text-xs">
+                  Sport
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <h3 className="text-secondary-300 font-medium text-xs">
+                  Steering
+                </h3>
+                <span className="text-secondary-500 font-semibold text-xs">
+                  Manual
+                </span>
+              </div>
             </div>
-            <div>
-              <div>Capacity 2 Person</div>
-              <div>Gasoline 70 L</div>
+
+            <div className="flex flex-col gap-4 w-1/2">
+              <div className="flex justify-between items-center">
+                <h3 className="text-secondary-300 font-medium text-xs">
+                  Capacity
+                </h3>
+                <span className="text-secondary-500 font-semibold text-xs">
+                  2 Person
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <h3 className="text-secondary-300 font-medium text-xs">
+                  Gasoline
+                </h3>
+                <span className="text-secondary-500 font-semibold text-xs">
+                  70 L
+                </span>
+              </div>
             </div>
           </div>
         </div>
         {/* info footer */}
         <div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-2">
             {/* price and discount */}
             <div>
-              <h3 className="font-semibold text-base text-secondary-500">
+              <h3 className="font-semibold text-xl text-secondary-500">
                 $74.00/
                 <span className="font-medium text-xs text-secondary-300">
                   day
@@ -85,7 +115,7 @@ const CarDetails = () => {
               </h4>
             </div>
 
-            <button className="bg-primary-500 py-2 px-[20px] rounded text-xs font-medium">
+            <button className="bg-primary-500 py-2 px-[20px] h-full rounded text-base font-medium">
               Rent now
             </button>
           </div>
