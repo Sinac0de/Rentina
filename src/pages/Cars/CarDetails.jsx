@@ -11,7 +11,7 @@ const CarDetails = () => {
       {/* car images */}
       <div className="flex flex-col gap-6 lg:w-1/2">
         <img src={bigImg} className="w-full" />
-        <div className="grid grid-cols-3 grid-rows-1 w-full gap-5 h-16">
+        <div className="grid grid-cols-3 grid-rows-1 w-full gap-5 h-16 md:flex-1">
           {/* active image */}
           <div className="cursor-pointer p-1 border-[1.5px] border-primary-500 rounded-lg">
             <img
