@@ -1,42 +1,21 @@
-import ProfileIcon from "../../../components/Icons/ProfileIcon";
+import Review from "./Review";
 
 const CarReviews = () => {
   return (
-    <div className="bg-white p-5">
+    <div className="bg-white p-5 flex flex-col gap-5 rounded-[10px]">
       {/* header */}
       <div className="flex gap-2 items-center">
         <h2 className="text-xl font-semibold">Reviews</h2>
         <span className="bg-primary-500 py-0 px-5 text-white rounded">13</span>
       </div>
       {/* comments */}
-      <div>
-        <div className="flex">
-          <div>
-            <ProfileIcon />
-          </div>
-          <div>
-            {/* comment header */}
-            <div className="flex justify-between">
-              <div className="flex flex-col">
-                <h3>Alex Stanton</h3>
-                <h4>CEO at Bukalapak</h4>
-              </div>
-              <div className="flex flex-col">
-                <h4>21 July 2022</h4>
-                <div>stars</div>
-              </div>
-            </div>
-            {/* comment text */}
-            <p>
-              We are very happy with the service from the MORENT App. Morent has
-              a low price . . .{" "}
-            </p>
-          </div>
-        </div>
+      <div className="flex flex-col gap-5">
+        <Review />
+        <Review />
       </div>
       {/* footer */}
-      <div className="flex">
-        <h3>Show All</h3>
+      <div className="flex justify-center items-center gap-1">
+        <h3 className="text-sm text-secondary-300 font-medium">Show All</h3>
         <span>
           <svg
             width="14"
