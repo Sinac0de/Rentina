@@ -8,7 +8,7 @@ import {
 import Home from "./pages/Home/Home";
 import Layout from "./layout/Layout";
 import RentalCars from "./pages/Cars/RentalCars";
-import CarDetails from "./pages/Cars/CarDetails";
+import CarDetails from "./pages/Cars/CarDetails/CarDetails";
 import Cars from "./pages/Cars/Cars";
 
 function App() {
