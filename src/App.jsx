@@ -17,11 +17,11 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="/shop" element={<Cars />}>
+        <Route path="shop" element={<Cars />}>
           <Route index element={<RentalCars />} />
-          <Route path="/shop/:id" element={<CarDetails />} />
+          <Route path=":id" element={<CarDetails />} />
         </Route>
-        <Route path="/payment/1" element={<Payment />} />
+        <Route path="payment/:id" element={<Payment />} />
         <Route path="*" element={<h1>Page not found!</h1>} />
       </Route>
     )
