@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Outlet } from "react-router";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import MobileNavBar from "../components/NavBar/MobileNavBar";
-import FilterSidebar from "../components/FilterSideBar/FilterSideBar";
-import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
-import CloseIcon from "../components/Icons/CloseIcon";
+import Header from "src/components/Header";
+import Footer from "src/components/Footer";
+import MobileNavBar from "src/components/NavBar/MobileNavBar";
+import FilterSidebar from "src/components/FilterSideBar/FilterSideBar";
+import ScrollToTop from "src/components/ScrollToTop/ScrollToTop";
+import CloseIcon from "src/components/Icons/CloseIcon";
 
 const Layout = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);

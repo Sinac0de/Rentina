@@ -1,5 +1,5 @@
-import PickDrop from "../../components/PickDrop/PickDrop";
-import AllCarsList from "../../components/AllCarsList/AllCarsList";
+import PickDrop from "src/components/PickDrop/PickDrop";
+import AllCarsList from "src/components/AllCarsList/AllCarsList";
 const RentalCars = () => {
   return (
     <>

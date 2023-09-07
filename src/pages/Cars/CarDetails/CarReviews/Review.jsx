@@ -1,5 +1,5 @@
-import ProfileIcon from "../../../../components/Icons/ProfileIcon";
-import RatingStars from "../../../../components/RatingStars";
+import ProfileIcon from "src/components/Icons/ProfileIcon";
+import RatingStars from "src/components/RatingStars";
 
 const Review = () => {
   return (

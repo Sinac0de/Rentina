@@ -1,9 +1,9 @@
-import bigImg from "../../../assets/images/Cars/test/car-img-1.png";
-import smallImg2 from "../../../assets/images/Cars/test/car-img-2.png";
-import smallImg3 from "../../../assets/images/Cars/test/car-img-3.png";
+import bigImg from "src/assets/images/Cars/test/car-img-1.png";
+import smallImg2 from "src/assets/images/Cars/test/car-img-2.png";
+import smallImg3 from "src/assets/images/Cars/test/car-img-3.png";
 import { useState } from "react";
 import CarReviews from "./CarReviews/CarReviews";
-import RatingStars from "../../../components/RatingStars";
+import RatingStars from "src/components/RatingStars";
 
 const CarDetails = () => {
   const [activeImg, setActiveImg] = useState({ id: 1, src: bigImg });

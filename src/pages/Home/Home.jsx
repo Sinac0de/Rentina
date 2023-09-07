@@ -1,10 +1,10 @@
-import circlePatternUrl from "../../assets/images/Patterns/circularPattern.png";
-import heroCarImageUrl from "../../assets/images/Cars/Koenigsegg-Sport.png";
-import heroCar2ImageUrl from "../../assets/images/Cars/Nissan_GT-R.png";
-import PickDrop from "../../components/PickDrop/PickDrop";
-import Slider from "../../components/Slider/Slider";
+import circlePatternUrl from "src/assets/images/Patterns/circularPattern.png";
+import heroCarImageUrl from "src/assets/images/Cars/Koenigsegg-Sport.png";
+import heroCar2ImageUrl from "src/assets/images/Cars/Nissan_GT-R.png";
+import PickDrop from "src/components/PickDrop/PickDrop";
+import Slider from "src/components/Slider/Slider";
 import { Link } from "react-router-dom";
-import AllCarsList from "../../components/AllCarsList/AllCarsList";
+import AllCarsList from "src/components/AllCarsList/AllCarsList";
 
 const Home = () => {
   return (

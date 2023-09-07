@@ -1,5 +1,5 @@
 import HeartOutlined from "../Icons/HeartOutlined";
-import carImgUrl from "../../assets/images/Cars/All_New_Rush-SUV.png";
+import carImgUrl from "src/assets/images/Cars/All_New_Rush-SUV.png";
 import FuelIcon from "../Icons/FuelIcon";
 import TransmissionIcon from "../Icons/TransmissionIcon";
 import PeopleIcon from "../Icons/PeopleIcon";
