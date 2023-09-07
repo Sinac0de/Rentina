@@ -1,7 +1,9 @@
+import RentalSummary from "./Parts/RentalSummary";
+
 const Payment = () => {
   return (
-    <div>
-      <div>{/* Rental summary */}</div>
+    <div className="p-5">
+      <RentalSummary />
 
       <div>{/* Billing Info */}</div>
 
