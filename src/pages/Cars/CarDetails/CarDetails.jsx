@@ -4,6 +4,7 @@ import smallImg3 from "src/assets/images/Cars/test/car-img-3.png";
 import { useState } from "react";
 import CarReviews from "./CarReviews/CarReviews";
 import RatingStars from "src/components/RatingStars";
+import { Link } from "react-router-dom";
 
 const CarDetails = () => {
   const [activeImg, setActiveImg] = useState({ id: 1, src: bigImg });
@@ -145,9 +146,12 @@ const CarDetails = () => {
                 </h4>
               </div>
 
-              <button className="bg-primary-500 py-2 px-[20px] h-full rounded text-base lg:py-4 font-medium">
+              <Link
+                to="/payment/1"
+                className="text-white bg-primary-500 py-2 px-[20px] h-full rounded text-base lg:py-4 font-medium"
+              >
                 Rent now
-              </button>
+              </Link>
             </div>
           </div>
         </div>
