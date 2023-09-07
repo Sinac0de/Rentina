@@ -102,9 +102,12 @@ const CarCard = ({ isSlideCard = false }) => {
           <h4 className="text-xs text-secondary-300 line-through">$80.00</h4>
         </div>
 
-        <button className="bg-primary-500 py-2 px-[20px] rounded text-xs font-medium">
+        <Link
+          to="/payment/1"
+          className="text-white bg-primary-500 py-2 px-[20px] rounded text-xs font-medium"
+        >
           Rent now
-        </button>
+        </Link>
       </div>
     </motion.div>
   );
