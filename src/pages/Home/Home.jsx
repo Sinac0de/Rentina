@@ -14,7 +14,7 @@ const Home = () => {
         {/* behind the hero (white background) */}
         <div className="bg-white h-[15%] w-full absolute -z-10 left-0 md:hidden"></div>
 
-        <div className="bg-[#54A6FF] w-full rounded-lg flex justify-center items-center relative min-h-[260px] md:min-h-[360px]">
+        <div className="bg-[#54A6FF] w-full rounded-lg flex justify-center items-center relative min-h-[260px] md:min-h-[360px] overflow-hidden">
           <img
             src={circlePatternUrl}
             className="absolute left-0 bottom-0 right-0 w-full"
@@ -42,7 +42,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="hidden md:block bg-primary-500 w-full border rounded-lg justify-center items-center relative">
+        <div className="hidden md:block bg-primary-500 w-full rounded-lg justify-center items-center relative">
           <div className="h-full w-full background absolute"></div>
           <div className="absolute w-full h-full p-5 text-white flex flex-col items-start justify-between md:justify-normal md:gap-6">
             {/* hero header */}
