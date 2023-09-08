@@ -53,7 +53,7 @@ const RentalSummary = () => {
         <div className="relative flex w-full">
           <Input
             type="text"
-            label="Apply promo code"
+            label="promo code"
             value={promoCode}
             onChange={handleChange}
             className="pr-20"
@@ -62,7 +62,7 @@ const RentalSummary = () => {
             }}
           />
           <span
-            className={`!absolute right-3 h-full flex justify-center items-center text-xs font-bold ${
+            className={`!absolute right-3 h-full flex justify-center items-center text-xs font-bold cursor-pointer ${
               promoCode ? "text-secondary-500" : "text-secondary-500/60"
             }`}
           >
