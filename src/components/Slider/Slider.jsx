@@ -12,7 +12,9 @@ const Slider = ({ title }) => {
   return (
     <section>
       <header className="flex justify-between mb-5">
-        <h3>{title}</h3>
+        <h3 className="text-secondary-300 font-semibold text-sm md:text-base md:px-2">
+          {title}
+        </h3>
         <Link to="/shop" className="text-primary-500 font-semibold">
           <p>View all</p>
         </Link>
