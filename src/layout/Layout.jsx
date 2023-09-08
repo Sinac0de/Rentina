@@ -23,7 +23,7 @@ const Layout = () => {
       <div
         className={`${
           !isFilterOpen && "hidden"
-        } fixed top-0 left-0 w-full h-full overflow-visible p-10 bg-white z-30 md:hidden`}
+        } fixed top-0 left-0 w-full h-full overflow-y-auto p-10 bg-white z-30 md:hidden`}
       >
         <div
           className="absolute top-5 right-5"
@@ -33,10 +33,7 @@ const Layout = () => {
         </div>
         <FilterSidebar />
       </div>
-      <div
-        className={`${!isNavCollapsed ? "fixed right-0 left-0 blur-lg" : ""}`}
-        onClick={() => !isNavCollapsed && setIsNavCollapsed(true)}
-      >
+      <div onClick={() => !isNavCollapsed && setIsNavCollapsed(true)}>
         <Header
           setIsNavCollapsed={setIsNavCollapsed}
           setIsFilterOpen={setIsFilterOpen}
