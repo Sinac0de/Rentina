@@ -1,8 +1,15 @@
 import RatingStars from "src/components/common/RatingStars";
 import carImg from "src/assets/images/Cars/test/car-img-1_1.png";
 import { Input } from "@material-tailwind/react";
+import { useState } from "react";
 
 const RentalSummary = () => {
+  const [promoCode, setPromoCode] = useState("");
+
+  const handleChange = (e) => {
+    setPromoCode(e.target.value);
+  };
+
   return (
     <div className="bg-white w-full overflow-hidden p-5 rounded-[10px] flex flex-col gap-5 md:max-w-md">
       {/* header */}
@@ -43,12 +50,24 @@ const RentalSummary = () => {
         </div>
 
         {/* promo code */}
-        <div>
+        <div className="relative flex w-full">
           <Input
             type="text"
-            placeholder="Apply promo code"
-            className="bg-[#F6F7F9] text-xs text-secondary-300 font-medium w-full p-3 rounded-[10px]"
+            label="Apply promo code"
+            value={promoCode}
+            onChange={handleChange}
+            className="pr-20"
+            containerProps={{
+              className: "min-w-0 bg-[#F6F7F9] rounded-[10px]",
+            }}
           />
+          <span
+            className={`!absolute right-3 h-full flex justify-center items-center text-xs font-bold ${
+              promoCode ? "text-secondary-500" : "text-secondary-500/60"
+            }`}
+          >
+            Apply now
+          </span>
         </div>
       </div>
       {/* footer */}
