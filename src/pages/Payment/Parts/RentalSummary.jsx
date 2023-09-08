@@ -74,7 +74,7 @@ const RentalSummary = () => {
       <div className="flex justify-between">
         <div className="flex flex-col">
           <h3 className="text-base text-secondary-500">Total Rental Price</h3>
-          <p className="text-xs text-secondary-300">Overal price rental</p>
+          <p className="text-xs text-secondary-300">Overall price rental</p>
         </div>
         <div className="flex justify-end items-center">
           <h2 className="font-bold text-xl text-secondary-500">$80.00</h2>
