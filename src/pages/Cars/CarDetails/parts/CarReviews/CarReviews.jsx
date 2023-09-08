@@ -1,4 +1,4 @@
-import Review from "./Review";
+import Review from "./parts/Review";
 
 const CarReviews = () => {
   return (
