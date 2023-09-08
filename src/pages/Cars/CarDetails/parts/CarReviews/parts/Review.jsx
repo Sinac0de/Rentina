@@ -1,5 +1,5 @@
 import ProfileIcon from "src/components/Icons/ProfileIcon";
-import RatingStars from "src/components/RatingStars";
+import RatingStars from "src/components/common/RatingStars";
 
 const Review = () => {
   return (

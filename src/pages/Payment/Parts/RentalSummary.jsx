@@ -1,4 +1,4 @@
-import RatingStars from "src/components/RatingStars";
+import RatingStars from "src/components/common/RatingStars";
 import carImg from "src/assets/images/Cars/test/car-img-1_1.png";
 import { Input } from "@material-tailwind/react";
 

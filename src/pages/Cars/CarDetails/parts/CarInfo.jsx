@@ -1,4 +1,4 @@
-import RatingStars from "src/components/RatingStars";
+import RatingStars from "src/components/common/RatingStars";
 import { Link } from "react-router-dom";
 
 const CarInfo = () => {
