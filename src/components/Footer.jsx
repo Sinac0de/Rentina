@@ -99,6 +99,18 @@ const Footer = () => {
         </div>
         <p className="md:order-1">©2023 Rentina. All rights reserved</p>
       </div>
+      <div className="flex justify-center items-center">
+        <h4>
+          Made with <span className="text-xl">♥</span> by{" "}
+          <a
+            href="https://github.com/Sinac0de"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Sina Moradian
+          </a>
+        </h4>
+      </div>
     </footer>
   );
 };
