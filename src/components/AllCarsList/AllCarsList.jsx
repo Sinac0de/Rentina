@@ -16,7 +16,6 @@ const AllCarsList = ({ hasHeader, header }) => {
         <CarCard />
         <CarCard />
         <CarCard />
-        <CarCard />
       </div>
       <footer className="flex justify-center items-center relative">
         <button className="bg-primary-500 py-2 px-[20px] rounded-[4px] text-xs">
