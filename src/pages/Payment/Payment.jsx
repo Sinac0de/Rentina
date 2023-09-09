@@ -1,3 +1,4 @@
+import BillingInfo from "./Parts/BillingInfo";
 import RentalSummary from "./Parts/RentalSummary";
 
 const Payment = () => {
@@ -5,7 +6,7 @@ const Payment = () => {
     <div className="p-5">
       <RentalSummary />
 
-      <div>{/* Billing Info */}</div>
+      <BillingInfo />
 
       <div>{/* Rental Info */}</div>
 
