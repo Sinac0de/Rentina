@@ -3,14 +3,16 @@ import TextInput from "src/components/common/TextInput";
 
 const BillingInfo = () => {
   return (
-    <div className="bg-white w-full overflow-hidden p-5 rounded-[10px] flex flex-col gap-5 md:max-w-md">
+    <div className="bg-white w-full overflow-hidden p-5 rounded-[10px] flex flex-col gap-5 md:max-w-md my-5">
       {/* header */}
-      <div>
+      <div className="flex justify-between">
         <div>
-          <h3>Billing Info</h3>
-          <h5>Please enter your billing info</h5>
+          <h3 className="font-bold text-secondary-500">Billing Info</h3>
+          <h5 className="text-secondary-300 text-xs font-medium">
+            Please enter your billing info
+          </h5>
         </div>
-        <h4>Step 1 of 4</h4>
+        <h4 className="text-secondary-300 text-xs font-medium">Step 1 of 4</h4>
       </div>
       {/* body */}
       <div>
