@@ -11,7 +11,7 @@ const RentalSummary = () => {
   };
 
   return (
-    <div className="bg-white w-full overflow-hidden p-5 rounded-[10px] flex flex-col gap-5 md:max-w-md">
+    <div className="bg-white w-full overflow-hidden p-5 rounded-[10px] flex flex-col gap-5">
       {/* header */}
       <div>
         <h3 className="text-base font-bold text-secondary-500">
