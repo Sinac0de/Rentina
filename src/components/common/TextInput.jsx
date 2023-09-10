@@ -1,12 +1,4 @@
-import { Input } from "@material-tailwind/react";
-
-const TextInput = ({
-  name,
-  staticLabel,
-  dynamicLabel,
-  placeHolder,
-  button,
-}) => {
+const TextInput = ({ name, label, placeHolder, onChange, button }) => {
   return (
     <div className="flex flex-col gap-2 my-2">
       {name && (
@@ -14,18 +6,18 @@ const TextInput = ({
           htmlFor={name}
           className="font-semibold text-secondary-500 text-sm"
         >
-          {staticLabel}
+          {label}
         </label>
       )}
       <div className="relative flex w-full">
         <input
           type="text"
-          //   label={dynamicLabel ? dynamicLabel : null}
           id={name}
           placeholder={placeHolder}
+          onChange={onChange}
           className={`${
             button ? "pr-20" : ""
-          } w-full p-2 bg-[#F6F7F9] rounded-[10px]`}
+          } w-full p-3 bg-[#F6F7F9] rounded-[10px] text-xs placeholder:text-secondary-300 text-secondary-500 focus:ring-1 focus:ring-secondary-300 border-none outline-none`}
         />
         {button && (
           <span
