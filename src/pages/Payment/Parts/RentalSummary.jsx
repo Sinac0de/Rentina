@@ -1,7 +1,7 @@
 import RatingStars from "src/components/common/RatingStars";
 import carImg from "src/assets/images/Cars/test/car-img-1_1.png";
-import { Input } from "@material-tailwind/react";
 import { useState } from "react";
+import TextInput from "src/components/common/TextInput";
 
 const RentalSummary = () => {
   const [promoCode, setPromoCode] = useState("");
@@ -50,25 +50,14 @@ const RentalSummary = () => {
         </div>
 
         {/* promo code */}
-        <div className="relative flex w-full">
-          <Input
-            type="text"
-            label="promo code"
-            value={promoCode}
-            onChange={handleChange}
-            className="pr-20"
-            containerProps={{
-              className: "min-w-0 bg-[#F6F7F9] rounded-[10px]",
-            }}
-          />
-          <span
-            className={`!absolute right-3 h-full flex justify-center items-center text-xs font-bold cursor-pointer ${
-              promoCode ? "text-secondary-500" : "text-secondary-500/60"
-            }`}
-          >
-            Apply now
-          </span>
-        </div>
+        <TextInput
+          button={{
+            value: promoCode,
+            title: "Apply now",
+          }}
+          onChange={handleChange}
+          placeHolder="Promo Code"
+        />
       </div>
       {/* footer */}
       <div className="flex justify-between">
