@@ -22,25 +22,25 @@ const BillingInfo = () => {
           <TextInput
             name="name"
             title="Name"
-            staticLabel="Name"
+            label="Name"
             placeHolder="Your name"
           />
           <TextInput
             name="address"
             title="Address"
-            staticLabel="Address"
+            label="Address"
             placeHolder="Address"
           />
           <TextInput
             name="phonenumber"
             title="Phone Number"
-            staticLabel="Phone Number"
+            label="Phone Number"
             placeHolder="Phone number"
           />
           <TextInput
             name="towncity"
             title="Town / City"
-            staticLabel="Town / City"
+            label="Town / City"
             placeHolder="Town or City"
           />
         </Form>
