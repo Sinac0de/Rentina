@@ -1,6 +1,6 @@
 import PickDropIcon from "../Icons/PickDropIcon";
 import BulletIcon from "../Icons/BulletIcon";
-import SelectInput from "../common/SelectInput";
+import SmSelectInput from "../common/SmSelectInput";
 
 const PickDrop = () => {
   // ! Just for test
@@ -19,19 +19,19 @@ const PickDrop = () => {
         </div>
         {/* select inputs */}
         <div className="flex gap-1 justify-between relative">
-          <SelectInput
+          <SmSelectInput
             label="Locations"
             id="pick-location"
             options={options}
             borderDir="right"
           />
-          <SelectInput
+          <SmSelectInput
             label="Date"
             id="pick-date"
             options={options}
             borderDir={null}
           />
-          <SelectInput
+          <SmSelectInput
             label="Time"
             id="pick-time"
             options={options}
@@ -53,19 +53,19 @@ const PickDrop = () => {
         </div>
         {/* select inputs */}
         <div className="flex gap-1 justify-between relative">
-          <SelectInput
+          <SmSelectInput
             label="Locations"
             id="drop-location"
             options={options}
             borderDir="right"
           />
-          <SelectInput
+          <SmSelectInput
             label="Date"
             id="drop-date"
             options={options}
             borderDir={null}
           />
-          <SelectInput
+          <SmSelectInput
             label="Time"
             id="drop-time"
             options={options}
