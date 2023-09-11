@@ -1,3 +1,4 @@
+import BulletIcon from "src/components/Icons/BulletIcon";
 import BigSelectInput from "src/components/common/BigSelectInput";
 
 const RentalInfo = () => {
@@ -23,18 +24,43 @@ const RentalInfo = () => {
         </h4>
       </div>
       {/* body */}
-      <div>
+      <div className="flex flex-col gap-5">
         {/*---Pick-Up---*/}
         <div>
-          <BigSelectInput
-            label="Locations"
-            id="pick-location"
-            options={options}
-            borderDir="right"
-          />
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <BulletIcon />
+              <h3 className="font-semibold">Pick-Up</h3>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <BigSelectInput
+              label="Locations"
+              id="pick-location"
+              options={options}
+            />
+            <BigSelectInput label="Date" id="pick-date" options={options} />
+            <BigSelectInput label="Time" id="pick-time" options={options} />
+          </div>
         </div>
         {/*---Drop-Off---*/}
-        <div></div>
+        <div>
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <BulletIcon />
+              <h3 className="font-semibold">Drop-Off</h3>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <BigSelectInput
+              label="Locations"
+              id="drop-location"
+              options={options}
+            />
+            <BigSelectInput label="Date" id="drop-date" options={options} />
+            <BigSelectInput label="Time" id="drop-time" options={options} />
+          </div>
+        </div>
       </div>
     </div>
   );
