@@ -1,0 +1,45 @@
+{
+  "cars": [
+    {
+      "id": 1,
+      "make": "Toyota",
+      "model": "Corolla",
+      "rental_price": 70,
+      "tumbnail_img": "https://s6.uupload.ir/filelink/DyQpf4bAqQOo_6d279ce837/toyota-corolla_woc9.webp",
+      "img_urls": [
+        {
+          "id": 1,
+          "src": "https://s6.uupload.ir/filelink/w6sq8FD3wGhN_598da1b7fd/1_rizi.webp"
+        },
+        {
+          "id": 2,
+          "src": "https://s6.uupload.ir/filelink/xGJiZ4VV9oKw_f45e47cda4/2_jg7y.webp"
+        },
+        {
+          "id": 3,
+          "src": "https://s6.uupload.ir/filelink/q796BSXPI9kO_e625ce80f5/3_kkhh.webp"
+        }
+      ],
+      "specs": {
+        "type": "Small Sedan",
+        "transmission": "Automatic",
+        "seats": 4,
+        "fuel_capacity": 13.2
+      },
+      "reviews": [
+        {
+          "profile_image": "user1.jpg",
+          "name": "John Doe",
+          "comment": "I love my Toyota Camry! It's a great family car with excellent fuel efficiency.",
+          "rating": 5
+        },
+        {
+          "profile_image": "user2.jpg",
+          "name": "Jane Smith",
+          "comment": "The Camry's comfortable seats make long drives a breeze, but I wish it had more tech features.",
+          "rating": 4
+        }
+      ]
+    }
+  ]
+}
