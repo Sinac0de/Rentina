@@ -1,4 +1,5 @@
 import BillingInfo from "./Parts/BillingInfo";
+import PaymentMethod from "./Parts/PaymentMethod";
 import RentalInfo from "./Parts/RentalInfo";
 import RentalSummary from "./Parts/RentalSummary";
 
@@ -12,6 +13,7 @@ const Payment = () => {
       <div className="md:order-1 md:w-3/5 flex flex-col gap-6 w-full">
         <BillingInfo />
         <RentalInfo />
+        <PaymentMethod />
       </div>
     </div>
   );
