@@ -1,4 +1,4 @@
-const TextInput = ({ name, label, placeHolder, onChange, button }) => {
+const TextInput = ({ name, label, placeHolder, bgWhite, onChange, button }) => {
   return (
     <div className="flex flex-col gap-2 my-2">
       {name && (
@@ -15,9 +15,9 @@ const TextInput = ({ name, label, placeHolder, onChange, button }) => {
           id={name}
           placeholder={placeHolder}
           onChange={onChange}
-          className={`${
-            button ? "pr-20" : ""
-          } w-full p-3 bg-[#F6F7F9] rounded-[10px] text-xs placeholder:text-secondary-300 text-secondary-500 focus:ring-1 focus:ring-secondary-300 border-none outline-none`}
+          className={`${button ? "pr-20" : ""} w-full p-4 ${
+            bgWhite ? "bg-white" : "bg-[#F6F7F9]"
+          } rounded-[10px] text-xs placeholder:text-secondary-300 text-secondary-500 focus:ring-1 focus:ring-secondary-300 border-none outline-none`}
         />
         {button && (
           <span
