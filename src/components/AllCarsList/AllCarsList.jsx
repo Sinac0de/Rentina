@@ -1,6 +1,19 @@
+import { useEffect, useState } from "react";
 import CarCard from "../CarCard/CarCard";
 
 const AllCarsList = ({ hasHeader, header }) => {
+  const [cars, setCars] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/cars")
+      .then((res) => res.json())
+      .then((data) => setCars(data));
+  }, []);
+
+  if (!cars) {
+    return <h2>Loading...</h2>;
+  }
+
   return (
     <div className="md:my-7 md:mb-14">
       <header className={`${!hasHeader ? "hidden" : ""}`}>
