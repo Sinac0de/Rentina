@@ -3,8 +3,8 @@ import RatingStars from "src/components/common/RatingStars";
 
 const Review = () => {
   return (
-    <div className="flex items-start gap-1">
-      <div className="w-1/5">
+    <div className="flex items-start gap-2">
+      <div className="w-fit">
         <ProfileIcon />
       </div>
       <div className="flex flex-col gap-3 w-full">
