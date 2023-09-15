@@ -9,7 +9,9 @@ const CarPhotos = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/cars/1")
+    fetch(
+      "https://my-json-server.typicode.com/Sinac0de/Rentina_db_server/cars/1"
+    )
       .then((res) => res.json())
       .then((data) => {
         setPhotos(data.img_urls);
