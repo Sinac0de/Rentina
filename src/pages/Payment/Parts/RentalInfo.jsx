@@ -12,16 +12,16 @@ const RentalInfo = () => {
   return (
     <div className="bg-white w-full overflow-hidden p-5 rounded-[10px] flex flex-col gap-5">
       {/* header */}
-      <div className="flex justify-between items-start">
-        <div>
+      <div className="flex flex-col gap-1">
+        <div className="flex justify-between items-center">
           <h3 className="font-bold text-secondary-500">Rental Info</h3>
-          <h5 className="text-secondary-300 text-xs font-medium">
-            Please select your rental date
-          </h5>
+          <h4 className="text-secondary-300 text-xs font-medium">
+            Step 2 of 4
+          </h4>
         </div>
-        <h4 className="text-secondary-300 text-xs font-medium mt-1">
-          Step 2 of 4
-        </h4>
+        <h5 className="text-secondary-300 text-xs font-medium">
+          Please select your rental date
+        </h5>
       </div>
       {/* body */}
       <div className="flex flex-col gap-5">

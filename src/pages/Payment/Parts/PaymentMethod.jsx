@@ -9,21 +9,21 @@ const PaymentMethod = () => {
   return (
     <div className="bg-white w-full overflow-hidden p-5 rounded-[10px] flex flex-col gap-5">
       {/* header */}
-      <div className="flex justify-between items-start">
-        <div>
+      <div className="flex flex-col gap-1">
+        <div className="flex justify-between items-center">
           <h3 className="font-bold text-secondary-500">Payment Method</h3>
-          <h5 className="text-secondary-300 text-xs font-medium">
-            Please enter your payment method
-          </h5>
+          <h4 className="text-secondary-300 text-xs font-medium">
+            Step 3 of 4
+          </h4>
         </div>
-        <h4 className="text-secondary-300 text-xs font-medium mt-1">
-          Step 3 of 4
-        </h4>
+        <h5 className="text-secondary-300 text-xs font-medium">
+          Please enter your payment method
+        </h5>
       </div>
       {/* body */}
       <Form className="flex flex-col gap-5">
         <div className="bg-[#F6F7F9] p-5 rounded-[10px]">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-start">
             <div className="flex items-center gap-3 mb-4">
               <BulletIcon />
               <h3 className="font-semibold">Credit Card</h3>
@@ -60,7 +60,7 @@ const PaymentMethod = () => {
           />
         </div>
         {/* radio buttons */}
-        <div className="flex relative p-6 items-center">
+        <div className="flex relative p-4 items-center">
           <input
             id="paypal"
             type="radio"
@@ -69,13 +69,13 @@ const PaymentMethod = () => {
           />
           <label
             htmlFor="paypal"
-            className="p-5 pl-12 pr-8 order-2 flex justify-between items-center cursor-pointer absolute top-0 left-0 w-full h-full bg-[#F6F7F9] rounded-[10px]"
+            className="p-5 pl-9 pr-8 order-2 flex justify-between items-center cursor-pointer absolute top-0 left-0 w-full h-full bg-[#F6F7F9] rounded-[10px]"
           >
             <h4 className="text-secondary-500 text-sm font-semibold">PayPal</h4>
             <img src={paypalImg} className="object-contain" />
           </label>
         </div>
-        <div className="flex relative p-6 items-center">
+        <div className="flex relative p-4 items-center">
           <input
             id="bitcoin"
             type="radio"
@@ -84,7 +84,7 @@ const PaymentMethod = () => {
           />
           <label
             htmlFor="bitcoin"
-            className="p-5 pl-12 pr-8 order-2 flex justify-between items-center cursor-pointer absolute top-0 left-0 w-full h-full bg-[#F6F7F9] rounded-[10px]"
+            className="p-5 pl-9 pr-8 order-2 flex justify-between items-center cursor-pointer absolute top-0 left-0 w-full h-full bg-[#F6F7F9] rounded-[10px]"
           >
             <h4 className="text-secondary-500 text-sm font-semibold">
               Bitcoin
