@@ -1,4 +1,5 @@
 import BillingInfo from "./Parts/BillingInfo";
+import Confirmation from "./Parts/Confirmation";
 import PaymentMethod from "./Parts/PaymentMethod";
 import RentalInfo from "./Parts/RentalInfo";
 import RentalSummary from "./Parts/RentalSummary";
@@ -14,6 +15,7 @@ const Payment = () => {
         <BillingInfo />
         <RentalInfo />
         <PaymentMethod />
+        <Confirmation />
       </div>
     </div>
   );
