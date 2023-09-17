@@ -48,11 +48,11 @@ const Home = () => {
             {/* hero header */}
             <div className="flex flex-col md:max-w-[284px] gap-2">
               <h3 className="text-base font-semibold md:text-[32px] md:font-medium leading-10">
-                The Best Platform for Car Rental
+                Easy way to rent a car at a low price
               </h3>
               <h5 className="text-xs md:text-base ">
-                Ease of doing a car rental safely and reliably. Of course at a
-                low price.
+                Providing cheap car rental services and safe and comfortable
+                facilities.
               </h5>
             </div>
             {/* hero footer */}
@@ -60,7 +60,7 @@ const Home = () => {
               to="/shop"
               className="bg-[#54A6FF] py-3 px-[20px] rounded-[4px] text-xs md:text-base font-medium"
             >
-              Go to store
+              Rental now
             </Link>
             <div className="w-full px-4 flex justify-center md:absolute md:bottom-4">
               <img src={heroCar2ImageUrl} className="w-fit" />
