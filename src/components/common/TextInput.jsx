@@ -22,7 +22,7 @@ const TextInput = ({ name, label, placeHolder, bgWhite, onChange, button }) => {
         {button && (
           <span
             className={`!absolute right-3 h-full flex justify-center items-center text-xs font-bold cursor-pointer lg:text-base ${
-              button.value ? "text-secondary-500" : "text-secondary-500/60"
+              button.value ? "text-secondary-500" : "text-secondary-500/40"
             }`}
           >
             {button.title}
