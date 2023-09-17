@@ -1,14 +1,14 @@
 import StarFilledIcon from "../Icons/StarFilledIcon";
 import StarOutlineIcon from "../Icons/StarOutlineIcon";
 
-const RatingStars = () => {
+const RatingStars = ({ isBig = false }) => {
   return (
     <div className="flex gap-1 items-center">
-      <StarFilledIcon />
-      <StarFilledIcon />
-      <StarFilledIcon />
-      <StarFilledIcon />
-      <StarOutlineIcon />
+      <StarFilledIcon isBig={isBig} />
+      <StarFilledIcon isBig={isBig} />
+      <StarFilledIcon isBig={isBig} />
+      <StarFilledIcon isBig={isBig} />
+      <StarOutlineIcon isBig={isBig} />
     </div>
   );
 };

@@ -1,8 +1,8 @@
-const StarOutlineIcon = () => {
+const StarOutlineIcon = ({ isBig = false }) => {
   return (
     <svg
-      width="12"
-      height="12"
+      width={`${!isBig ? "12px" : "18px"}`}
+      height={`${!isBig ? "10px" : "18px"}`}
       viewBox="0 0 12 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
