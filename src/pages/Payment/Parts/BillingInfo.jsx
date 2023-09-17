@@ -7,18 +7,20 @@ const BillingInfo = () => {
       {/* header */}
       <div className="flex flex-col gap-1">
         <div className="flex justify-between items-center">
-          <h3 className="font-bold text-secondary-500">Billing Info</h3>
-          <h4 className="text-secondary-300 text-xs font-medium">
+          <h3 className="font-bold text-secondary-500 lg:text-xl">
+            Billing Info
+          </h3>
+          <h4 className="text-secondary-300 text-xs font-medium lg:text-sm">
             Step 1 of 4
           </h4>
         </div>
-        <h5 className="text-secondary-300 text-xs font-medium">
+        <h5 className="text-secondary-300 text-xs font-medium lg:text-sm">
           Please enter your billing info
         </h5>
       </div>
       {/* body */}
       <div>
-        <Form>
+        <Form className="lg:grid lg:grid-cols-2 gap-x-5">
           <TextInput
             name="name"
             title="Name"
