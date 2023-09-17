@@ -4,7 +4,7 @@ const TextInput = ({ name, label, placeHolder, bgWhite, onChange, button }) => {
       {name && (
         <label
           htmlFor={name}
-          className="font-semibold text-secondary-500 text-sm"
+          className="font-semibold text-secondary-500 text-sm lg:text-base"
         >
           {label}
         </label>
@@ -17,11 +17,11 @@ const TextInput = ({ name, label, placeHolder, bgWhite, onChange, button }) => {
           onChange={onChange}
           className={`${button ? "pr-20" : ""} w-full p-4 ${
             bgWhite ? "bg-white" : "bg-[#F6F7F9]"
-          } rounded-[10px] text-xs placeholder:text-secondary-300 text-secondary-500 focus:ring-1 focus:ring-secondary-300 border-none outline-none`}
+          } rounded-[10px] text-xs placeholder:text-secondary-300 text-secondary-500 focus:ring-1 focus:ring-secondary-300 border-none outline-none lg:text-sm`}
         />
         {button && (
           <span
-            className={`!absolute right-3 h-full flex justify-center items-center text-xs font-bold cursor-pointer ${
+            className={`!absolute right-3 h-full flex justify-center items-center text-xs font-bold cursor-pointer lg:text-base ${
               button.value ? "text-secondary-500" : "text-secondary-500/60"
             }`}
           >
