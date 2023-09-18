@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router";
 import Header from "src/components/Header";
 import Footer from "src/components/Footer";
@@ -12,6 +12,20 @@ const Layout = () => {
 
   // just for test
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  // Add a useEffect to set body overflow when the navbar opens
+  useEffect(() => {
+    if (!isNavCollapsed) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    // Cleanup: Reset the body overflow when the component unmounts
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isNavCollapsed]);
 
   return (
     <>
