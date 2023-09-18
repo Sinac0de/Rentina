@@ -11,5 +11,5 @@ export async function getCars(id) {
     };
   }
   const data = await res.json();
-  return data.cars;
+  return await data;
 }
