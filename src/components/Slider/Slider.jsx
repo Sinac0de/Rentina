@@ -27,7 +27,7 @@ const Slider = ({ title }) => {
   }
 
   return (
-    <section>
+    <section className="my-2">
       <header className="flex justify-between mb-5">
         <h3 className="text-secondary-300 font-semibold text-sm md:text-base md:px-2">
           {title}
