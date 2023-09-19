@@ -1,22 +1,48 @@
+import React, { useState } from "react";
 import Review from "./parts/Review";
 
-const CarReviews = () => {
+const CarReviews = ({ reviews }) => {
+  const [showAllReviews, setShowAllReviews] = useState(false);
+
+  const toggleReviews = () => {
+    setShowAllReviews(!showAllReviews);
+  };
+
   return (
     <div className="bg-white p-5 flex flex-col gap-5 rounded-[10px]">
       {/* header */}
       <div className="flex gap-2 items-center">
         <h2 className="text-xl font-semibold">Reviews</h2>
-        <span className="bg-primary-500 py-0 px-5 text-white rounded">13</span>
+        <span className="bg-primary-500 py-0 px-5 text-white rounded">
+          {reviews.length}
+        </span>
       </div>
       {/* comments */}
       <div className="flex flex-col gap-5">
-        <Review />
-        <Review />
+        {reviews.slice(0, 2).map((review, index) => (
+          <Review key={index} reviewData={review} />
+        ))}
+      </div>
+      <div
+        className={`${
+          showAllReviews ? "h-auto" : "h-0 overflow-hidden"
+        } flex flex-col gap-5`}
+      >
+        {reviews.slice(2).map((review, index) => (
+          <Review key={index} reviewData={review} />
+        ))}
       </div>
       {/* footer */}
-      <div className="flex justify-center items-center gap-1">
-        <h3 className="text-sm text-secondary-300 font-medium">Show All</h3>
-        <span>
+      <div
+        className="flex justify-center items-center gap-1 w-fit mx-auto p-2 px-5 cursor-pointer"
+        onClick={toggleReviews}
+      >
+        <h3 className="text-sm text-secondary-300 font-medium">
+          {showAllReviews ? "Hide" : "Show All"}
+        </h3>
+        <span
+          className={`${showAllReviews ? "rotate-180" : ""} transition-all`}
+        >
           <svg
             width="14"
             height="14"
