@@ -20,7 +20,9 @@ const AllCarsList = ({ hasHeader, header }) => {
   return (
     <div className="md:my-7 md:mb-14">
       <header className={`${!hasHeader ? "hidden" : ""}`}>
-        <h3>{header}</h3>
+        <h3 className="text-secondary-300 font-semibold text-sm md:text-base md:px-2">
+          {header}
+        </h3>
       </header>
       {/* recommended car cards */}
       <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-5">
