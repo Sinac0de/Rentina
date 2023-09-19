@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import CarCard from "../CarCard/CarCard";
+import { useEffect, useState } from "react";
+import { getCars } from "src/services/api";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
@@ -9,6 +12,20 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 const Slider = ({ title }) => {
+  const [cars, setCars] = useState([]);
+
+  useEffect(() => {
+    // fetch all cars
+    async function fetchCars() {
+      setCars(await getCars());
+    }
+    fetchCars();
+  }, []);
+
+  if (!cars.length) {
+    return <h2>Loading Popular Cars...</h2>;
+  }
+
   return (
     <section>
       <header className="flex justify-between mb-5">
@@ -26,32 +43,15 @@ const Slider = ({ title }) => {
         slidesPerView={"auto"}
         showsPagination={false}
         modules={[Pagination]}
-        className="mySwiper "
+        className="mySwiper"
       >
-        <SwiperSlide>
-          <CarCard isSlideCard={true} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CarCard isSlideCard={true} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CarCard isSlideCard={true} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CarCard isSlideCard={true} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CarCard isSlideCard={true} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CarCard isSlideCard={true} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CarCard isSlideCard={true} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CarCard isSlideCard={true} />
-        </SwiperSlide>
+        {cars.map((car) => {
+          return (
+            <SwiperSlide key={car.id}>
+              <CarCard isSlideCard={true} carData={car} />
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </section>
   );
