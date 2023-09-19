@@ -45,7 +45,7 @@ const Layout = () => {
         >
           <CloseIcon />
         </div>
-        <FilterSidebar />
+        {/* <FilterSidebar /> */}
       </div>
       <div onClick={() => !isNavCollapsed && setIsNavCollapsed(true)}>
         <Header
