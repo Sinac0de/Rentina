@@ -1,7 +1,8 @@
 import ProfileIcon from "src/components/Icons/ProfileIcon";
 import RatingStars from "src/components/common/RatingStars";
 
-const Review = () => {
+const Review = ({ reviewData }) => {
+  const { name, review, Occupation } = reviewData;
   return (
     <div className="flex items-start gap-2">
       <div className="w-fit">
@@ -11,9 +12,9 @@ const Review = () => {
         {/* comment header */}
         <div className="flex justify-between">
           <div className="flex flex-col justify-between">
-            <h3 className="text-base font-semibold">Alex Stanton</h3>
+            <h3 className="text-base font-semibold">{name}</h3>
             <h4 className="text-xs text-secondary-300 font-medium">
-              CEO at Bukalapak
+              {Occupation}
             </h4>
           </div>
           <div className="flex flex-col justify-between items-end pt-1">
@@ -27,10 +28,7 @@ const Review = () => {
         </div>
         {/* comment text */}
         <p className="text-xs ellipsis font-normal text-secondary-300 leading-6">
-          We are very happy with the service from the MORENT App. Morent has a
-          low price and also a large variety of cars with good and comfortable
-          facilities. In addition, the service provided by the officers is also
-          very friendly and very polite.
+          {review}
         </p>
       </div>
     </div>

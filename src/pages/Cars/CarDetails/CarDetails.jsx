@@ -35,7 +35,7 @@ const CarDetails = () => {
         <CarInfo info={carData} />
       </div>
 
-      <CarReviews />
+      <CarReviews reviews={carData.reviews} />
       <Slider title="Recent Cars" />
       <Slider title="Recomendation Cars" />
     </div>
