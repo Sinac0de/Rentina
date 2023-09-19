@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import CarCard from "../CarCard/CarCard";
+import { getCars } from "src/services/api";
 
 const AllCarsList = ({ hasHeader, header }) => {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/cars")
-      .then((res) => res.json())
-      .then((data) => setCars(data));
+    // fetch all cars
+    async function fetchCars() {
+      setCars(await getCars());
+    }
+    fetchCars();
   }, []);
 
-  if (!cars) {
-    return <h2>Loading...</h2>;
+  if (!cars.length) {
+    return <h2>getting cars info...</h2>;
   }
 
   return (
@@ -21,14 +24,9 @@ const AllCarsList = ({ hasHeader, header }) => {
       </header>
       {/* recommended car cards */}
       <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-5">
-        <CarCard />
-        <CarCard />
-        <CarCard />
-        <CarCard />
-        <CarCard />
-        <CarCard />
-        <CarCard />
-        <CarCard />
+        {cars.map((car) => {
+          return <CarCard key={car.id} carData={car} />;
+        })}
       </div>
       <footer className="flex justify-center items-center relative">
         <button className="bg-primary-500 py-2 px-[20px] rounded-[4px] text-xs">
