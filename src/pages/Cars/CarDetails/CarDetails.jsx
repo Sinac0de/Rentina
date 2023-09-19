@@ -9,17 +9,22 @@ import { getCars } from "src/services/api";
 
 const CarDetails = () => {
   const [carData, setCarData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
+    // Reset the loading state
+    setIsLoading(true);
     // fetch car data
     async function fetchCarDetails() {
-      setCarData(await getCars(id));
+      const data = await getCars(id);
+      setCarData(data);
+      setIsLoading(false); // Set loading to false when data is fetched
     }
     fetchCarDetails();
-  }, []);
+  }, [id]);
 
-  if (!carData.id) {
+  if (isLoading) {
     return <h4>Loading car data...</h4>;
   }
 
