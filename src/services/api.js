@@ -1,6 +1,5 @@
 export async function getCars(id) {
-  const base =
-    "https://my-json-server.typicode.com/Sinac0de/Rentina_db_server/cars";
+  const base = "https://api.npoint.io/2748d15519c67fc51dc5/cars";
   const url = id ? `${base}/${id}` : base;
   const res = await fetch(url);
   if (!res.ok) {
