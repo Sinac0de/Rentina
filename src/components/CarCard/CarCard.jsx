@@ -9,7 +9,16 @@ import { Link } from "react-router-dom";
 
 const CarCard = ({ isSlideCard = false, carData }) => {
   if (carData) {
-    const { id, make, model, rental_price, thumbnail_img, specs } = carData;
+    const {
+      id,
+      make,
+      model,
+      rental_price,
+      discount_percent,
+      thumbnail_img,
+      specs,
+    } = carData;
+
     const carInfo = [
       {
         id: 1,
@@ -30,11 +39,18 @@ const CarCard = ({ isSlideCard = false, carData }) => {
         icon: <PeopleIcon />,
       },
     ];
+
     const [isFavorite, setIsFavorite] = useState(false);
+
     // to add item to the favorites
     const handleFavorite = () => {
       setIsFavorite((prev) => !prev);
     };
+
+    // Calculate the total price
+    const totalDiscount = (rental_price * discount_percent) / 100;
+    const totalPrice = rental_price - totalDiscount;
+
     return (
       <motion.div
         initial={{ opacity: 0 }}
@@ -44,7 +60,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
       >
         {/* card header */}
         <div className="flex justify-between">
-          <Link className="flex flex-col p-0" to="/shop/1">
+          <Link className="flex flex-col p-0" to={`/shop/${id}`}>
             <h3 className="text-base font-semibold text-secondary-500 mb-1">
               {`${make} ${model}`}
             </h3>
@@ -63,7 +79,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
         </div>
         {/* card body */}
         <Link
-          to="/shop/1"
+          to={`/shop/${id}`}
           className={`flex ${
             isSlideCard ? "flex-col" : "mb-5"
           } justify-between gap-5`}
@@ -101,18 +117,20 @@ const CarCard = ({ isSlideCard = false, carData }) => {
           </div>
         </Link>
         {/* card footer */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center h-full justify-between">
           {/* price and discount */}
           <div>
             <h3 className="font-semibold text-base text-secondary-500 md:text-xl">
-              ${rental_price}/
+              ${totalPrice.toFixed(2)}/
               <span className="font-medium text-xs text-secondary-300 md:text-base">
                 day
               </span>
             </h3>
-            <h4 className="text-xs text-secondary-300 line-through md:text-base">
-              $90.00
-            </h4>
+            {discount_percent ? (
+              <h4 className="text-xs text-secondary-300 line-through lg:text-base">
+                ${rental_price.toFixed(2)}
+              </h4>
+            ) : null}
           </div>
           <Link
             to="/payment/1"
