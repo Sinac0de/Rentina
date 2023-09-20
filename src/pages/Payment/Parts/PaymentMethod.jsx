@@ -11,12 +11,14 @@ const PaymentMethod = () => {
       {/* header */}
       <div className="flex flex-col gap-1">
         <div className="flex justify-between items-center">
-          <h3 className="font-bold text-secondary-500">Payment Method</h3>
-          <h4 className="text-secondary-300 text-xs font-medium">
+          <h3 className="font-bold text-secondary-500 lg:text-xl">
+            Payment Method
+          </h3>
+          <h4 className="text-secondary-300 text-xs font-medium lg:text-sm">
             Step 3 of 4
           </h4>
         </div>
-        <h5 className="text-secondary-300 text-xs font-medium">
+        <h5 className="text-secondary-300 text-xs font-medium lg:text-sm">
           Please enter your payment method
         </h5>
       </div>
@@ -30,34 +32,36 @@ const PaymentMethod = () => {
             </div>
             <img src={visaImg} className="object-contain" />
           </div>
-          <TextInput
-            name="cardnumber"
-            title="Card Number"
-            label="Card Number"
-            placeHolder="Card number"
-            bgWhite
-          />
-          <TextInput
-            name="exprationdate"
-            title="Expration Date"
-            label="Expration Date"
-            placeHolder="DD/MM/YY"
-            bgWhite
-          />
-          <TextInput
-            name="cardholder"
-            title="Card Holder"
-            label="Card Holder"
-            placeHolder="Card holder"
-            bgWhite
-          />
-          <TextInput
-            name="towncity"
-            title="CVC"
-            label="CVC"
-            placeHolder="CVC"
-            bgWhite
-          />
+          <div className="lg:grid lg:grid-cols-2 gap-x-5">
+            <TextInput
+              name="cardnumber"
+              title="Card Number"
+              label="Card Number"
+              placeHolder="Card number"
+              bgWhite
+            />
+            <TextInput
+              name="exprationdate"
+              title="Expration Date"
+              label="Expration Date"
+              placeHolder="DD/MM/YY"
+              bgWhite
+            />
+            <TextInput
+              name="cardholder"
+              title="Card Holder"
+              label="Card Holder"
+              placeHolder="Card holder"
+              bgWhite
+            />
+            <TextInput
+              name="towncity"
+              title="CVC"
+              label="CVC"
+              placeHolder="CVC"
+              bgWhite
+            />
+          </div>
         </div>
         {/* radio buttons */}
         <div className="flex relative p-4 items-center">
@@ -71,7 +75,9 @@ const PaymentMethod = () => {
             htmlFor="paypal"
             className="p-5 pl-9 pr-8 order-2 flex justify-between items-center cursor-pointer absolute top-0 left-0 w-full h-full bg-[#F6F7F9] rounded-[10px]"
           >
-            <h4 className="text-secondary-500 text-sm font-semibold">PayPal</h4>
+            <h4 className="text-secondary-500 text-sm font-semibold lg:text-base">
+              PayPal
+            </h4>
             <img src={paypalImg} className="object-contain" />
           </label>
         </div>
@@ -86,7 +92,7 @@ const PaymentMethod = () => {
             htmlFor="bitcoin"
             className="p-5 pl-9 pr-8 order-2 flex justify-between items-center cursor-pointer absolute top-0 left-0 w-full h-full bg-[#F6F7F9] rounded-[10px]"
           >
-            <h4 className="text-secondary-500 text-sm font-semibold">
+            <h4 className="text-secondary-500 text-sm font-semibold lg:text-base">
               Bitcoin
             </h4>
             <img src={bitcoinImg} className="object-contain" />
