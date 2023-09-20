@@ -7,19 +7,24 @@ const Confirmation = () => {
       {/* header */}
       <div className="flex flex-col gap-1">
         <div className="flex justify-between items-center">
-          <h3 className="font-bold text-secondary-500">Confirmation</h3>
-          <h4 className="text-secondary-300 text-xs font-medium">
+          <h3 className="font-bold text-secondary-500 lg:text-xl">
+            Confirmation
+          </h3>
+          <h4 className="text-secondary-300 text-xs font-medium lg:text-sm">
             Step 4 of 4
           </h4>
         </div>
-        <h5 className="text-secondary-300 text-xs font-medium">
+        <h5 className="text-secondary-300 text-xs font-medium lg:text-sm">
           We are getting to the end. Just few clicks and your rental is ready!
         </h5>
       </div>
       {/* body */}
       <div className="flex p-4 bg-[#F6F7F9] rounded-[10px] gap-3">
         <input type="checkbox" id="newsletter" />
-        <label htmlFor="newsletter" className="text-xs text-[#1F2544]">
+        <label
+          htmlFor="newsletter"
+          className="text-xs text-[#1F2544] lg:text-base lg:font-semibold"
+        >
           I agree with sending an Marketing and newsletter emails. No spam,
           promissed!
         </label>
@@ -27,7 +32,10 @@ const Confirmation = () => {
 
       <div className="flex p-4 bg-[#F6F7F9] rounded-[10px] gap-3">
         <input type="checkbox" id="terms&conditions" />
-        <label htmlFor="terms&conditions" className="text-xs text-[#1F2544]">
+        <label
+          htmlFor="terms&conditions"
+          className="text-xs text-[#1F2544] lg:text-base lg:font-semibold"
+        >
           I agree with our{" "}
           <span className="underline">terms and conditions</span> and{" "}
           <span className="underline">privacy policy</span>!
@@ -48,7 +56,7 @@ const Confirmation = () => {
           <h3 className="font-bold text-base text-secondary-500">
             All your data are safe
           </h3>
-          <p className="font-medium text-xs text-secondary-300">
+          <p className="font-medium text-xs text-secondary-300 lg:text-sm">
             We are using the most advanced security to provide you the best
             experience ever.
           </p>
