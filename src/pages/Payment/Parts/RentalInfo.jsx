@@ -14,12 +14,14 @@ const RentalInfo = () => {
       {/* header */}
       <div className="flex flex-col gap-1">
         <div className="flex justify-between items-center">
-          <h3 className="font-bold text-secondary-500">Rental Info</h3>
-          <h4 className="text-secondary-300 text-xs font-medium">
+          <h3 className="font-bold text-secondary-500 lg:text-xl">
+            Rental Info
+          </h3>
+          <h4 className="text-secondary-300 text-xs font-medium lg:text-sm">
             Step 2 of 4
           </h4>
         </div>
-        <h5 className="text-secondary-300 text-xs font-medium">
+        <h5 className="text-secondary-300 text-xs font-medium lg:text-sm">
           Please select your rental date
         </h5>
       </div>
@@ -30,10 +32,10 @@ const RentalInfo = () => {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <BulletIcon />
-              <h3 className="font-semibold">Pick-Up</h3>
+              <h3 className="font-semibold lg:text-base">Pick-Up</h3>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="lg:grid lg:grid-cols-2 gap-5">
             <BigSelectInput
               label="Locations"
               id="pick-location"
@@ -48,10 +50,10 @@ const RentalInfo = () => {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <BulletIcon />
-              <h3 className="font-semibold">Drop-Off</h3>
+              <h3 className="font-semibold lg:text-base">Drop-Off</h3>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="lg:grid lg:grid-cols-2 gap-5">
             <BigSelectInput
               label="Locations"
               id="drop-location"
