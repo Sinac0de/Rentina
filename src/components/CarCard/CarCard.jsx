@@ -100,7 +100,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
           {/* car info */}
           <div
             className={`flex whitespace-nowrap ${
-              !isSlideCard ? "flex-col gap-[16px]" : "gap-5"
+              !isSlideCard ? "flex-col gap-[16px]" : "gap-5 justify-around"
             } `}
           >
             {carInfo.map((info) => {
