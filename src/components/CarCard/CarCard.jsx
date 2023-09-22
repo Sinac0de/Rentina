@@ -94,6 +94,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
               src={thumbnail_img}
               className="object-contain"
               alt="Picture of a car"
+              loading="lazy"
             />
             <div className="car-shadow"></div>
           </div>
@@ -133,7 +134,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
             ) : null}
           </div>
           <Link
-            to="/payment/1"
+            to={`/payment/${id}`}
             className="text-white bg-primary-500 py-2 px-[20px] rounded text-xs font-medium"
           >
             Rent now
