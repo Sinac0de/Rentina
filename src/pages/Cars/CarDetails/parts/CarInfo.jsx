@@ -88,7 +88,7 @@ const CarInfo = ({ info }) => {
           </div>
 
           <Link
-            to="/payment/1"
+            to={`/payment/${id}`}
             className="text-white bg-primary-500 py-2 px-[20px] h-full rounded text-base lg:py-4 font-medium"
           >
             Rent now

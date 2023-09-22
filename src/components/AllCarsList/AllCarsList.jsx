@@ -35,7 +35,7 @@ const AllCarsList = ({ hasHeader, header }) => {
           Show More Cars
         </button>
         <h3 className="font-bold text-secondary-300 absolute text-sm right-5">
-          120 cars
+          {cars.length} cars
         </h3>
       </footer>
     </div>
