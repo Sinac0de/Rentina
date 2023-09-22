@@ -3,7 +3,13 @@ import carImg from "src/assets/images/Cars/test/car-img-1_1.png";
 import { useState } from "react";
 import TextInput from "src/components/common/TextInput";
 
-const RentalSummary = () => {
+const RentalSummary = ({ info }) => {
+  const { id, make, model, rental_price, discount_percent, img_urls } = info;
+
+  // Calculate the total price
+  const totalDiscount = (rental_price * discount_percent) / 100;
+  const totalPrice = rental_price - totalDiscount;
+
   const [promoCode, setPromoCode] = useState("");
 
   const handleChange = (e) => {
@@ -26,10 +32,13 @@ const RentalSummary = () => {
       {/* body */}
       <div className="flex flex-col gap-5">
         <div className="flex border-b-[1px] border-[#C3D4E966]/40 pb-5 gap-5">
-          <img src={carImg} className="flex-1 max-w-[35%] object-contain" />
+          <img
+            src={img_urls[1].src}
+            className="flex-1 max-w-[35%] object-contain rounded-[10px]"
+          />
           <div className="flex-1 flex flex-col gap-4 lg:gap-3">
             <h2 className="text-xl font-bold lg:text-3xl md:text-2xl">
-              Nissan GT - R
+              {`${make} ${model}`}
             </h2>
             <div className="flex flex-col gap-1 lg:flex-row lg:items-center lg:gap-2 flex-wrap">
               <div className="hidden lg:block">
@@ -49,11 +58,11 @@ const RentalSummary = () => {
         <div className="flex flex-col gap-2">
           <div className="flex justify-between font-semibold items-center">
             <p className="text-xs text-secondary-300 md:text-base">Subtotal</p>
-            <span className="text-base">$80.00</span>
+            <span className="text-base">${totalPrice.toFixed(2)}</span>
           </div>
           <div className="flex justify-between font-semibold items-center">
             <p className="text-xs text-secondary-300 md:text-base">Tax</p>
-            <span className="text-base">$0</span>
+            <span className="text-base">$0.00</span>
           </div>
         </div>
 
@@ -79,7 +88,7 @@ const RentalSummary = () => {
         </div>
         <div className="flex justify-end items-center">
           <h2 className="font-bold text-xl text-secondary-500 md:text-3xl">
-            $80.00
+            ${totalPrice.toFixed(2)}
           </h2>
         </div>
       </div>
