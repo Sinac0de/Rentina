@@ -1,6 +1,7 @@
 import PickDropIcon from "../Icons/PickDropIcon";
 import BulletIcon from "../Icons/BulletIcon";
 import SmSelectInput from "../common/SmSelectInput";
+import DatePickerInput from "../common/DatePickerInput";
 
 const PickDrop = () => {
   // ! Just for test
@@ -25,11 +26,10 @@ const PickDrop = () => {
             options={options}
             borderDir="right"
           />
-          <SmSelectInput
-            label="Date"
+          <DatePickerInput
+            isCompact={true}
             id="pick-date"
-            options={options}
-            borderDir={null}
+            title="Pick-Up Date"
           />
           <SmSelectInput
             label="Time"
@@ -59,11 +59,10 @@ const PickDrop = () => {
             options={options}
             borderDir="right"
           />
-          <SmSelectInput
-            label="Date"
+          <DatePickerInput
+            isCompact={true}
             id="drop-date"
-            options={options}
-            borderDir={null}
+            title="Drop-Off Date"
           />
           <SmSelectInput
             label="Time"
