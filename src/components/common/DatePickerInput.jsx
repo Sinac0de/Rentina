@@ -2,43 +2,44 @@ import DatePicker from "tailwind-datepicker-react";
 import { useState } from "react";
 import ArrowDown from "../Icons/ArrowDown";
 
-/* ---DatePicker features settings--- */
-const options = {
-  title: "Pick-Up Date",
-  autoHide: true,
-  todayBtn: false,
-  clearBtn: true,
-  maxDate: new Date("2030-01-01"),
-  minDate: new Date("1950-01-01"),
-  theme: {
-    background: "shadow-lg",
-    todayBtn: "",
-    clearBtn:
-      "bg-red-400 text-white hover:bg-red-600 focus:ring-0 focus:border-none border-none",
-    icons: "",
-    text: "",
-    disabledText: "",
-    input: "",
-    inputIcon: "",
-    selected: "bg-primary-500",
-  },
-  icons: {
-    // () => ReactElement | JSX.Element
-    prev: () => <span>Previous</span>,
-    next: () => <span>Next</span>,
-  },
-
-  /* ---Date picker info settings--- */
-  datepickerClassNames: "absolute z-10 top-20",
-  defaultDate: new Date(),
-  language: "en",
-};
-
 /* ---DatePicker Component--- */
-const DatePickerInput = ({ id }) => {
+const DatePickerInput = ({ id, title }) => {
   const [show, setShow] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date().toDateString());
 
+  /* ---DatePicker features settings--- */
+  const options = {
+    title: title,
+    autoHide: true,
+    todayBtn: false,
+    clearBtn: true,
+    maxDate: new Date("2030-01-01"),
+    minDate: new Date("1950-01-01"),
+    theme: {
+      background: "shadow-lg",
+      todayBtn: "",
+      clearBtn:
+        "bg-red-400 text-white hover:bg-red-600 focus:ring-0 focus:border-none border-none",
+      icons: "",
+      text: "",
+      disabledText: "",
+      input: "",
+      inputIcon: "",
+      selected: "bg-primary-500",
+    },
+    icons: {
+      // () => ReactElement | JSX.Element
+      prev: () => <span>Previous</span>,
+      next: () => <span>Next</span>,
+    },
+
+    /* ---Date picker info settings--- */
+    datepickerClassNames: "absolute z-10 top-20",
+    defaultDate: new Date(),
+    language: "en",
+  };
+
+  /* ---Handlers--- */
   const handleChange = (selectedDate) => {
     setSelectedDate(selectedDate.toDateString());
   };

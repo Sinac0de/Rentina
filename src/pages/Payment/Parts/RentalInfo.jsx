@@ -42,7 +42,7 @@ const RentalInfo = () => {
               id="pick-location"
               options={options}
             />
-            <DatePickerInput id="pick-date" />
+            <DatePickerInput id="pick-date" title="Pick-Up Date" />
             <BigSelectInput label="Time" id="pick-time" options={options} />
           </div>
         </div>
@@ -60,7 +60,7 @@ const RentalInfo = () => {
               id="drop-location"
               options={options}
             />
-            <BigSelectInput label="Date" id="drop-date" options={options} />
+            <DatePickerInput id="drop-date" title="Drop-Off Date" />
             <BigSelectInput label="Time" id="drop-time" options={options} />
           </div>
         </div>
