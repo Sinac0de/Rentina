@@ -1,5 +1,6 @@
 import BulletIcon from "src/components/Icons/BulletIcon";
 import BigSelectInput from "src/components/common/BigSelectInput";
+import DatePickerInput from "src/components/common/DatePickerInput";
 
 const RentalInfo = () => {
   // ! Just for test
@@ -10,7 +11,7 @@ const RentalInfo = () => {
   ];
 
   return (
-    <div className="bg-white w-full overflow-hidden p-5 rounded-[10px] flex flex-col gap-5">
+    <div className="bg-white w-full p-5 rounded-[10px] flex flex-col gap-5">
       {/* header */}
       <div className="flex flex-col gap-1">
         <div className="flex justify-between items-center">
@@ -41,7 +42,7 @@ const RentalInfo = () => {
               id="pick-location"
               options={options}
             />
-            <BigSelectInput label="Date" id="pick-date" options={options} />
+            <DatePickerInput id="pick-date" />
             <BigSelectInput label="Time" id="pick-time" options={options} />
           </div>
         </div>
