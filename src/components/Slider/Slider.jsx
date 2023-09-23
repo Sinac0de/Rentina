@@ -43,7 +43,7 @@ const Slider = ({ title }) => {
         slidesPerView={"auto"}
         showsPagination={false}
         modules={[Pagination]}
-        className="mySwiper"
+        className="mySwiper z-0"
       >
         {cars.map((car) => {
           return (
