@@ -15,7 +15,7 @@ const NavBar = () => {
       <span className="p-2 border rounded-full cursor-pointer">
         <SettingsIcon />
       </span>
-      <span className="w-11 h-11 cursor-pointer">
+      <span className="p-2 border rounded-full cursor-pointer">
         <ProfileIcon />
       </span>
     </div>
