@@ -36,7 +36,9 @@ const DatePickerInput = ({ isCompact, id, title }) => {
     },
 
     /* ---Date picker info settings--- */
-    datepickerClassNames: isCompact ? "" : "absolute z-[20] top-20",
+    datepickerClassNames: isCompact
+      ? "absolute left-0 top-16 z-20"
+      : "absolute z-50 top-20",
     defaultDate: new Date(),
     language: "en",
   };
@@ -54,7 +56,7 @@ const DatePickerInput = ({ isCompact, id, title }) => {
   };
 
   return (
-    <div className={`relative ${isCompact ? "" : "my-5"} lg:my-0 w-full`}>
+    <div className={`${isCompact ? "" : "relative my-5"} lg:my-0 w-full`}>
       <DatePicker
         options={options}
         onChange={handleChange}
