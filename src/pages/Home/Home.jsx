@@ -78,7 +78,7 @@ const Home = () => {
           <Slider title={"Popular cars"} />
         </div>
         {/* Recommended cars*/}
-        <AllCarsList hasHeader header="Recommended Cars" />
+        <AllCarsList isCompact={true} hasHeader header="Recommended Cars" />
       </div>
     </div>
   );

@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
 import CarCard from "../CarCard/CarCard";
 import { getCars } from "src/services/api";
+import { Link } from "react-router-dom";
 
-const AllCarsList = ({ hasHeader, header }) => {
+const AllCarsList = ({ isCompact, hasHeader, header }) => {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
     // fetch all cars
     async function fetchCars() {
-      setCars(await getCars());
+      const data = await getCars();
+      if (isCompact) {
+        setCars(data.slice(0, 8));
+      } else {
+        setCars(data);
+      }
     }
     fetchCars();
   }, []);
@@ -25,19 +31,24 @@ const AllCarsList = ({ hasHeader, header }) => {
         </h3>
       </header>
       {/* recommended car cards */}
-      <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-5">
+      <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 my-5">
         {cars.map((car) => {
           return <CarCard key={car.id} carData={car} />;
         })}
       </div>
-      <footer className="flex justify-center items-center relative">
-        <button className="bg-primary-500 py-2 px-[20px] rounded-[4px] text-xs">
-          Show More Cars
-        </button>
-        <h3 className="font-bold text-secondary-300 absolute text-sm right-5">
-          {cars.length} cars
-        </h3>
-      </footer>
+      {isCompact && (
+        <footer className="flex justify-center items-center relative mt-10">
+          <Link
+            to="/shop"
+            className="bg-primary-500 text-white py-2 px-[20px] rounded-[4px] text-xs font-medium"
+          >
+            Show More Cars
+          </Link>
+          <h3 className="font-bold text-secondary-300 absolute text-sm right-5">
+            {cars.length} cars
+          </h3>
+        </footer>
+      )}
     </div>
   );
 };
