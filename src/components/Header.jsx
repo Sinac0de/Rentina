@@ -45,7 +45,7 @@ const Header = ({ setIsNavCollapsed, setIsFilterOpen }) => {
           />
 
           <button
-            className="p-3 border border-[#C3D4E9]/40 rounded-lg md:absolute md:right-4 md:border-none md:h-full"
+            className="p-3 border border-[#C3D4E9]/40 rounded-lg md:rounded-full xl:hidden"
             onClick={handleToggleFilter}
           >
             <FilterIcon />
