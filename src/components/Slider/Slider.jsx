@@ -10,6 +10,7 @@ import { Pagination } from "swiper/modules";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import SkeletonCard from "../CarCard/SkeletonCard";
 
 const Slider = ({ title }) => {
   const [cars, setCars] = useState([]);
@@ -23,7 +24,40 @@ const Slider = ({ title }) => {
   }, []);
 
   if (!cars.length) {
-    return <h2>Loading Popular Cars...</h2>;
+    return (
+      <section className="my-2">
+        <header className="flex justify-between mb-5">
+          <h3 className="text-secondary-300 font-semibold text-sm md:text-base md:px-2">
+            {title}
+          </h3>
+          <Link to="/shop" className="text-primary-500 font-semibold">
+            <p>View all</p>
+          </Link>
+        </header>
+        {/* slides */}
+        <Swiper
+          grabCursor={true}
+          spaceBetween="30"
+          slidesPerView={"auto"}
+          showsPagination={false}
+          modules={[Pagination]}
+          className="mySwiper z-0"
+        >
+          <SwiperSlide>
+            <SkeletonCard isSlideCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <SkeletonCard isSlideCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <SkeletonCard isSlideCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <SkeletonCard isSlideCard />
+          </SwiperSlide>
+        </Swiper>
+      </section>
+    );
   }
 
   return (
