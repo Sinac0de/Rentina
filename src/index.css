@@ -35,6 +35,7 @@ button {
 
 .swiper-slide {
   width: auto;
+  height: auto;
 }
 
 input[type="range"]::-webkit-slider-thumb {
