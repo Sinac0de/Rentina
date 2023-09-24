@@ -56,7 +56,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col gap-5 bg-white rounded-lg p-3"
+        className="flex flex-col gap-5 bg-white rounded-lg p-3 h-full"
       >
         {/* card header */}
         <div className="flex justify-between">
@@ -87,13 +87,13 @@ const CarCard = ({ isSlideCard = false, carData }) => {
           {/* car image & shadow */}
           <div
             className={`relative flex ${
-              isSlideCard ? "mb-5" : ""
+              isSlideCard ? "mb-5 min-h-[100px]" : ""
             } justify-center items-end flex-1`}
           >
             <img
               src={thumbnail_img}
               className="object-contain"
-              alt="Picture of a car"
+              alt={`${make} ${model}`}
               loading="lazy"
             />
             <div className="car-shadow"></div>
