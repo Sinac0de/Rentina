@@ -63,10 +63,13 @@ const DatePickerInput = ({ isCompact, id, title }) => {
       >
         <div
           className={`flex flex-col w-full h-fit ${
-            isCompact ? "gap-0" : "gap-2"
+            isCompact ? "gap-0 px-2" : "gap-2"
           }`}
         >
-          <label htmlFor={id} className="font-semibold text-sm lg:text-base">
+          <label
+            htmlFor={id}
+            className={`font-bold ${isCompact ? "" : "text-sm lg:text-base"} `}
+          >
             Date
           </label>
           <div className="relative cursor-pointer">
