@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const AllCarsList = ({ isCompact, hasHeader, header }) => {
   const [cars, setCars] = useState([]);
+  const [carsCount, setCarsCount] = useState(0);
 
   useEffect(() => {
     // fetch all cars
@@ -15,11 +16,12 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
       } else {
         setCars(data);
       }
+      setCarsCount(data.length);
     }
     fetchCars();
   }, []);
 
-  if (!cars.length) {
+  if (!carsCount) {
     return <h2>getting cars info...</h2>;
   }
 
@@ -45,7 +47,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
             Show More Cars
           </Link>
           <h3 className="font-bold text-secondary-300 absolute text-sm right-5">
-            {cars.length} cars
+            {carsCount} cars
           </h3>
         </footer>
       )}
