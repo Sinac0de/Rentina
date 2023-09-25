@@ -4,7 +4,8 @@ import { useState } from "react";
 import TextInput from "src/components/common/TextInput";
 
 const RentalSummary = ({ info }) => {
-  const { id, make, model, rental_price, discount_percent, img_urls } = info;
+  const { id, make, model, specs, img_urls } = info;
+  const { rental_price, discount_percent } = specs;
 
   // Calculate the total price
   const totalDiscount = (rental_price * discount_percent) / 100;

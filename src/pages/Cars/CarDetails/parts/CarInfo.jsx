@@ -2,8 +2,17 @@ import RatingStars from "src/components/common/RatingStars";
 import { Link } from "react-router-dom";
 
 const CarInfo = ({ info }) => {
-  const { id, make, model, rental_price, discount_percent, specs, reviews } =
-    info;
+  const { id, make, model, specs, reviews } = info;
+
+  const {
+    rental_price,
+    discount_percent,
+    type,
+    desc,
+    fuel_capacity,
+    transmission,
+    seats,
+  } = specs;
 
   // Calculate the total price
   const totalDiscount = (rental_price * discount_percent) / 100;
@@ -19,14 +28,14 @@ const CarInfo = ({ info }) => {
         <div className="flex gap-2 items-center">
           <RatingStars />
           <h4 className="text-xs text-secondary-300 lg:text-[14px]">
-            440+ Reviewer
+            {reviews.length} Reviewer
           </h4>
         </div>
       </div>
       {/* info body */}
       <div className="flex flex-col gap-5">
         <p className="text-secondary-300 text-xs lg:text-xl lg:text-secondary-400 font-normal">
-          {specs.desc}
+          {desc}
         </p>
         {/* car specs */}
         <div className="flex justify-between gap-4 items-center flex-wrap lg:gap-5">
@@ -36,7 +45,7 @@ const CarInfo = ({ info }) => {
                 Type
               </h3>
               <span className="text-secondary-500 font-semibold text-xs lg:font-normal lg:text-xl">
-                {specs.type}
+                {type}
               </span>
             </div>
             <div className="flex justify-between items-center">
@@ -44,7 +53,7 @@ const CarInfo = ({ info }) => {
                 Transmission
               </h3>
               <span className="text-secondary-500 font-semibold text-xs lg:font-normal lg:text-xl">
-                {specs.transmission}
+                {transmission}
               </span>
             </div>
           </div>
@@ -55,7 +64,7 @@ const CarInfo = ({ info }) => {
                 Seating
               </h3>
               <span className="text-secondary-500 font-semibold text-xs lg:font-normal lg:text-xl">
-                {`${specs.seats} seats`}
+                {`${seats} seats`}
               </span>
             </div>
             <div className="flex justify-between items-center">
@@ -63,7 +72,7 @@ const CarInfo = ({ info }) => {
                 Fuel Tank Capacity
               </h3>
               <span className="text-secondary-500 font-semibold text-xs lg:font-normal lg:text-xl">
-                {`${specs.fuel_capacity.toFixed(1)} gal.`}
+                {`${fuel_capacity.toFixed(1)} gal.`}
               </span>
             </div>
           </div>

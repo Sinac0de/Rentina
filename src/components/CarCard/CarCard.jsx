@@ -9,33 +9,34 @@ import { Link } from "react-router-dom";
 
 const CarCard = ({ isSlideCard = false, carData }) => {
   if (carData) {
+    const { id, make, model, thumbnail_img, specs } = carData;
+
     const {
-      id,
-      make,
-      model,
       rental_price,
       discount_percent,
-      thumbnail_img,
-      specs,
-    } = carData;
+      type,
+      fuel_capacity,
+      transmission,
+      seats,
+    } = specs;
 
     const carInfo = [
       {
         id: 1,
         name: "Fuel Capacity",
-        desc: `${specs.fuel_capacity} gal.`,
+        desc: `${fuel_capacity} gal.`,
         icon: <FuelIcon />,
       },
       {
         id: 2,
         name: "transmission type",
-        desc: specs.transmission,
+        desc: transmission,
         icon: <TransmissionIcon />,
       },
       {
         id: 3,
         name: "seats",
-        desc: `${specs.seats} People`,
+        desc: `${seats} People`,
         icon: <PeopleIcon />,
       },
     ];
@@ -64,9 +65,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
             <h3 className="text-base font-semibold text-secondary-500 mb-1">
               {`${make} ${model}`}
             </h3>
-            <h5 className="text-xs font-medium text-secondary-300">
-              {specs.type}
-            </h5>
+            <h5 className="text-xs font-medium text-secondary-300">{type}</h5>
           </Link>
           {/* favorite icon */}
           <button className="h-fit mt-1 text-9xl" onClick={handleFavorite}>
