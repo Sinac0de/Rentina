@@ -1,9 +1,9 @@
 import FuelIcon from "../Icons/FuelIcon";
 import TransmissionIcon from "../Icons/TransmissionIcon";
 import PeopleIcon from "../Icons/PeopleIcon";
-import HeartFilled from "../Icons/HeartFilled";
 import { motion } from "framer-motion";
 import GalleryIcon from "../Icons/GalleryIcon";
+import HeartPlaceHolder from "../Icons/HeartPlaceHolder";
 
 const SkeletonCard = ({ isSlideCard = false }) => {
   const carInfo = [
@@ -39,7 +39,7 @@ const SkeletonCard = ({ isSlideCard = false }) => {
         </div>
         {/* favorite icon */}
         <div className="h-fit mt-1 text-9xl">
-          <HeartFilled isBig={isSlideCard} />
+          <HeartPlaceHolder isBig={isSlideCard} />
         </div>
       </div>
       {/* card body */}
