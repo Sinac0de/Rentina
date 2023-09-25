@@ -1,4 +1,4 @@
-const RangeInput = () => {
+const RangeInput = ({ max }) => {
   const changeHandler = (e) => {
     const priceFilter = e.target.value;
     // Todo : Set form value
@@ -11,13 +11,13 @@ const RangeInput = () => {
         id="range"
         type="range"
         min="1"
-        max="100"
+        max={max}
         step="1"
         onMouseUp={changeHandler}
       />
 
       <label htmlFor="range" className="text-secondary-400 font-semibold">
-        Max. $100.00
+        Max. ${max}
       </label>
     </div>
   );
