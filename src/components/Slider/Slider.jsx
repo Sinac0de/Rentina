@@ -23,6 +23,7 @@ const Slider = ({ title }) => {
     fetchCars();
   }, []);
 
+  /* --- Skeleton Loading --- */
   if (!cars.length) {
     return (
       <section className="my-2">
@@ -34,7 +35,7 @@ const Slider = ({ title }) => {
             <p>View all</p>
           </Link>
         </header>
-        {/* slides */}
+        {/* ---Swiper Slider--- */}
         <Swiper
           grabCursor={true}
           spaceBetween="30"
@@ -43,23 +44,18 @@ const Slider = ({ title }) => {
           modules={[Pagination]}
           className="mySwiper z-0"
         >
-          <SwiperSlide>
-            <SkeletonCard isSlideCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <SkeletonCard isSlideCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <SkeletonCard isSlideCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <SkeletonCard isSlideCard />
-          </SwiperSlide>
+          {/* ---Create 8 skeleton cards--- */}
+          {Array.from({ length: 8 }).map((_, index) => (
+            <SwiperSlide key={index}>
+              <SkeletonCard isSlideCard />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </section>
     );
   }
 
+  /* --- Fetched Content --- */
   return (
     <section className="my-2">
       <header className="flex justify-between mb-5">
@@ -70,7 +66,7 @@ const Slider = ({ title }) => {
           <p>View all</p>
         </Link>
       </header>
-      {/* slides */}
+      {/* ---Swiper Slider--- */}
       <Swiper
         grabCursor={true}
         spaceBetween="30"
