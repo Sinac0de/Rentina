@@ -1,11 +1,12 @@
 import { useState } from "react";
 import CheckBoxFilled from "../Icons/CheckBoxChecked";
 
-const Checkbox = ({ id, label, count }) => {
+const Checkbox = ({ id, label, count, onChange }) => {
   const [checked, setChecked] = useState(false);
 
-  const handleCheck = () => {
+  const handleCheck = (e) => {
     setChecked((prev) => !prev);
+    onChange(e);
   };
 
   return (
@@ -14,7 +15,7 @@ const Checkbox = ({ id, label, count }) => {
         <input
           id={label}
           type="checkbox"
-          value=""
+          value={label}
           className="opacity-0 absolute h-5 w-5 cursor-pointer"
           checked={checked}
           onChange={handleCheck}
