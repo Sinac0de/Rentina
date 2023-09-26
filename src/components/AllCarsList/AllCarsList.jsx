@@ -33,7 +33,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
         </header>
         {/* recommended car cards */}
         <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 my-5">
-          {/* 8 car skeleton */}
+          {/* 8 cards skeleton */}
           {Array.from({ length: 8 }).map((_, index) => (
             <SkeletonCard key={index} />
           ))}
