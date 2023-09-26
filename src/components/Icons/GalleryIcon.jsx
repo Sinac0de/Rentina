@@ -1,8 +1,8 @@
-const GalleryIcon = () => {
+const GalleryIcon = ({ isBig = false }) => {
   return (
     <svg
-      width="60"
-      height="60"
+      width={`${!isBig ? "45px" : "60px"}`}
+      height={`${!isBig ? "45px" : "60px"}`}
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
