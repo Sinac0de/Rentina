@@ -37,7 +37,7 @@ const CarPhotos = ({ photos }) => {
       <div
         className={`${
           isLoaded[activeImg.id - 1].load ? "hidden" : "flex"
-        } w-full h-56 lg:h-80 xl:h-96 rounded-[10px]  bg-white flex justify-center items-center`}
+        } w-full h-56 lg:h-80 xl:h-96 rounded-[10px] bg-white flex justify-center items-center animate-pulse`}
       >
         <GalleryIcon isBig />
       </div>
@@ -64,7 +64,7 @@ const CarPhotos = ({ photos }) => {
               <div
                 className={`${
                   isLoaded[photo.id - 1].load ? "hidden" : "flex"
-                } h-14 md:h-20 lg:h-[99px] xl:h-28 w-full flex justify-center items-center rounded-md p-2 border-[3px] border-white`}
+                } h-14 md:h-20 lg:h-[99px] xl:h-28 w-full flex justify-center items-center rounded-md p-2 border-[3px] border-white animate-pulse`}
               >
                 <div className="bg-white py-5 w-full h-full flex justify-center items-center">
                   <GalleryIcon />
