@@ -5,7 +5,6 @@ import { getCars } from "src/services/api";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css";
@@ -40,8 +39,6 @@ const Slider = ({ title }) => {
           grabCursor={true}
           spaceBetween="30"
           slidesPerView={"auto"}
-          showsPagination={false}
-          modules={[Pagination]}
           className="mySwiper z-0"
         >
           {/* ---Create 8 skeleton cards--- */}
@@ -71,14 +68,12 @@ const Slider = ({ title }) => {
         grabCursor={true}
         spaceBetween="30"
         slidesPerView={"auto"}
-        showsPagination={false}
-        modules={[Pagination]}
         className="mySwiper z-0"
       >
         {cars.map((car) => {
           return (
             <SwiperSlide key={car.id}>
-              <CarCard isSlideCard={true} carData={car} />
+              <CarCard isSlideCard carData={car} />
             </SwiperSlide>
           );
         })}
