@@ -35,7 +35,7 @@ const CarReviews = ({ reviews }) => {
       </div>
       {/*--- Collapse ---*/}
       <div
-        className={`flex overflow-hidden flex-col gap-5 transition-[max-height] duration-1000`}
+        className={`flex max-h-0 overflow-hidden flex-col gap-5 transition-[max-height] duration-1000`}
         ref={collapseRef}
       >
         {reviews.slice(2).map((review, index) => (
