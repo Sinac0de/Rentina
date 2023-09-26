@@ -39,7 +39,6 @@ const FilterSidebar = () => {
 
         /* ---Gather Prices--- */
         const pricesData = specs.rental_price;
-        console.log(specs.rental_price);
         if (!allPrices.some((price) => price === specs.rental_price)) {
           allPrices.push(pricesData);
         }
