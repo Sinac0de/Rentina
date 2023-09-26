@@ -1,13 +1,13 @@
 import CarReviews from "./parts/CarReviews/CarReviews";
-import CarPhotos from "./parts/CarPhotos";
-import CarInfo from "./parts/CarInfo";
+import CarPhotos from "./parts/CarPhotos/CarPhotos";
+import CarInfo from "./parts/CarInfo/CarInfo";
 import Slider from "src/components/Slider/Slider";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCars } from "src/services/api";
-import SkeletonPhotos from "./parts/SkeletonPhotos";
-import SkeletonInfo from "./parts/SkeletonInfo";
+import SkeletonPhotos from "./parts/CarPhotos/SkeletonPhotos";
+import SkeletonInfo from "./parts/CarInfo/SkeletonInfo";
 import SkeletonReviews from "./parts/CarReviews/SkeletonReviews";
 
 const CarDetails = () => {
