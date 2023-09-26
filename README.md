@@ -35,4 +35,4 @@
 * Html5
 
 # <a name="resources"></a>Resources
-All The car Data including pictures and info are from <a href="https://www.edmunds.com/">edmunds</a> website. I created a JSON file with the data and stored it in <a href="https://www.npoint.io/">npoint.io</a> website for API calls.
+All the car data, including pictures and information, is sourced from the <a href="https://www.edmunds.com/">Edmunds</a> website. I have created a JSON file with this data and stored it on the <a href="https://www.npoint.io/">npoint.io</a> website for API calls.
