@@ -3,12 +3,22 @@ import RangeInput from "../common/RangeInput";
 import { useState, useEffect } from "react";
 import { getCarsSpecs } from "src/services/api";
 import SkeletonFilters from "./SkeletonFilters";
+import { useSearchParams } from "react-router-dom";
 
 const FilterSidebar = () => {
+  /**=== USE STATES ===**/
+  const [searchParams, setSearchParams] = useSearchParams();
+  /* --- Filter Data --- */
   const [types, setTypes] = useState([]);
   const [seats, setSeats] = useState([]);
   const [prices, setPrices] = useState([]);
+  /* --- Selected Filters --- */
+  const [selectedSeats, setSelectedSeats] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [selectedMaxPrice, setSelectedMaxPrice] = useState(null);
 
+  /**=== USE Effects ===**/
+  /* --- fetch filters --- */
   useEffect(() => {
     const allTypes = [];
     const allSeats = [];
@@ -39,7 +49,6 @@ const FilterSidebar = () => {
 
         /* ---Gather Prices--- */
         const pricesData = specs.rental_price;
-        console.log(specs.rental_price);
         if (!allPrices.some((price) => price === specs.rental_price)) {
           allPrices.push(pricesData);
         }
@@ -51,6 +60,43 @@ const FilterSidebar = () => {
     }
     fetchCarsSpecs();
   }, []);
+
+  /*--- Change search params based on selected filters ---*/
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    selectedSeats.forEach((seat) => {
+      params.append("seat", seat);
+    });
+
+    selectedTypes.forEach((type) => {
+      params.append("type", type);
+    });
+
+    params.append("maxPrice", selectedMaxPrice);
+
+    // Replace the current URL with the new one containing the selected parameters
+    window.history.replaceState({}, "", `?${params.toString()}`);
+  }, [selectedSeats, selectedTypes, selectedMaxPrice]);
+
+  /* ---Handlers--- */
+  const handleSeatsChange = (event) => {
+    const seat = parseInt(event.target.value);
+    if (event.target.checked) {
+      setSelectedSeats([...selectedSeats, seat]);
+    } else {
+      setSelectedSeats(selectedSeats.filter((s) => s !== seat));
+    }
+  };
+
+  const handleTypesChange = (event) => {
+    const type = event.target.value;
+    if (event.target.checked) {
+      setSelectedTypes([...selectedTypes, type]);
+    } else {
+      setSelectedTypes(selectedTypes.filter((t) => t !== type));
+    }
+  };
 
   /* ---Skeleton Loading--- */
   if (!types.length) {
@@ -71,6 +117,7 @@ const FilterSidebar = () => {
                 key={index}
                 label={type.typeName}
                 count={type.count}
+                onChange={handleTypesChange}
               />
             );
           })}
@@ -88,6 +135,7 @@ const FilterSidebar = () => {
                 key={index}
                 label={seats.seats}
                 count={seats.count}
+                onChange={handleSeatsChange}
               />
             );
           })}
