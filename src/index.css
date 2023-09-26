@@ -38,6 +38,11 @@ button {
   height: auto;
 }
 
+.collapse-transition {
+  max-height: 0;
+  transition: max-height 1s;
+}
+
 input[type="range"]::-webkit-slider-thumb {
   width: 20px;
   -webkit-appearance: none;

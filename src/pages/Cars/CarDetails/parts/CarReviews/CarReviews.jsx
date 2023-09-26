@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import { useRef, useState } from "react";
 import Review from "./parts/Review";
 
 const CarReviews = ({ reviews }) => {
   const [showAllReviews, setShowAllReviews] = useState(false);
 
+  /* ===Handlers=== */
   const toggleReviews = () => {
-    setShowAllReviews(!showAllReviews);
+    setShowAllReviews((prev) => !prev);
+    /* --- Smooth transition --- */
+    if (!showAllReviews) {
+      collapseRef.current.style.maxHeight =
+        collapseRef.current.scrollHeight + "px";
+    } else {
+      collapseRef.current.style.maxHeight = 0;
+    }
   };
+
+  const collapseRef = useRef();
 
   return (
     <div className="bg-white p-5 flex flex-col gap-5 rounded-[10px]">
@@ -23,10 +33,10 @@ const CarReviews = ({ reviews }) => {
           <Review key={index} reviewData={review} />
         ))}
       </div>
+      {/*--- Collapse ---*/}
       <div
-        className={`${
-          showAllReviews ? "h-auto" : "h-0 overflow-hidden"
-        } flex flex-col gap-5`}
+        className={`flex overflow-hidden flex-col gap-5 transition-[max-height] duration-1000`}
+        ref={collapseRef}
       >
         {reviews.slice(2).map((review, index) => (
           <Review key={index} reviewData={review} />
