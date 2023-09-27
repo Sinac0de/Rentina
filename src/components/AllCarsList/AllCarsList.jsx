@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react";
 import CarCard from "../CarCard/CarCard";
 import { getCars } from "src/services/api";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import SkeletonCard from "../CarCard/SkeletonCard";
 
 const AllCarsList = ({ isCompact, hasHeader, header }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [cars, setCars] = useState([]);
   const [carsCount, setCarsCount] = useState(0);
+
+  const filters = {
+    types: searchParams.getAll("type"),
+    seats: searchParams.getAll("seats").map((value) => parseInt(value)),
+    maxPrice: searchParams.get("maxPrice"),
+  };
+
+  console.log(filters);
 
   useEffect(() => {
     // fetch all cars
@@ -59,7 +68,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
         <footer className="flex justify-center items-center relative mt-10">
           <Link
             to="/shop"
-            className="bg-primary-500 text-white py-2 px-[20px] rounded-[4px] text-xs font-medium"
+            className="bg-primary-500 text-white border-2 hover:text-primary-500 hover:bg-white hover:border-primary-500 transition-all duration-300 py-3 px-[20px] rounded-[4px] text-xs font-medium lg:text-base"
           >
             Show More Cars
           </Link>
