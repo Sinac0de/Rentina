@@ -1,12 +1,21 @@
 import { useState } from "react";
 import CheckBoxFilled from "../Icons/CheckBoxChecked";
+import { useSearchParams } from "react-router-dom";
 
 const Checkbox = ({ id, label, count, onChange, param }) => {
-  const [checked, setChecked] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  // initialize checked
+  const isChecked = searchParams.getAll(param).includes(label);
+  const [checked, setChecked] = useState(isChecked);
 
   const handleCheck = (e) => {
     setChecked((prev) => !prev);
-    onChange(param, e.target.value);
+    // handle searchParams
+    if (checked) {
+      onChange(param, e.target.value, "delete-value");
+    } else {
+      onChange(param, e.target.value, "add-value");
+    }
   };
 
   return (

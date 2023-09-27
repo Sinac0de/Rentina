@@ -1,7 +1,14 @@
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
 const RangeInput = ({ max, onChange, param }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const paramValue = searchParams.get("maxPrice");
+  const [rangeValue, setRangeValue] = useState(paramValue || max);
+
   const changeHandler = (e) => {
-    const priceFilter = e.target.value;
-    onChange(param, priceFilter, true);
+    setRangeValue(e.target.value);
   };
 
   return (
@@ -12,8 +19,10 @@ const RangeInput = ({ max, onChange, param }) => {
         type="range"
         min="1"
         max={max}
+        value={rangeValue}
         step="1"
-        onMouseUp={changeHandler}
+        onMouseUp={() => onChange(param, rangeValue, "add-value", true)}
+        onChange={changeHandler}
       />
 
       <label htmlFor="range" className="text-secondary-400 font-semibold">
