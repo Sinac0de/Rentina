@@ -12,10 +12,6 @@ const FilterSidebar = () => {
   const [types, setTypes] = useState([]);
   const [seats, setSeats] = useState([]);
   const [prices, setPrices] = useState([]);
-  /* --- Selected Filters --- */
-  const [selectedSeats, setSelectedSeats] = useState([]);
-  const [selectedTypes, setSelectedTypes] = useState([]);
-  const [selectedMaxPrice, setSelectedMaxPrice] = useState(null);
 
   /**=== USE Effects ===**/
   /* --- fetch filters --- */
@@ -61,42 +57,19 @@ const FilterSidebar = () => {
     fetchCarsSpecs();
   }, []);
 
-  /*--- Change search params based on selected filters ---*/
-  useEffect(() => {
-    const params = new URLSearchParams();
-
-    selectedSeats.forEach((seat) => {
-      params.append("seat", seat);
-    });
-
-    selectedTypes.forEach((type) => {
-      params.append("type", type);
-    });
-
-    params.append("maxPrice", selectedMaxPrice);
-
-    // Replace the current URL with the new one containing the selected parameters
-    window.history.replaceState({}, "", `?${params.toString()}`);
-  }, [selectedSeats, selectedTypes, selectedMaxPrice]);
-
   /* ---Handlers--- */
-  const handleSeatsChange = (event) => {
-    const seat = parseInt(event.target.value);
-    if (event.target.checked) {
-      setSelectedSeats([...selectedSeats, seat]);
-    } else {
-      setSelectedSeats(selectedSeats.filter((s) => s !== seat));
-    }
-  };
-
-  const handleTypesChange = (event) => {
-    const type = event.target.value;
-    if (event.target.checked) {
-      setSelectedTypes([...selectedTypes, type]);
-    } else {
-      setSelectedTypes(selectedTypes.filter((t) => t !== type));
-    }
-  };
+  function handleFilterChange(key, value, isSingleValue) {
+    setSearchParams((prevParams) => {
+      if (value === null) {
+        prevParams.delete(key);
+      } else if (isSingleValue) {
+        prevParams.set(key, value); // set key-value pair
+      } else {
+        prevParams.append(key, value); // <-- append key-value pair
+      }
+      return prevParams;
+    });
+  }
 
   /* ---Skeleton Loading--- */
   if (!types.length) {
@@ -117,7 +90,8 @@ const FilterSidebar = () => {
                 key={index}
                 label={type.typeName}
                 count={type.count}
-                onChange={handleTypesChange}
+                param="type"
+                onChange={handleFilterChange}
               />
             );
           })}
@@ -135,7 +109,8 @@ const FilterSidebar = () => {
                 key={index}
                 label={seats.seats}
                 count={seats.count}
-                onChange={handleSeatsChange}
+                param="seats"
+                onChange={handleFilterChange}
               />
             );
           })}
@@ -145,7 +120,11 @@ const FilterSidebar = () => {
       <div>
         <h3 className="text-xs text-secondary-300 tracking-widest">PRICE</h3>
         <div className="my-5 mb-10">
-          <RangeInput max={Math.max(...prices)} />
+          <RangeInput
+            max={Math.max(...prices)}
+            onChange={handleFilterChange}
+            param="maxPrice"
+          />
         </div>
       </div>
     </>
