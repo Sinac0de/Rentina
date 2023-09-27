@@ -6,6 +6,7 @@ import { useState } from "react";
 import HeartFilled from "../Icons/HeartFilled";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { calTotalPrice } from "src/utils/usefulFunctions";
 
 const CarCard = ({ isSlideCard = false, carData }) => {
   if (carData) {
@@ -49,8 +50,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
     };
 
     // Calculate the total price
-    const totalDiscount = (rental_price * discount_percent) / 100;
-    const totalPrice = rental_price - totalDiscount;
+    const totalPrice = calTotalPrice(rental_price, discount_percent);
 
     return (
       <motion.div

@@ -1,5 +1,6 @@
 import RatingStars from "src/components/common/RatingStars";
 import { Link } from "react-router-dom";
+import { calTotalPrice } from "src/utils/usefulFunctions";
 
 const CarInfo = ({ info }) => {
   const { id, make, model, specs, reviews } = info;
@@ -15,8 +16,7 @@ const CarInfo = ({ info }) => {
   } = specs;
 
   // Calculate the total price
-  const totalDiscount = (rental_price * discount_percent) / 100;
-  const totalPrice = rental_price - totalDiscount;
+  const totalPrice = calTotalPrice(rental_price, discount_percent);
 
   return (
     <div className="flex flex-col gap-5 bg-white p-4 rounded-[10px] lg:w-1/2 lg:justify-around">

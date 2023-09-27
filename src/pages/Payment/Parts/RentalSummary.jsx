@@ -2,14 +2,14 @@ import RatingStars from "src/components/common/RatingStars";
 import carImg from "src/assets/images/Cars/test/car-img-1_1.png";
 import { useState } from "react";
 import TextInput from "src/components/common/TextInput";
+import { calTotalPrice } from "src/utils/usefulFunctions";
 
 const RentalSummary = ({ info }) => {
   const { id, make, model, specs, img_urls } = info;
   const { rental_price, discount_percent } = specs;
 
   // Calculate the total price
-  const totalDiscount = (rental_price * discount_percent) / 100;
-  const totalPrice = rental_price - totalDiscount;
+  const totalPrice = calTotalPrice(rental_price, discount_percent);
 
   const [promoCode, setPromoCode] = useState("");
 
