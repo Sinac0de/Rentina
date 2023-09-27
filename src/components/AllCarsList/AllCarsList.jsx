@@ -15,8 +15,6 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
     maxPrice: searchParams.get("maxPrice"),
   };
 
-  console.log(filters);
-
   useEffect(() => {
     // fetch all cars
     async function fetchCars() {
@@ -30,6 +28,27 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
     }
     fetchCars();
   }, []);
+
+  /* ---Filter the cars based on the filters--- */
+  const displayedCars = cars.filter((car) => {
+    // Filter by type
+    if (filters.types.length > 0 && !filters.types.includes(car.specs.type)) {
+      return false;
+    }
+
+    // Filter by seats
+    if (filters.seats.length > 0 && !filters.seats.includes(car.specs.seats)) {
+      return false;
+    }
+
+    // Filter by maxPrice
+    if (filters.maxPrice && car.price > filters.maxPrice) {
+      return false;
+    }
+
+    // If all filters pass, include the car
+    return true;
+  });
 
   /*--- Skeleton loading ---*/
   if (!carsCount) {
@@ -60,7 +79,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
       </header>
       {/* recommended car cards */}
       <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 my-5">
-        {cars.map((car) => {
+        {displayedCars.map((car) => {
           return <CarCard key={car.id} carData={car} />;
         })}
       </div>
