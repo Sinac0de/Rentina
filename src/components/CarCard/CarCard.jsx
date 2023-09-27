@@ -5,10 +5,14 @@ import PeopleIcon from "../Icons/PeopleIcon";
 import { useState } from "react";
 import HeartFilled from "../Icons/HeartFilled";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { calTotalPrice } from "src/utils/usefulFunctions";
 
 const CarCard = ({ isSlideCard = false, carData }) => {
+  const location = useLocation();
+  const filterParams = location.search;
+  const [isFavorite, setIsFavorite] = useState(false);
+
   if (carData) {
     const { id, make, model, thumbnail_img, specs } = carData;
 
@@ -42,8 +46,6 @@ const CarCard = ({ isSlideCard = false, carData }) => {
       },
     ];
 
-    const [isFavorite, setIsFavorite] = useState(false);
-
     // to add item to the favorites
     const handleFavorite = () => {
       setIsFavorite((prev) => !prev);
@@ -61,7 +63,10 @@ const CarCard = ({ isSlideCard = false, carData }) => {
       >
         {/* card header */}
         <div className="flex justify-between">
-          <Link className="flex flex-col p-0" to={`/shop/${id}`}>
+          <Link
+            className="flex flex-col p-0"
+            to={filterParams ? `/shop/${id}${filterParams}` : `/shop/${id}`}
+          >
             <h3 className="text-base font-semibold text-secondary-500 mb-1">
               {`${make} ${model}`}
             </h3>
@@ -78,7 +83,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
         </div>
         {/* card body */}
         <Link
-          to={`/shop/${id}`}
+          to={filterParams ? `/shop/${id}${filterParams}` : `/shop/${id}`}
           className={`flex ${
             isSlideCard ? "flex-col" : "mb-5"
           } justify-between gap-5`}
@@ -133,7 +138,9 @@ const CarCard = ({ isSlideCard = false, carData }) => {
             ) : null}
           </div>
           <Link
-            to={`/payment/${id}`}
+            to={
+              filterParams ? `/payment/${id}${filterParams}` : `/payment/${id}`
+            }
             className="text-white bg-primary-500 py-2 px-[20px] rounded text-xs font-medium"
           >
             Rent now
