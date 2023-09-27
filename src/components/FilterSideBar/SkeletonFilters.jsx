@@ -33,6 +33,7 @@ const SkeletonFilters = () => {
         <div className="my-5 mb-10">
           <div className="animate-pulse flex flex-col gap-2">
             <div className="w-full h-4 rounded-full bg-secondary-300"></div>
+            <div className="w-2/3 h-4 rounded-full bg-secondary-300"></div>
             <div className="w-1/3 h-4 rounded-full bg-secondary-300"></div>
           </div>
         </div>
