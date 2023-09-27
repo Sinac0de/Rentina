@@ -3,11 +3,15 @@ import RangeInput from "../common/RangeInput";
 import { useState, useEffect } from "react";
 import { getCarsSpecs } from "src/services/api";
 import SkeletonFilters from "./SkeletonFilters";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { getAllParamsFilters } from "src/utils/usefulFunctions";
 
 const FilterSidebar = () => {
-  /**=== USE STATES ===**/
+  /**=== Hooks ===**/
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+
   /* --- Filter Data --- */
   const [types, setTypes] = useState([]);
   const [seats, setSeats] = useState([]);
@@ -57,6 +61,11 @@ const FilterSidebar = () => {
     fetchCarsSpecs();
   }, []);
 
+  /* --- navigate to shop page when filters change --- */
+  useEffect(() => {
+    navigate(`/shop${location.search}`);
+  }, [location.search]);
+
   /* ===Handlers=== */
   /* handle filters */
   function handleFilterChange(key, value, func, isSingleValue = false) {
@@ -81,6 +90,12 @@ const FilterSidebar = () => {
         /* delete all filters with that key*/
         case "delete-key":
           prevParams.delete(key);
+          break;
+        /* delete all filters*/
+        case "delete-all":
+          [...prevParams.keys()].forEach((key) => {
+            prevParams.delete(key);
+          });
           break;
       }
 
@@ -145,6 +160,18 @@ const FilterSidebar = () => {
           />
         </div>
       </div>
+
+      {/* ---Remove all filters--- */}
+      {location.search ? (
+        <div>
+          <button
+            className="bg-primary-500 p-3 rounded-[10px] text-white"
+            onClick={() => handleFilterChange(null, null, "delete-all", null)}
+          >
+            Reset Filters
+          </button>
+        </div>
+      ) : null}
     </>
   );
 };
