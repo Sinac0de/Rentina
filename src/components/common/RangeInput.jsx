@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const RangeInput = ({ min, max, onChange, param }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
+  /* ---Initialize range value--- */
   const paramValue = searchParams.get("maxPrice");
   const [rangeValue, setRangeValue] = useState(paramValue || max);
 
   const changeHandler = (e) => {
     setRangeValue(e.target.value);
   };
+
+  /*--- Check for params change ---*/
+  useEffect(() => {
+    setRangeValue(paramValue || max);
+  }, [searchParams.get(param)]);
 
   return (
     <div className="flex flex-col gap-3">

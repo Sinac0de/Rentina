@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CheckBoxFilled from "../Icons/CheckBoxChecked";
 import { useSearchParams } from "react-router-dom";
 
@@ -17,6 +17,11 @@ const Checkbox = ({ id, label, count, onChange, param }) => {
       onChange(param, e.target.value, "add-value");
     }
   };
+
+  /*--- Check for params change ---*/
+  useEffect(() => {
+    setChecked(isChecked);
+  }, [searchParams.get(param)]);
 
   return (
     <div key={id} className="flex items-center">
