@@ -34,7 +34,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
   /* scroll to top when filters change */
   useEffect(() => {
     scrollToTopFunction();
-  }, [filters]);
+  }, [searchParams]);
 
   /* ---Filter the cars based on the filters--- */
   const displayedCars = cars.filter((car) => {

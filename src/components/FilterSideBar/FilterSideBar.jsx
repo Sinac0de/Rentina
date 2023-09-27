@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { getCarsSpecs } from "src/services/api";
 import SkeletonFilters from "./SkeletonFilters";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import { getAllParamsFilters } from "src/utils/usefulFunctions";
 
 const FilterSidebar = () => {
   /**=== Hooks ===**/
@@ -63,7 +62,9 @@ const FilterSidebar = () => {
 
   /* --- navigate to shop page when filters change --- */
   useEffect(() => {
-    navigate(`/shop${location.search}`);
+    if (location.search) {
+      navigate(`/shop${location.search}`);
+    }
   }, [location.search]);
 
   /* ===Handlers=== */
