@@ -3,18 +3,18 @@ import CarCard from "../CarCard/CarCard";
 import { getCars } from "src/services/api";
 import { Link, useSearchParams } from "react-router-dom";
 import SkeletonCard from "../CarCard/SkeletonCard";
-import { calTotalPrice, scrollToTopFunction } from "src/utils/usefulFunctions";
+import {
+  calTotalPrice,
+  getAllParamsFilters,
+  scrollToTopFunction,
+} from "src/utils/usefulFunctions";
 
 const AllCarsList = ({ isCompact, hasHeader, header }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [cars, setCars] = useState([]);
   const [carsCount, setCarsCount] = useState(0);
 
-  const filters = {
-    types: searchParams.getAll("type"),
-    seats: searchParams.getAll("seats").map((value) => parseInt(value)),
-    maxPrice: searchParams.get("maxPrice"),
-  };
+  const filters = getAllParamsFilters();
 
   /* === UseEffects === */
   /*--- fetch all cars ---*/
@@ -31,7 +31,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
     fetchCars();
   }, []);
 
-  /* scroll to top on filter changes */
+  /* scroll to top when filters change */
   useEffect(() => {
     scrollToTopFunction();
   }, [filters]);
