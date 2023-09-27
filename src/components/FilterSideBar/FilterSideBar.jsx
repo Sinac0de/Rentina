@@ -57,16 +57,33 @@ const FilterSidebar = () => {
     fetchCarsSpecs();
   }, []);
 
-  /* ---Handlers--- */
-  function handleFilterChange(key, value, isSingleValue) {
+  /* ===Handlers=== */
+  /* handle filters */
+  function handleFilterChange(key, value, func, isSingleValue = false) {
     setSearchParams((prevParams) => {
-      if (value === null) {
-        prevParams.delete(key);
-      } else if (isSingleValue) {
-        prevParams.set(key, value); // set key-value pair
-      } else {
-        prevParams.append(key, value); // <-- append key-value pair
+      switch (func) {
+        /* add a filter with a key and value */
+        case "add-value":
+          if (isSingleValue) {
+            prevParams.set(key, value); // set key-value pair
+          } else {
+            prevParams.append(key, value); // <-- append key-value pair
+          }
+          break;
+        /* delete a filter with that key and value */
+        case "delete-value":
+          if (isSingleValue) {
+            prevParams.delete(key);
+          } else {
+            prevParams.delete(key, value);
+          }
+          break;
+        /* delete all filters with that key*/
+        case "delete-key":
+          prevParams.delete(key);
+          break;
       }
+
       return prevParams;
     });
   }
