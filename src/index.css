@@ -44,7 +44,8 @@ button {
   max-height: 0;
   transition: max-height 1s;
 }
-
+/* === Inputs styles ==== */
+/* ---range input--- */
 input[type="range"]::-webkit-slider-thumb {
   width: 20px;
   -webkit-appearance: none;
@@ -57,18 +58,18 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 50%;
 }
 
-.background {
-  background-image: url("./assets/images/Cars/heroBackground.png");
-  background-position: center;
-  background-repeat: repeat;
-}
-
-/* for the checkbox */
+/* ---for the checkbox--- */
 input:checked + div {
   @apply border-blue-500;
 }
 input:checked + div svg {
   @apply block;
+}
+
+.background {
+  background-image: url("./assets/images/Cars/heroBackground.png");
+  background-position: center;
+  background-repeat: repeat;
 }
 
 .ellipsis {
