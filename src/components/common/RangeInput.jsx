@@ -1,7 +1,7 @@
-const RangeInput = ({ max }) => {
+const RangeInput = ({ max, onChange, param }) => {
   const changeHandler = (e) => {
     const priceFilter = e.target.value;
-    // Todo : Set form value
+    onChange(param, priceFilter, true);
   };
 
   return (
