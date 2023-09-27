@@ -4,3 +4,7 @@ export function calTotalPrice(rentalPrice, discountPercent) {
   const totalPrice = rentalPrice - totalDiscount;
   return totalPrice;
 }
+
+export function scrollToTopFunction() {
+  window.scrollTo(0, 0);
+}
