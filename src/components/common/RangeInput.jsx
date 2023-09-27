@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-const RangeInput = ({ max, onChange, param }) => {
+const RangeInput = ({ min, max, onChange, param }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const paramValue = searchParams.get("maxPrice");
@@ -18,7 +18,7 @@ const RangeInput = ({ max, onChange, param }) => {
         id="range"
         type="range"
         title={rangeValue}
-        min="1"
+        min={min}
         max={max}
         value={rangeValue}
         step="1"
@@ -32,7 +32,15 @@ const RangeInput = ({ max, onChange, param }) => {
       >
         <div className="flex flex-wrap gap-[0.1em]">
           <span>Price Range:</span>
-          <span>$0 to ${rangeValue}</span>
+          <span>
+            {min === parseInt(rangeValue) ? (
+              <span>${rangeValue}</span>
+            ) : (
+              <span>
+                ${min} to ${rangeValue}
+              </span>
+            )}
+          </span>
         </div>
 
         <span>Max. ${max}</span>

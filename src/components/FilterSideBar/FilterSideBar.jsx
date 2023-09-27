@@ -138,6 +138,7 @@ const FilterSidebar = () => {
         <h3 className="text-xs text-secondary-300 tracking-widest">PRICE</h3>
         <div className="my-5 mb-10">
           <RangeInput
+            min={Math.min(...prices)}
             max={Math.max(...prices)}
             onChange={handleFilterChange}
             param="maxPrice"
