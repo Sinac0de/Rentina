@@ -3,7 +3,7 @@ import CarCard from "../CarCard/CarCard";
 import { getCars } from "src/services/api";
 import { Link, useSearchParams } from "react-router-dom";
 import SkeletonCard from "../CarCard/SkeletonCard";
-import { calTotalPrice } from "src/utils/usefulFunctions";
+import { calTotalPrice, scrollToTopFunction } from "src/utils/usefulFunctions";
 
 const AllCarsList = ({ isCompact, hasHeader, header }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,8 +16,9 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
     maxPrice: searchParams.get("maxPrice"),
   };
 
+  /* === UseEffects === */
+  /*--- fetch all cars ---*/
   useEffect(() => {
-    // fetch all cars
     async function fetchCars() {
       const data = await getCars();
       if (isCompact) {
@@ -29,6 +30,11 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
     }
     fetchCars();
   }, []);
+
+  /* scroll to top on filter changes */
+  useEffect(() => {
+    scrollToTopFunction();
+  }, [filters]);
 
   /* ---Filter the cars based on the filters--- */
   const displayedCars = cars.filter((car) => {
@@ -88,6 +94,11 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
         {displayedCars.map((car) => {
           return <CarCard key={car.id} carData={car} />;
         })}
+        {!displayedCars.length ? (
+          <h4>No cars found! please change filters.</h4>
+        ) : (
+          ""
+        )}
       </div>
       {isCompact && (
         <footer className="flex justify-center items-center relative mt-10">
