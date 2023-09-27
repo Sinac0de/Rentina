@@ -3,6 +3,7 @@ import CarCard from "../CarCard/CarCard";
 import { getCars } from "src/services/api";
 import { Link, useSearchParams } from "react-router-dom";
 import SkeletonCard from "../CarCard/SkeletonCard";
+import { calTotalPrice } from "src/utils/usefulFunctions";
 
 const AllCarsList = ({ isCompact, hasHeader, header }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -42,7 +43,12 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
     }
 
     // Filter by maxPrice
-    if (filters.maxPrice && car.price > filters.maxPrice) {
+    /* calculate total price of the car with discount */
+    const carTotalPrice = calTotalPrice(
+      car.specs.rental_price,
+      car.specs.discount_percent
+    );
+    if (filters.maxPrice && carTotalPrice > filters.maxPrice) {
       return false;
     }
 
