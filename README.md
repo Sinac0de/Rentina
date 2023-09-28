@@ -28,10 +28,11 @@
 * React Js
 * Redux & Redux tool-kit
 * React Router Dom v6
+* React paginate
+* Formik & YUP
 * TailwindCSS
 * LocalStorage
 * SwiperJs
-* TailwindCSS
 * Css3
 * Html5
 
