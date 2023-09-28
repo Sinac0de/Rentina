@@ -1,4 +1,4 @@
-import ProfileIcon from "src/components/Icons/ProfileIcon";
+import ProfileIcon from "src/assets/Icons/ProfileIcon";
 
 const SkeletonReview = () => {
   return (

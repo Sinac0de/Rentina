@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import GalleryIcon from "src/components/Icons/GalleryIcon";
+import GalleryIcon from "src/assets/Icons/GalleryIcon";
 
 const CarPhotos = ({ photos }) => {
   const [activeImg, setActiveImg] = useState({ id: 1, src: photos[0].src });

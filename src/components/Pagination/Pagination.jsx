@@ -1,6 +1,6 @@
 import { usePagination, DOTS } from "./usePagination";
-import ArrowRight from "../Icons/ArrowRight";
-import ArrowLeft from "../Icons/ArrowLeft";
+import ArrowRight from "../../assets/Icons/ArrowRight";
+import ArrowLeft from "../../assets/Icons/ArrowLeft";
 const Pagination = (props) => {
   const {
     onPageChange,

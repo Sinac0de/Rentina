@@ -1,5 +1,5 @@
 import TextInput from "src/components/common/TextInput";
-import BulletIcon from "src/components/Icons/BulletIcon";
+import BulletIcon from "src/assets/Icons/BulletIcon";
 import visaImg from "src/assets/images/Visa.png";
 import paypalImg from "src/assets/images/PayPal.png";
 import bitcoinImg from "src/assets/images/Bitcoin.png";

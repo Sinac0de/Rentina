@@ -19,3 +19,5 @@ export function getAllParamsFilters() {
     maxPrice: searchParams.get("maxPrice"),
   };
 }
+
+/* smooth collapse transition */

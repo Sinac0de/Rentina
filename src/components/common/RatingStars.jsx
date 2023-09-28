@@ -1,5 +1,5 @@
-import StarFilledIcon from "../Icons/StarFilledIcon";
-import StarOutlineIcon from "../Icons/StarOutlineIcon";
+import StarFilledIcon from "../../assets/Icons/StarFilledIcon";
+import StarOutlineIcon from "../../assets/Icons/StarOutlineIcon";
 
 const RatingStars = ({ isBig = false }) => {
   return (

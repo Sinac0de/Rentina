@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import HamMenuIcon from "./Icons/HamMenuIcon";
+import HamMenuIcon from "../assets/Icons/HamMenuIcon";
 import NavBar from "./NavBar/NavBar";
 import SearchBar from "./SearchBar/SearchBar";
 

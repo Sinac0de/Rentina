@@ -1,4 +1,4 @@
-import ProfileIcon from "src/components/Icons/ProfileIcon";
+import ProfileIcon from "src/assets/Icons/ProfileIcon";
 import RatingStars from "src/components/common/RatingStars";
 
 const Review = ({ reviewData }) => {

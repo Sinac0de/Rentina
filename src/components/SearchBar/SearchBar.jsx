@@ -1,5 +1,5 @@
 import { getCarsByName } from "src/services/api";
-import SearchIcon from "../Icons/SearchIcon";
+import SearchIcon from "../../assets/Icons/SearchIcon";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 

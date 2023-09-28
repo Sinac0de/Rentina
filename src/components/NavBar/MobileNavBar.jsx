@@ -1,7 +1,7 @@
-import FavoritesIcon from "../Icons/FavoritesIcon";
-import NotificationsIcon from "../Icons/NotificationsIcon";
-import ProfileIcon from "../Icons/ProfileIcon";
-import SettingsIcon from "../Icons/SettingsIcon";
+import FavoritesIcon from "../../assets/Icons/FavoritesIcon";
+import NotificationsIcon from "../../assets/Icons/NotificationsIcon";
+import ProfileIcon from "../../assets/Icons/ProfileIcon";
+import SettingsIcon from "../../assets/Icons/SettingsIcon";
 
 const MobileNavBar = ({ isNavCollapsed, setIsNavCollapsed }) => {
   return (

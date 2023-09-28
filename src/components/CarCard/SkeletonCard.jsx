@@ -1,9 +1,9 @@
-import FuelIcon from "../Icons/FuelIcon";
-import TransmissionIcon from "../Icons/TransmissionIcon";
-import PeopleIcon from "../Icons/PeopleIcon";
+import FuelIcon from "../../assets/Icons/FuelIcon";
+import TransmissionIcon from "../../assets/Icons/TransmissionIcon";
+import PeopleIcon from "../../assets/Icons/PeopleIcon";
 import { motion } from "framer-motion";
-import GalleryIcon from "../Icons/GalleryIcon";
-import HeartPlaceHolder from "../Icons/HeartPlaceHolder";
+import GalleryIcon from "../../assets/Icons/GalleryIcon";
+import HeartPlaceHolder from "../../assets/Icons/HeartPlaceHolder";
 
 const SkeletonCard = ({ isSlideCard = false }) => {
   const carInfo = [

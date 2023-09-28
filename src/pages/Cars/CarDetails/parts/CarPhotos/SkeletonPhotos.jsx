@@ -1,4 +1,4 @@
-import GalleryIcon from "src/components/Icons/GalleryIcon";
+import GalleryIcon from "src/assets/Icons/GalleryIcon";
 
 const SkeletonPhotos = () => {
   return (

@@ -1,9 +1,9 @@
-import HeartOutlined from "../Icons/HeartOutlined";
-import FuelIcon from "../Icons/FuelIcon";
-import TransmissionIcon from "../Icons/TransmissionIcon";
-import PeopleIcon from "../Icons/PeopleIcon";
+import HeartOutlined from "../../assets/Icons/HeartOutlined";
+import FuelIcon from "../../assets/Icons/FuelIcon";
+import TransmissionIcon from "../../assets/Icons/TransmissionIcon";
+import PeopleIcon from "../../assets/Icons/PeopleIcon";
 import { useState } from "react";
-import HeartFilled from "../Icons/HeartFilled";
+import HeartFilled from "../../assets/Icons/HeartFilled";
 import { motion } from "framer-motion";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { calTotalPrice } from "src/utils/usefulFunctions";

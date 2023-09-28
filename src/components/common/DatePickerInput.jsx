@@ -1,6 +1,6 @@
 import DatePicker from "tailwind-datepicker-react";
 import { useState } from "react";
-import ArrowDown from "../Icons/ArrowDown";
+import ArrowDown from "../../assets/Icons/ArrowDown";
 
 /* ---DatePicker Component--- */
 const DatePickerInput = ({ isCompact, id, title }) => {

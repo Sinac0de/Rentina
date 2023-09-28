@@ -5,7 +5,7 @@ import Footer from "src/components/Footer";
 import MobileNavBar from "src/components/NavBar/MobileNavBar";
 import FilterSidebar from "src/components/FilterSideBar/FilterSideBar";
 import ScrollToTop from "src/components/ScrollToTop/ScrollToTop";
-import CloseIcon from "src/components/Icons/CloseIcon";
+import CloseIcon from "src/assets/Icons/CloseIcon";
 
 const Layout = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);

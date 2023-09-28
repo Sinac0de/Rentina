@@ -1,5 +1,5 @@
-import HeartPlaceHolder from "src/components/Icons/HeartPlaceHolder";
-import StarPlaceHolder from "src/components/Icons/StarPlaceHolder";
+import HeartPlaceHolder from "src/assets/Icons/HeartPlaceHolder";
+import StarPlaceHolder from "src/assets/Icons/StarPlaceHolder";
 
 const SkeletonInfo = () => {
   return (

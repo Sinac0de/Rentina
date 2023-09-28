@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CheckBoxFilled from "../Icons/CheckBoxChecked";
+import CheckBoxFilled from "../../assets/Icons/CheckBoxChecked";
 import { useSearchParams } from "react-router-dom";
 
 const Checkbox = ({ id, label, count, onChange, param }) => {
