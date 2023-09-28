@@ -41,7 +41,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
       {
         id: 3,
         name: "seats",
-        desc: `${seats} People`,
+        desc: `${seats} seats`,
         icon: <PeopleIcon />,
       },
     ];
