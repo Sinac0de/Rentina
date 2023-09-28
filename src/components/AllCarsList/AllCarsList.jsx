@@ -8,6 +8,8 @@ import {
   getAllParamsFilters,
   scrollToTopFunction,
 } from "src/utils/usefulFunctions";
+import { useMemo } from "react";
+import Pagination from "../Pagination/Pagination";
 
 const AllCarsList = ({ isCompact, hasHeader, header }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -62,6 +64,15 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
     return true;
   });
 
+  /* === Pagination === */
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const currentPageData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * 8;
+    const lastPageIndex = firstPageIndex + 8;
+    return displayedCars.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, displayedCars]);
+
   /*--- Skeleton loading ---*/
   if (!carsCount) {
     return (
@@ -91,28 +102,44 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
       </header>
       {/* recommended car cards */}
       <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 my-5">
-        {displayedCars.map((car) => {
+        {currentPageData.map((car) => {
           return <CarCard key={car.id} carData={car} />;
         })}
-        {!displayedCars.length ? (
-          <h4>No cars found! please change filters.</h4>
-        ) : (
-          ""
-        )}
       </div>
-      {isCompact && (
-        <footer className="flex justify-center items-center relative mt-10">
-          <Link
-            to="/shop"
-            className="bg-primary-500 text-white border-2 hover:text-primary-500 hover:bg-white hover:border-primary-500 transition-all duration-300 py-3 px-[20px] rounded-[4px] text-xs font-medium lg:text-base"
-          >
-            Show More Cars
+      {/* if there is no car */}
+      {!currentPageData.length ? (
+        <div className="flex flex-col items-center gap-1 mt-10 w-full text-base md:text-xl">
+          <h4>No cars found! please change filters.</h4>
+          <Link to="/shop" className="underline text-primary-500">
+            Reset filters?
           </Link>
-          <h3 className="font-bold text-secondary-300 absolute text-sm right-5">
-            {carsCount} cars
-          </h3>
-        </footer>
+        </div>
+      ) : (
+        ""
       )}
+      {/* --- footer --- */}
+      <footer className="flex justify-center items-center relative mt-10">
+        <Pagination
+          className="flex gap-2 mx-auto p-3"
+          currentPage={currentPage}
+          totalCount={displayedCars.length}
+          pageSize={10}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
+        {isCompact && (
+          <>
+            <Link
+              to="/shop"
+              className="bg-primary-500 text-white border-2 hover:text-primary-500 hover:bg-white hover:border-primary-500 transition-all duration-300 py-3 px-[20px] rounded-[4px] text-xs font-medium lg:text-base"
+            >
+              Show More Cars
+            </Link>
+            <h3 className="font-bold text-secondary-300 absolute text-sm right-5">
+              {carsCount} cars
+            </h3>
+          </>
+        )}
+      </footer>
     </div>
   );
 };
