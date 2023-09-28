@@ -3,6 +3,7 @@ import DropOffIcon from "src/assets/Icons/DropOffIcon";
 import PickUpIcon from "src/assets/Icons/PickUpIcon";
 import BigSelectInput from "src/components/common/BigSelectInput";
 import DatePickerInput from "src/components/common/DatePickerInput";
+import TimeInput from "src/components/common/TimeInput";
 
 const RentalInfo = () => {
   // ! Just for test
@@ -44,8 +45,8 @@ const RentalInfo = () => {
               id="pick-location"
               options={options}
             />
-            <DatePickerInput id="pick-date" title="Pick-Up Date" />
-            <BigSelectInput label="Time" id="pick-time" options={options} />
+            <DatePickerInput id="pick-date" label="Date" />
+            <TimeInput label="Time" id="pick-time" isCompact={false} />
           </div>
         </div>
         {/*---Drop-Off---*/}
@@ -62,8 +63,8 @@ const RentalInfo = () => {
               id="drop-location"
               options={options}
             />
-            <DatePickerInput id="drop-date" title="Drop-Off Date" />
-            <BigSelectInput label="Time" id="drop-time" options={options} />
+            <DatePickerInput id="drop-date" label="Date" />
+            <TimeInput label="Time" id="drop-time" isCompact={false} />
           </div>
         </div>
       </div>

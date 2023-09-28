@@ -1,10 +1,6 @@
-const SmSelectInput = ({ id, label, options, borderDir }) => {
+const SmSelectInput = ({ id, label, options }) => {
   return (
-    <div
-      className={`flex flex-col w-full h-fit px-2 ${
-        borderDir === "right" ? "border-r-[1px]" : ""
-      } ${borderDir === "left" ? "border-l-[1px]" : ""}`}
-    >
+    <div className={`flex flex-col w-full h-fit px-2`}>
       <label htmlFor={id} className="font-bold">
         {label}
       </label>

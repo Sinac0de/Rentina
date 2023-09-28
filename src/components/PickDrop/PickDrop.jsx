@@ -1,5 +1,4 @@
 import PickDropIcon from "../../assets/Icons/PickDropIcon";
-import BulletIcon from "../../assets/Icons/BulletIcon";
 import SmSelectInput from "../common/SmSelectInput";
 import DatePickerInput from "../common/DatePickerInput";
 import TimeInput from "../common/TimeInput";
@@ -16,7 +15,7 @@ const PickDrop = () => {
   return (
     <div className="flex flex-col lg:flex-row md:items-center md:justify-between gap-1 lg:gap-6 items-center my-6 relative lg:max-w-6xl lg:mx-auto">
       {/* Pick Up */}
-      <div className="flex flex-col justify-between w-full sm:h-32 bg-white rounded-lg z-[10] p-3 gap-3 lg:max-w-lg shadow-sm">
+      <div className="flex flex-col justify-between w-full sm:h-28 bg-white rounded-lg z-[10] p-3 gap-3 lg:max-w-lg shadow-sm">
         <div className="flex items-center gap-3">
           <PickUpIcon color={"#3563E9"} />
           <h3 className="font-semibold">Pick-Up</h3>
@@ -27,14 +26,9 @@ const PickDrop = () => {
             label="Locations"
             id="pick-location"
             options={options}
-            borderDir="right"
           />
-          <DatePickerInput
-            isCompact={true}
-            id="pick-date"
-            title="Pick-Up Date"
-          />
-          <TimeInput label="Time" id="pick-time" borderDir="left" />
+          <DatePickerInput id="pick-date" label="Date" isCompact />
+          <TimeInput label="Time" id="pick-time" isCompact={true} />
         </div>
       </div>
 
@@ -44,7 +38,7 @@ const PickDrop = () => {
       </button>
 
       {/* Drop off*/}
-      <div className="flex flex-col justify-between w-full sm:h-32 bg-white rounded-lg z-[1] p-3 gap-3 lg:max-w-lg shadow-sm">
+      <div className="flex flex-col justify-between w-full sm:h-28 bg-white rounded-lg z-[1] p-3 gap-3 lg:max-w-lg shadow-sm">
         <div className="flex items-center gap-3">
           <DropOffIcon color={"#3563E9"} />
           <h3 className="font-semibold">Drop-Off</h3>
@@ -55,14 +49,9 @@ const PickDrop = () => {
             label="Locations"
             id="drop-location"
             options={options}
-            borderDir="right"
           />
-          <DatePickerInput
-            isCompact={true}
-            id="drop-date"
-            title="Drop-Off Date"
-          />
-          <TimeInput label="Time" id="drop-time" borderDir="left" />
+          <DatePickerInput isCompact={true} label="Date" id="drop-date" />
+          <TimeInput label="Time" id="drop-time" isCompact={true} />
         </div>
       </div>
     </div>
