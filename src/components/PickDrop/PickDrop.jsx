@@ -11,7 +11,7 @@ const PickDrop = () => {
     { id: 3, name: "Lam", value: "lambo" },
   ];
   return (
-    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 items-center my-6 relative">
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 items-center my-6 relative overflow-hidden">
       {/* Pick Up */}
       <div className="flex flex-col justify-between w-full h-32 bg-white rounded-lg z-[10] p-3 gap-3 max-w-lg">
         <div className="flex items-center gap-3">
