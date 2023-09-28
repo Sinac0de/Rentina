@@ -37,8 +37,10 @@ const Pagination = (props) => {
   };
 
   let lastPage = paginationRange[paginationRange.length - 1];
+
   return (
     <ul className={className}>
+      {/* ---left arrow--- */}
       <li
         className={`${currentPage === 1 ? styles.disabled : ""} ${
           styles.pageItem
@@ -47,6 +49,8 @@ const Pagination = (props) => {
       >
         <ArrowLeft />
       </li>
+
+      {/* ---page numbers--- */}
       {paginationRange.map((pageNumber, index) => {
         if (pageNumber === DOTS) {
           return (
@@ -62,7 +66,7 @@ const Pagination = (props) => {
             className={`${
               pageNumber === currentPage
                 ? "bg-primary-500 text-white"
-                : "border border-secondary-300"
+                : "border-2 border-primary-500"
             }  rounded-md ${styles.pageItem}`}
             onClick={() => onPageChange(pageNumber)}
           >
@@ -70,14 +74,16 @@ const Pagination = (props) => {
           </li>
         );
       })}
-      <div
+
+      {/* ---left arrow--- */}
+      <li
         className={`${currentPage === lastPage ? styles.disabled : ""} ${
           styles.pageItem
         }`}
         onClick={onNext}
       >
         <ArrowRight />
-      </div>
+      </li>
     </ul>
   );
 };
