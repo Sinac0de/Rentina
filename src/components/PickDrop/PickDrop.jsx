@@ -2,6 +2,7 @@ import PickDropIcon from "../Icons/PickDropIcon";
 import BulletIcon from "../Icons/BulletIcon";
 import SmSelectInput from "../common/SmSelectInput";
 import DatePickerInput from "../common/DatePickerInput";
+import TimeInput from "../common/TimeInput";
 
 const PickDrop = () => {
   // ! Just for test
@@ -31,12 +32,7 @@ const PickDrop = () => {
             id="pick-date"
             title="Pick-Up Date"
           />
-          <SmSelectInput
-            label="Time"
-            id="pick-time"
-            options={options}
-            borderDir="left"
-          />
+          <TimeInput label="Time" id="pick-time" borderDir="left" />
         </div>
       </div>
 
@@ -64,12 +60,7 @@ const PickDrop = () => {
             id="drop-date"
             title="Drop-Off Date"
           />
-          <SmSelectInput
-            label="Time"
-            id="drop-time"
-            options={options}
-            borderDir="left"
-          />
+          <TimeInput label="Time" id="drop-time" borderDir="left" />
         </div>
       </div>
     </div>
