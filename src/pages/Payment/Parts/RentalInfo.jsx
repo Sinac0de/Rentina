@@ -1,4 +1,6 @@
-import BulletIcon from "src/components/Icons/BulletIcon";
+import BulletIcon from "src/assets/Icons/BulletIcon";
+import DropOffIcon from "src/assets/Icons/DropOffIcon";
+import PickUpIcon from "src/assets/Icons/PickUpIcon";
 import BigSelectInput from "src/components/common/BigSelectInput";
 import DatePickerInput from "src/components/common/DatePickerInput";
 
@@ -32,7 +34,7 @@ const RentalInfo = () => {
         <div>
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <BulletIcon />
+              <PickUpIcon color={"#3563E9"} />
               <h3 className="font-semibold lg:text-base">Pick-Up</h3>
             </div>
           </div>
@@ -50,7 +52,7 @@ const RentalInfo = () => {
         <div>
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <BulletIcon />
+              <DropOffIcon color={"#3563E9"} />
               <h3 className="font-semibold lg:text-base">Drop-Off</h3>
             </div>
           </div>
