@@ -1,11 +1,26 @@
 import { getCarsByName } from "src/services/api";
 import SearchIcon from "../Icons/SearchIcon";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const SearchBar = () => {
   const [cars, setCars] = useState([]);
-  const handleChange = (e) => {
-    setCars(getCarsByName(e.target.value));
+  const [showBox, setShowBox] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+
+  /* === Handlers === */
+  const handleChange = async (e) => {
+    setSearchValue(e.target.value);
+    if (e.target.value) {
+      setCars(await getCarsByName(e.target.value));
+    } else {
+      setCars([]);
+    }
+  };
+
+  const handleResetSearch = () => {
+    setSearchValue("");
+    setCars([]);
   };
 
   return (
@@ -22,15 +37,43 @@ const SearchBar = () => {
         id="search"
         placeholder="Search for cars..."
         onInput={handleChange}
+        value={searchValue}
+        onBlur={() => setShowBox(false)}
+        onFocus={() => setShowBox(true)}
         className="w-full relative flex items-center flex-1 gap-2 p-3 pl-14 rounded-lg border md:rounded-full"
       />
       {/* searched items */}
       <div
         className={`${
-          cars.length ? "" : "max-h-0 opacity-0"
-        } absolute top-0 xl:top-11 left-0 right-0 mx-auto w-[90%] bg-white border border-t-0 rounded-b-xl`}
+          cars.length || showBox ? "" : "hidden"
+        } absolute top-12 lg:top-11 left-0 right-0 mx-auto w-[90%] py-4 flex justify-center items-center bg-white overflow-hidden border border-t-0 rounded-b-xl`}
       >
-        {cars.length ? <h3>Cars Found!</h3> : <h3>Car Not Found!</h3>}
+        {cars.length ? (
+          <div className="w-full flex flex-col gap-2">
+            {cars.map((car, index) => {
+              return (
+                <Link
+                  to={`/shop/${car.id}`}
+                  key={index}
+                  className="w-full flex items-center h-20 p-5"
+                  onClick={handleResetSearch}
+                >
+                  <div className="h-full w-1/2 p-5 flex items-center">
+                    <img
+                      src={car.thumbnail_img}
+                      className="w-full object-contain"
+                    />
+                  </div>
+                  <h4>
+                    {car.make} {car.model}
+                  </h4>
+                </Link>
+              );
+            })}
+          </div>
+        ) : (
+          <h3>Car Not Found!</h3>
+        )}
       </div>
     </div>
   );
