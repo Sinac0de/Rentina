@@ -66,11 +66,11 @@ const Slider = ({ title }) => {
       {/* ---Swiper Slider--- */}
       <Swiper
         grabCursor={true}
-        spaceBetween="30"
+        spaceBetween="20"
         slidesPerView={"auto"}
         className="mySwiper z-0"
       >
-        {cars.map((car) => {
+        {cars.slice(24, 32).map((car) => {
           return (
             <SwiperSlide key={car.id}>
               <CarCard isSlideCard carData={car} />
