@@ -37,7 +37,7 @@ const DatePickerInput = ({ isCompact, id, title }) => {
 
     /* ---Date picker info settings--- */
     datepickerClassNames: isCompact
-      ? "absolute left-0 top-16 z-20"
+      ? "absolute left-1 right-0 top-10 z-20"
       : "absolute z-50 top-20",
     defaultDate: new Date(),
     language: "en",
@@ -56,7 +56,7 @@ const DatePickerInput = ({ isCompact, id, title }) => {
   };
 
   return (
-    <div className={`${isCompact ? "" : "relative my-5"} lg:my-0 w-full`}>
+    <div className={`${isCompact ? "px-2" : "relative my-5"} w-full lg:my-0`}>
       <DatePicker
         options={options}
         onChange={handleChange}
@@ -64,8 +64,8 @@ const DatePickerInput = ({ isCompact, id, title }) => {
         setShow={handleClose}
       >
         <div
-          className={`flex flex-col w-full h-fit ${
-            isCompact ? "gap-0 px-2" : "gap-2"
+          className={`flex flex-col w-full h-fit overflow-hidden ${
+            isCompact ? "gap-0" : "gap-2"
           }`}
         >
           <label
@@ -74,7 +74,7 @@ const DatePickerInput = ({ isCompact, id, title }) => {
           >
             Date
           </label>
-          <div className="relative cursor-pointer">
+          <div className="relative cursor-pointer flex items-start">
             <input
               type="text"
               id={id}
@@ -82,7 +82,7 @@ const DatePickerInput = ({ isCompact, id, title }) => {
                 isCompact
                   ? ""
                   : "bg-[#F6F7F9] rounded-[10px] placeholder:pl-1 focus:ring-1 focus:ring-secondary-300 w-full p-4  border-r-[14px] border-transparent px-4"
-              } outline-none text-xs text-secondary-300 placeholder:text-secondary-300  lg:text-sm cursor-pointer`}
+              } outline-none text-secondary-300 placeholder:text-secondary-300 text-sm placeholder:text-sm cursor-pointer`}
               placeholder="Select Pick-Up Date"
               value={selectedDate}
               onFocus={() => setShow(true)}
@@ -91,7 +91,7 @@ const DatePickerInput = ({ isCompact, id, title }) => {
             {/* arrow icon */}
             <label
               htmlFor={id}
-              className="absolute h-full flex items-center top-0 right-4 cursor-pointer"
+              className="absolute h-full flex items-center top-[1px] right-[1px] cursor-pointer"
             >
               <ArrowDown />
             </label>
