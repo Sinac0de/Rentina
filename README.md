@@ -17,20 +17,22 @@
 * Fully responsive design.
 * Stunning UI.
 * Simultaneous product search and filtering capabilities.
-* Real-time display of current cart quantity.
-* Dark Mode
-* Form validation
-* Fully functional Dashboard
-* Mobile First
+* Real-time display of currently rented cars.
+* Real-time display of currently rented cars.
+* Dark Mode.
+* Form validation.
+* Fully functional User Dashboard.
+* Mobile First design.
 
 # <a name="technologies-used"></a>Technologies Used
 * React Js
 * Redux & Redux tool-kit
 * React Router Dom v6
+* React paginate
+* Formik & YUP
 * TailwindCSS
 * LocalStorage
 * SwiperJs
-* TailwindCSS
 * Css3
 * Html5
 
