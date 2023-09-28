@@ -15,6 +15,7 @@ const SearchBar = () => {
       setCars(await getCarsByName(e.target.value));
     } else {
       setCars([]);
+      setShowBox(false);
     }
   };
 
@@ -49,13 +50,13 @@ const SearchBar = () => {
         } absolute top-12 lg:top-11 left-0 right-0 mx-auto w-[90%] py-4 flex justify-center items-center bg-white overflow-hidden border border-t-0 rounded-b-xl`}
       >
         {cars.length ? (
-          <div className="w-full flex flex-col gap-2">
+          <div className="w-full flex flex-col gap-2 max-h-72 overflow-y-auto ">
             {cars.map((car, index) => {
               return (
                 <Link
                   to={`/shop/${car.id}`}
                   key={index}
-                  className="w-full flex items-center h-20 p-5"
+                  className="w-full flex items-center justify-between h-20 p-5 border-t-2 first:border-none "
                   onClick={handleResetSearch}
                 >
                   <div className="h-full w-1/2 p-5 flex items-center">
