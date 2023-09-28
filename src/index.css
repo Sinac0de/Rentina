@@ -66,6 +66,14 @@ input:checked + div svg {
   @apply block;
 }
 
+/* ---SearchBar---*/
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
 .background {
   background-image: url("./assets/images/Cars/heroBackground.png");
   background-position: center;
