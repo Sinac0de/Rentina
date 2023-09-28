@@ -1,16 +1,11 @@
 import { Link } from "react-router-dom";
 import HamMenuIcon from "./Icons/HamMenuIcon";
-import SearchIcon from "./Icons/SearchIcon";
-import FilterIcon from "./Icons/FilterIcon";
 import NavBar from "./NavBar/NavBar";
+import SearchBar from "./SearchBar/SearchBar";
 
-const Header = ({ setIsNavCollapsed, setIsFilterOpen }) => {
+const Header = ({ setIsNavCollapsed }) => {
   const handleNavCollapse = () => {
     setIsNavCollapsed(false);
-  };
-
-  const handleToggleFilter = () => {
-    setIsFilterOpen((prev) => !prev);
   };
 
   return (
@@ -28,30 +23,9 @@ const Header = ({ setIsNavCollapsed, setIsFilterOpen }) => {
             <HamMenuIcon />
           </button>
         </div>
-        {/*----- search bar -----*/}
-        <div className="flex gap-3 my-5 relative md:flex-1 md:max-w-[492px] md:h-11">
-          <label
-            htmlFor="search"
-            className="absolute left-6 top-0 bottom-0 flex items-center z-10 opacity-80"
-          >
-            <SearchIcon />
-          </label>
-          <input
-            type="search"
-            name="search"
-            id="search"
-            placeholder="Search something here"
-            className="w-full relative flex items-center flex-1 gap-2 p-3 pl-14 rounded-lg border md:rounded-full"
-          />
-
-          <button
-            className="p-3 border border-[#C3D4E9]/40 rounded-lg md:rounded-full xl:hidden"
-            onClick={handleToggleFilter}
-          >
-            <FilterIcon />
-          </button>
-        </div>
+        <SearchBar />
       </div>
+
       {/*----- NAV BAR & PROFILE -----*/}
       <div className="hidden md:flex items-center justify-end pr-10 flex-1">
         <NavBar />
