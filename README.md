@@ -1,5 +1,5 @@
 
-![Picture](https://imageupload.io/ib/Wfg9K6kUZEyduqW_1695771295.jpg)
+![Picture](https://imageupload.io/ib/bLVWAM1EmMQlmVs_1696007774.jpg)
 # Rentina
 >A modern, fully responsive car rental website demo featuring cutting-edge technologies in front-end development. 🚗
 
