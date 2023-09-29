@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import { getCarsSpecs } from "src/services/api";
 import SkeletonFilters from "./SkeletonFilters";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import CloseIcon from "src/assets/Icons/CloseIcon";
 
-const FilterSidebar = () => {
+const FilterSidebar = ({ setShowMobileFilters }) => {
   /**=== Hooks ===**/
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
@@ -111,7 +112,14 @@ const FilterSidebar = () => {
 
   return (
     <>
-      <div>
+      <div className="relative">
+        {/* close button */}
+        <div
+          className="absolute right-0 top-0 p-3 cursor-pointer"
+          onClick={() => setShowMobileFilters(false)}
+        >
+          <CloseIcon />
+        </div>
         {/* ---Type--- */}
         <h3 className="text-xs text-secondary-300 tracking-widest">TYPE</h3>
         {/* checkboxes */}
