@@ -33,7 +33,7 @@ const Home = () => {
             {/* hero footer */}
             <Link
               to="/shop"
-              className="bg-primary-500 py-3 px-[20px] rounded-[4px] text-xs md:text-base font-medium"
+              className="bg-primary-500 py-3 px-[20px] rounded-[4px] text-xs md:text-base font-medium z-10"
             >
               Go to store
             </Link>
@@ -58,7 +58,7 @@ const Home = () => {
             {/* hero footer */}
             <Link
               to="/shop"
-              className="bg-[#54A6FF] py-3 px-[20px] rounded-[4px] text-xs md:text-base font-medium"
+              className="bg-[#54A6FF] py-3 px-[20px] rounded-[4px] text-xs md:text-base font-medium z-10"
             >
               Rental now
             </Link>
