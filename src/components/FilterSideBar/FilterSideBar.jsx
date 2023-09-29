@@ -70,7 +70,7 @@ const FilterSidebar = ({ setShowMobileFilters }) => {
 
   /* ===Handlers=== */
   /* handle filters */
-  function handleFilterChange(key, value, func, isSingleValue = false) {
+  function handleFilterChange(key, value, func, isSingleValue) {
     setSearchParams((prevParams) => {
       switch (func) {
         /* add a filter with a key and value */

@@ -12,9 +12,9 @@ const Checkbox = ({ id, label, count, onChange, param }) => {
     setChecked((prev) => !prev);
     // handle searchParams
     if (checked) {
-      onChange(param, e.target.value, "delete-value");
+      onChange(param, e.target.value, "delete-value", false);
     } else {
-      onChange(param, e.target.value, "add-value");
+      onChange(param, e.target.value, "add-value", false);
     }
   };
 
