@@ -28,7 +28,7 @@ const Layout = () => {
   }, [isNavCollapsed]);
 
   return (
-    <>
+    <div className="dark:bg-slate-800">
       <ScrollToTop />
       <MobileNavBar
         isNavCollapsed={isNavCollapsed}
@@ -57,7 +57,7 @@ const Layout = () => {
         </main>
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 
