@@ -41,7 +41,7 @@ const SearchBar = () => {
         value={searchValue}
         onBlur={() => setShowBox(false)}
         onFocus={() => setShowBox(true)}
-        className="w-full relative flex items-center flex-1 gap-2 p-3 pl-14 rounded-lg border md:rounded-full"
+        className="dark:bg-slate-800 dark:border-slate-500 dark:placeholder:text-slate-500 dark:text-slate-500 dark:focus:outline-none w-full relative flex items-center flex-1 gap-2 p-3 pl-14 rounded-lg border md:rounded-full"
       />
       {/* searched items */}
       <div
