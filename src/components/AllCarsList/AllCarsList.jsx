@@ -130,7 +130,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
           <>
             <Link
               to="/shop"
-              className="bg-primary-500 text-white border-2 hover:text-primary-500 hover:bg-white hover:border-primary-500 transition-all duration-300 py-3 px-[20px] rounded-[4px] text-xs font-medium lg:text-base"
+              className="dark:border-primary-500 dark:hover:bg-transparent dark:text-slate-300 bg-primary-500 text-white border-2 hover:text-primary-500 hover:bg-white hover:border-primary-500 transition-all duration-300 py-3 px-[20px] rounded-[4px] text-xs font-medium lg:text-base"
             >
               Show More Cars
             </Link>
