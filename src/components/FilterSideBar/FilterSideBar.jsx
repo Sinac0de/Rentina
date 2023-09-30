@@ -115,7 +115,7 @@ const FilterSidebar = ({ setShowMobileFilters }) => {
       <div className="relative">
         {/* close button */}
         <div
-          className="absolute right-0 top-0 p-3 cursor-pointer"
+          className="lg:hidden absolute right-0 top-0 p-3 cursor-pointer"
           onClick={() => setShowMobileFilters(false)}
         >
           <CloseIcon />
@@ -174,7 +174,7 @@ const FilterSidebar = ({ setShowMobileFilters }) => {
       {location.search ? (
         <div>
           <button
-            className="bg-primary-500 p-3 rounded-[10px] text-white"
+            className="dark:text-slate-200 bg-primary-500 p-3 rounded-[10px] text-white"
             onClick={() => handleFilterChange(null, null, "delete-all", null)}
           >
             Reset Filters

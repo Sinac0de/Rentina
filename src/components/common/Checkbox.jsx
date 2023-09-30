@@ -43,7 +43,7 @@ const Checkbox = ({ id, label, count, onChange, param }) => {
         </div>
         <label
           htmlFor={label}
-          className="ml-2 text-sm text-secondary-400 font-semibold"
+          className="dark:text-slate-300 ml-2 text-sm text-secondary-400 font-semibold"
         >
           {label} <span className="text-secondary-300">({count})</span>
         </label>

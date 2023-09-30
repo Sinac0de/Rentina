@@ -34,7 +34,7 @@ const RangeInput = ({ min, max, onChange, param }) => {
 
       <label
         htmlFor="range"
-        className="text-secondary-400 font-semibold flex flex-col gap-2"
+        className="dark:text-slate-300 text-secondary-400 font-semibold flex flex-col gap-2"
       >
         <div className="flex flex-wrap gap-[0.1em]">
           <span>Price Range:</span>
