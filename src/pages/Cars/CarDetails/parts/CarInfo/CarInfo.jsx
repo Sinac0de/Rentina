@@ -19,10 +19,10 @@ const CarInfo = ({ info }) => {
   const totalPrice = calTotalPrice(rental_price, discount_percent);
 
   return (
-    <div className="flex flex-col gap-5 bg-white p-4 rounded-[10px] lg:w-1/2 lg:justify-around">
+    <div className="dark:bg-slate-600 dark:text-slate-300 flex flex-col gap-5 bg-white p-4 rounded-[10px] lg:w-1/2 lg:justify-around">
       {/* info header */}
       <div className="flex flex-col gap-1 lg:gap-3">
-        <h2 className="text-secondary-500 text-xl lg:text-[32px] font-bold">
+        <h2 className="dark:text-slate-300 text-secondary-500 text-xl lg:text-[32px] font-bold">
           {`${make} ${model}`}
         </h2>
         <div className="flex gap-2 items-center">
@@ -34,7 +34,7 @@ const CarInfo = ({ info }) => {
       </div>
       {/* info body */}
       <div className="flex flex-col gap-5">
-        <p className="text-secondary-300 text-xs lg:text-xl lg:text-secondary-400 font-normal">
+        <p className="text-secondary-300 text-xs lg:text-xl font-normal">
           {desc}
         </p>
         {/* car specs */}
@@ -44,7 +44,7 @@ const CarInfo = ({ info }) => {
               <h3 className="text-secondary-300 font-medium text-xs lg:font-normal lg:text-xl">
                 Type
               </h3>
-              <span className="text-secondary-500 font-semibold text-xs lg:font-normal lg:text-xl">
+              <span className="dark:text-slate-300 text-secondary-500 font-semibold text-xs lg:font-normal lg:text-xl">
                 {type}
               </span>
             </div>
@@ -52,7 +52,7 @@ const CarInfo = ({ info }) => {
               <h3 className="text-secondary-300 font-medium text-xs lg:font-normal lg:text-xl">
                 Transmission
               </h3>
-              <span className="text-secondary-500 font-semibold text-xs lg:font-normal lg:text-xl">
+              <span className="dark:text-slate-300 text-secondary-500 font-semibold text-xs lg:font-normal lg:text-xl">
                 {transmission}
               </span>
             </div>
@@ -63,7 +63,7 @@ const CarInfo = ({ info }) => {
               <h3 className="text-secondary-300 font-medium text-xs lg:font-normal lg:text-xl">
                 Seating
               </h3>
-              <span className="text-secondary-500 font-semibold text-xs lg:font-normal lg:text-xl">
+              <span className="dark:text-slate-300 text-secondary-500 font-semibold text-xs lg:font-normal lg:text-xl">
                 {`${seats} seats`}
               </span>
             </div>
@@ -71,7 +71,7 @@ const CarInfo = ({ info }) => {
               <h3 className="text-secondary-300 font-medium text-xs lg:font-normal lg:text-xl">
                 Fuel Tank Capacity
               </h3>
-              <span className="text-secondary-500 font-semibold text-xs lg:font-normal lg:text-xl">
+              <span className="dark:text-slate-300 text-secondary-500 font-semibold text-xs lg:font-normal lg:text-xl">
                 {`${fuel_capacity.toFixed(1)} gal.`}
               </span>
             </div>
@@ -83,7 +83,7 @@ const CarInfo = ({ info }) => {
         <div className="flex items-center justify-between gap-2">
           {/* price and discount */}
           <div>
-            <h3 className="font-semibold text-xl text-secondary-500 lg:text-2xl">
+            <h3 className="font-semibold text-xl dark:text-slate-300 text-secondary-500 lg:text-2xl">
               ${totalPrice.toFixed(2)}/
               <span className="font-medium text-xs text-secondary-300 lg:text-base">
                 day
@@ -98,7 +98,7 @@ const CarInfo = ({ info }) => {
 
           <Link
             to={`/payment/${id}`}
-            className="text-white bg-primary-500 py-2 px-[20px] h-full rounded text-base lg:py-4 font-medium"
+            className="dark:text-slate-200 text-white bg-primary-500 py-2 px-[20px] h-full rounded text-base lg:py-4 font-medium"
           >
             Rent now
           </Link>

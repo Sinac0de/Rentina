@@ -19,11 +19,11 @@ const CarReviews = ({ reviews }) => {
   const collapseRef = useRef();
 
   return (
-    <div className="bg-white p-5 flex flex-col gap-5 rounded-[10px]">
+    <div className="dark:text-slate-300 dark:bg-slate-600 bg-white p-5 flex flex-col gap-5 rounded-[10px]">
       {/* header */}
       <div className="flex gap-2 items-center">
         <h2 className="text-xl font-semibold">Reviews</h2>
-        <span className="bg-primary-500 py-0 px-5 text-white rounded">
+        <span className="dark:text-slate-200 bg-primary-500 py-0 px-5 text-white rounded">
           {reviews.length}
         </span>
       </div>

@@ -35,7 +35,7 @@ const CarPhotos = ({ photos }) => {
       />
       {/* --- big skeleton --- */}
       <div
-        className={`${
+        className={`dark:bg-slate-600 ${
           isLoaded[activeImg.id - 1].load ? "hidden" : "flex"
         } w-full h-56 lg:h-80 xl:h-96 rounded-[10px] bg-white flex justify-center items-center animate-pulse`}
       >
@@ -46,15 +46,20 @@ const CarPhotos = ({ photos }) => {
       <div className="grid grid-cols-3 grid-rows-1 w-full gap-5 h-2/5 min-h-[50px] md:flex-1">
         {photos.map((photo) => {
           return (
-            <div key={photo.id}>
+            <div
+              key={photo.id}
+              className={`${
+                activeImg.id == photo.id
+                  ? isLoaded[photo.id - 1].load
+                    ? "p-1 border-[3px] border-primary-500"
+                    : ""
+                  : ""
+              }`}
+            >
               <img
                 id={photo.id}
                 src={photo.src}
-                className={`h-full w-full object-cover cursor-pointer ${
-                  activeImg.id == photo.id
-                    ? "p-1 border-[3px] border-primary-500"
-                    : ""
-                } ${
+                className={`h-full w-full object-cover cursor-pointer  ${
                   !isLoaded[photo.id - 1].load ? "hidden" : "block"
                 }  object-center rounded-md`}
                 onClick={activeImgHandler}
@@ -64,9 +69,9 @@ const CarPhotos = ({ photos }) => {
               <div
                 className={`${
                   isLoaded[photo.id - 1].load ? "hidden" : "flex"
-                } h-14 md:h-20 lg:h-[99px] xl:h-28 w-full flex justify-center items-center rounded-md p-2 border-[3px] border-white animate-pulse`}
+                } h-14 md:h-20 lg:h-[99px] xl:h-28 w-full flex justify-center items-center rounded-md animate-pulse`}
               >
-                <div className="bg-white py-5 w-full h-full flex justify-center items-center">
+                <div className="dark:bg-slate-600 bg-white py-5 w-full h-full flex justify-center items-center rounded-[10px]">
                   <GalleryIcon />
                 </div>
               </div>
