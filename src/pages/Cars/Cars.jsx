@@ -7,11 +7,11 @@ const Cars = () => {
   return (
     <div className="flex relative">
       <div
-        className={`${
+        className={`dark:bg-slate-700  ${
           showMobileFilters
             ? "fixed top-0 right-0 bottom-0 left-0 z-50 w-full h-full"
             : "hidden"
-        } lg:top-auto lg:bottom-auto lg:w-fit lg:relative xl:block bg-white p-5 px-10 w-[20%] overflow-y-auto`}
+        } lg:top-auto lg:bottom-auto lg:w-1/8 lg:relative xl:block bg-white p-5 px-10 w-[20%] overflow-y-auto`}
       >
         <FilterSidebar setShowMobileFilters={setShowMobileFilters} />
       </div>
