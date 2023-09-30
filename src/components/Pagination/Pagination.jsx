@@ -65,9 +65,9 @@ const Pagination = (props) => {
             key={index}
             className={`${
               pageNumber === currentPage
-                ? "bg-primary-500 text-white"
+                ? "dark:text-slate-200 bg-primary-500 text-white"
                 : "border-2 border-primary-500"
-            }  rounded-md ${styles.pageItem}`}
+            }  rounded-md ${styles.pageItem} dark:text-slate-200`}
             onClick={() => onPageChange(pageNumber)}
           >
             {pageNumber}
