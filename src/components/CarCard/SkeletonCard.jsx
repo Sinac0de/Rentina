@@ -6,6 +6,14 @@ import GalleryIcon from "../../assets/Icons/GalleryIcon";
 import HeartPlaceHolder from "../../assets/Icons/HeartPlaceHolder";
 
 const SkeletonCard = ({ isSlideCard = false }) => {
+  const styles = {
+    text: "dark:bg-slate-500 h-3 bg-[#EFF3FD] mb-1 rounded-full",
+    blueText: "h-3 bg-primary-300 mb-1 rounded-full",
+    smallText: "w-16",
+    mediumText: "w-20",
+    longText: "w-28",
+  };
+
   const carInfo = [
     {
       id: 1,
@@ -29,13 +37,13 @@ const SkeletonCard = ({ isSlideCard = false }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="flex flex-col gap-5 bg-white rounded-lg p-3 h-full animate-pulse"
+      className="dark:bg-slate-600 flex flex-col gap-5 bg-white rounded-lg p-3 h-full animate-pulse"
     >
       {/* card header */}
       <div className="flex justify-between">
         <div className="flex flex-col p-0">
-          <div className="w-28 h-3 bg-primary-300 mb-1 rounded-full"></div>
-          <div className="w-20 h-3 bg-[#EFF3FD] mb-1 rounded-full"></div>
+          <div className={`${styles.longText} ${styles.blueText}`}></div>
+          <div className={`${styles.mediumText} ${styles.text}`}></div>
         </div>
         {/* favorite icon */}
         <div className="h-fit mt-1 text-9xl">
@@ -70,7 +78,7 @@ const SkeletonCard = ({ isSlideCard = false }) => {
                 className="flex items-center gap-1 text-secondary-300 text-xs"
                 key={info.id}
               >
-                <span className="w-16 rounded-full h-3 bg-[#EFF3FD]"></span>
+                <span className={`${styles.smallText} ${styles.text}`}></span>
               </div>
             );
           })}
@@ -80,10 +88,12 @@ const SkeletonCard = ({ isSlideCard = false }) => {
       <div className="flex items-center h-full justify-between gap-5">
         {/* price and discount */}
         <div className="flex flex-col p-0">
-          <div className="w-20 h-3 bg-primary-300 mb-1 rounded-full"></div>
-          <div className="w-16 h-3 bg-[#EFF3FD] mb-1 rounded-full"></div>
+          <div className={`${styles.mediumText} ${styles.blueText}`}></div>
+          <div className={`${styles.smallText} ${styles.text}`}></div>
         </div>
-        <div className="bg-primary-500 w-20 h-7 rounded"></div>
+        <div
+          className={`bg-primary-500 ${styles.mediumText} h-7 rounded`}
+        ></div>
       </div>
     </motion.div>
   );

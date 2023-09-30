@@ -2,7 +2,7 @@ import SkeletonReview from "./parts/SkeletonReview";
 
 const SkeletonReviews = () => {
   return (
-    <div className="bg-white p-5 pb-10 flex flex-col gap-5 rounded-[10px] animate-pulse">
+    <div className="dark:bg-slate-600 bg-white p-5 pb-10 flex flex-col gap-5 rounded-[10px] animate-pulse">
       {/* header */}
       <div className="flex gap-2 items-center">
         <div className="w-28 h-3 bg-primary-300 mb-1 rounded-full"></div>
