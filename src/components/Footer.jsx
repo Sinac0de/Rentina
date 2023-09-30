@@ -23,11 +23,11 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="p-5 md:px-10 md:bg-white">
+    <footer className="dark:!bg-slate-900 p-5 md:px-10 md:bg-white">
       {/* topper section (Logo + Links) */}
       <div className="flex flex-col md:flex-row md:justify-between md:border-b-[1px] md:border-[#13131329] gap-10 mb-10 py-10">
         <div className="w-[220px] md:min-w-[292px] h-fit flex flex-col gap-4">
-          <h2 className="font-bold text-primary-500 text-2xl md:text-[32px]">
+          <h2 className="dark:font-bold text-primary-500 text-2xl md:text-[32px]">
             Rentina
           </h2>
           <p className="font-medium text-secondary-300 text-xs md:text-base">
@@ -40,7 +40,7 @@ const Footer = () => {
         <div className="flex gap-10 flex-wrap justify-between">
           {/*---ABOUT---*/}
           <div className="flex flex-col gap-3 md:gap-5 md:w-40">
-            <h2 className="mb-2 text-secondary-500 font-semibold md:text-xl">
+            <h2 className="dark:text-slate-500 mb-2 text-secondary-500 font-semibold md:text-xl">
               About
             </h2>
             {about.map((item) => {
@@ -57,7 +57,7 @@ const Footer = () => {
           </div>
           {/*---Socials---*/}
           <div className="flex flex-col gap-3 md:gap-5 order-2 md:w-40">
-            <h2 className="mb-2 text-secondary-500 font-semibold md:text-xl">
+            <h2 className="dark:text-slate-500 mb-2 text-secondary-500 font-semibold md:text-xl">
               Socials
             </h2>
             {socials.map((item) => {
@@ -74,7 +74,7 @@ const Footer = () => {
           </div>
           {/*---Community---*/}
           <div className="flex flex-col gap-3 md:gap-5 order-1 md:w-40">
-            <h2 className="mb-2 text-secondary-500 font-semibold md:text-xl">
+            <h2 className="dark:text-slate-500 mb-2 text-secondary-500 font-semibold md:text-xl">
               Community
             </h2>
             {community.map((item) => {
@@ -92,14 +92,14 @@ const Footer = () => {
         </div>
       </div>
       {/* bottom section */}
-      <div className="flex flex-col md:flex-row md:justify-between gap-5 text-xs md:text-base font-semibold pb-10">
+      <div className="dark:text-slate-500 flex flex-col md:flex-row md:justify-between gap-5 text-xs md:text-base font-semibold pb-10">
         <div className="flex justify-between md:order-2 md:gap-12">
           <Link to={"."}>Privacy & Policy</Link>
           <Link to={"."}>Terms & Condition</Link>
         </div>
         <p className="md:order-1">©2023 Rentina. All rights reserved</p>
       </div>
-      <div className="flex justify-center items-center">
+      <div className="dark:text-slate-500 flex justify-center items-center">
         <h4>
           Made with <span className="text-xl">♥</span> by{" "}
           <a

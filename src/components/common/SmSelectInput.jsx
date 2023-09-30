@@ -1,6 +1,6 @@
 const SmSelectInput = ({ id, label, options }) => {
   return (
-    <div className={`flex flex-col w-full h-fit px-2`}>
+    <div className={`dark:text-slate-300 flex flex-col w-full h-fit px-2`}>
       <label htmlFor={id} className="font-bold">
         {label}
       </label>
@@ -12,7 +12,7 @@ const SmSelectInput = ({ id, label, options }) => {
         {options.map((option) => {
           return (
             <option
-              className="text-secondary-300"
+              className="dark:text-slate-300 text-secondary-300"
               key={option.id}
               value={option.value}
             >

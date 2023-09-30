@@ -52,7 +52,7 @@ const Layout = () => {
           setIsNavCollapsed={setIsNavCollapsed}
           setIsFilterOpen={setIsFilterOpen}
         />
-        <main className="min-h-screen">
+        <main className="dark:bg-slate-800 min-h-screen">
           <Outlet />
         </main>
         <Footer />
