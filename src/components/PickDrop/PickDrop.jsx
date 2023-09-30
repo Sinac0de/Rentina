@@ -32,7 +32,7 @@ const PickDrop = () => {
         </div>
       </div>
 
-      <button className="dark:text-slate-500 bg-primary-500 rounded-xl w-fit p-4 relative lg:absolute top-[43%] md:top-[30%] md:left-0 md:right-0 md:mx-auto z-10">
+      <button className="dark:text-slate-500 bg-primary-500 rounded-xl w-fit p-4 relative lg:absolute top-[43%] md:top-[25%] md:left-0 md:right-0 md:mx-auto z-10">
         <PickDropIcon color={"white"} />
         <div className="bg-primary-500/40 w-full h-full rounded-xl p-4 absolute z-[-1] right-0 bottom-0 blur-md"></div>
       </button>
