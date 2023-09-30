@@ -59,7 +59,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col gap-5 bg-white rounded-lg p-3 h-full"
+        className="dark:bg-slate-600 flex flex-col gap-5 bg-white rounded-lg p-3 h-full"
       >
         {/* card header */}
         <div className="flex justify-between">
@@ -67,7 +67,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
             className="flex flex-col p-0"
             to={filterParams ? `/shop/${id}${filterParams}` : `/shop/${id}`}
           >
-            <h3 className="text-base font-semibold text-secondary-500 mb-1">
+            <h3 className="dark:text-slate-300 text-base font-semibold text-secondary-500 mb-1">
               {`${make} ${model}`}
             </h3>
             <h5 className="text-xs font-medium text-secondary-300">{type}</h5>
@@ -100,7 +100,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
               alt={`${make} ${model}`}
               loading="lazy"
             />
-            <div className="car-shadow"></div>
+            <div className="dark:from-slate-600 dark:to-slate-600/20 w-full h-1/3 bg-gradient-to-t from-white to-black/0 absolute bottom-0"></div>
           </div>
           {/* car info */}
           <div
@@ -127,7 +127,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
         <div className="flex items-center h-full justify-between">
           {/* price and discount */}
           <div>
-            <h3 className="font-semibold text-base text-secondary-500 md:text-xl">
+            <h3 className="dark:text-slate-300 font-semibold text-base text-secondary-500 md:text-xl">
               ${totalPrice.toFixed(2)}/
               <span className="font-medium text-xs text-secondary-300 md:text-base">
                 day
@@ -143,7 +143,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
             to={
               filterParams ? `/payment/${id}${filterParams}` : `/payment/${id}`
             }
-            className="text-white bg-primary-500 py-2 px-[20px] rounded text-xs font-medium"
+            className="dark:text-secondary-200 text-white bg-primary-500 py-2 px-[20px] rounded text-xs font-medium"
           >
             Rent now
           </Link>
