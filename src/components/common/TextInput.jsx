@@ -16,8 +16,10 @@ const TextInput = ({ name, label, placeHolder, bgWhite, onChange, button }) => {
           placeholder={placeHolder}
           onChange={onChange}
           className={`${button ? "pr-20" : ""} w-full p-4 ${
-            bgWhite ? "bg-white" : "bg-[#F6F7F9]"
-          } dark:bg-slate-800 dark:text-slate-400 dark:placeholder:text-slate-400 dark:focus:ring-slate-400 dark:focus:ring-2 rounded-[10px] text-xs placeholder:text-secondary-300 text-secondary-500 focus:ring-1 focus:ring-secondary-300 border-none outline-none lg:text-sm`}
+            bgWhite
+              ? "dark:bg-slate-400 dark:focus:ring-slate-200 dark:placeholder:text-slate-900 dark:text-slate-900 bg-white"
+              : "dark:text-slate-400 dark:placeholder:text-slate-400 dark:focus:ring-slate-400  dark:bg-slate-800 bg-[#F6F7F9]"
+          }  dark:focus:ring-2 rounded-[10px] text-xs placeholder:text-secondary-300 text-secondary-500 focus:ring-1 focus:ring-secondary-300 border-none outline-none lg:text-sm`}
         />
         {button && (
           <span

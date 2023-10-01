@@ -15,7 +15,7 @@ const DatePickerInput = ({ id, isCompact, label }) => {
         className={`${
           isCompact
             ? "bg-transparent  w-full text-sm focus:border-none focus:outline-none"
-            : "w-full py-4 bg-[#F6F7F9] rounded-[10px] text-xs focus:ring-1 focus:ring-secondary-300 border-r-[14px] border-transparent pl-4 outline-none lg:text-sm cursor-pointer"
+            : "dark:bg-slate-800 w-full py-4 bg-[#F6F7F9] rounded-[10px] text-xs focus:ring-1 focus:ring-secondary-300 border-r-[14px] border-transparent pl-4 outline-none lg:text-sm cursor-pointer"
         } dark:text-slate-300 text-secondary-300`}
       />
     </div>
