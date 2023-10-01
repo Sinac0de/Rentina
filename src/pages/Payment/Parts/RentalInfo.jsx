@@ -14,11 +14,11 @@ const RentalInfo = () => {
   ];
 
   return (
-    <div className="bg-white w-full p-5 rounded-[10px] flex flex-col gap-5">
+    <div className="dark:bg-slate-600 bg-white w-full p-5 rounded-[10px] flex flex-col gap-5">
       {/* header */}
       <div className="flex flex-col gap-1">
         <div className="flex justify-between items-center">
-          <h3 className="font-bold text-secondary-500 lg:text-xl">
+          <h3 className="dark:text-slate-300 font-bold text-secondary-500 lg:text-xl">
             Rental Info
           </h3>
           <h4 className="text-secondary-300 text-xs font-medium lg:text-sm">
@@ -36,7 +36,9 @@ const RentalInfo = () => {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <PickUpIcon color={"#3563E9"} />
-              <h3 className="font-semibold lg:text-base">Pick-Up</h3>
+              <h3 className="dark:text-slate-300 font-semibold lg:text-base">
+                Pick-Up
+              </h3>
             </div>
           </div>
           <div className="lg:grid lg:grid-cols-2 gap-5">

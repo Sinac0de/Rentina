@@ -7,11 +7,11 @@ import { Form } from "react-router-dom";
 
 const PaymentMethod = () => {
   return (
-    <div className="bg-white w-full overflow-hidden p-5 rounded-[10px] flex flex-col gap-5">
+    <div className="dark:bg-slate-600 bg-white w-full overflow-hidden p-5 rounded-[10px] flex flex-col gap-5">
       {/* header */}
       <div className="flex flex-col gap-1">
         <div className="flex justify-between items-center">
-          <h3 className="font-bold text-secondary-500 lg:text-xl">
+          <h3 className="dark:text-slate-300 font-bold text-secondary-500 lg:text-xl">
             Payment Method
           </h3>
           <h4 className="text-secondary-300 text-xs font-medium lg:text-sm">
@@ -24,11 +24,11 @@ const PaymentMethod = () => {
       </div>
       {/* body */}
       <Form className="flex flex-col gap-5">
-        <div className="bg-[#F6F7F9] p-5 rounded-[10px]">
+        <div className="dark:bg-slate-700 bg-[#F6F7F9] p-5 rounded-[10px]">
           <div className="flex justify-between items-start">
             <div className="flex items-center gap-3 mb-4">
               <BulletIcon />
-              <h3 className="font-semibold">Credit Card</h3>
+              <h3 className="dark:text-slate-300 font-semibold">Credit Card</h3>
             </div>
             <img src={visaImg} className="object-contain" />
           </div>
@@ -73,9 +73,9 @@ const PaymentMethod = () => {
           />
           <label
             htmlFor="paypal"
-            className="p-5 pl-9 pr-8 order-2 flex justify-between items-center cursor-pointer absolute top-0 left-0 w-full h-full bg-[#F6F7F9] rounded-[10px]"
+            className="dark:bg-slate-700 p-5 pl-9 pr-8 order-2 flex justify-between items-center cursor-pointer absolute top-0 left-0 w-full h-full bg-[#F6F7F9] rounded-[10px]"
           >
-            <h4 className="text-secondary-500 text-sm font-semibold lg:text-base">
+            <h4 className="dark:text-slate-300 text-secondary-500 text-sm font-semibold lg:text-base">
               PayPal
             </h4>
             <img src={paypalImg} className="object-contain" />
@@ -90,9 +90,9 @@ const PaymentMethod = () => {
           />
           <label
             htmlFor="bitcoin"
-            className="p-5 pl-9 pr-8 order-2 flex justify-between items-center cursor-pointer absolute top-0 left-0 w-full h-full bg-[#F6F7F9] rounded-[10px]"
+            className="dark:bg-slate-700 p-5 pl-9 pr-8 order-2 flex justify-between items-center cursor-pointer absolute top-0 left-0 w-full h-full bg-[#F6F7F9] rounded-[10px]"
           >
-            <h4 className="text-secondary-500 text-sm font-semibold lg:text-base">
+            <h4 className="dark:text-slate-300 text-secondary-500 text-sm font-semibold lg:text-base">
               Bitcoin
             </h4>
             <img src={bitcoinImg} className="object-contain" />
