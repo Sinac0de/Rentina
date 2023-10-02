@@ -108,7 +108,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
       </div>
       {/* if there is no car */}
       {!currentPageData.length ? (
-        <div className="flex flex-col items-center gap-1 mt-10 w-full text-base md:text-xl">
+        <div className="dark:text-slate-300 flex flex-col items-center gap-1 mt-10 w-full text-base md:text-xl">
           <h4>No cars found! please change filters.</h4>
           <Link to="/shop" className="underline text-primary-500">
             Reset filters?
