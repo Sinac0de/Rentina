@@ -15,6 +15,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [cars, setCars] = useState([]);
   const [carsCount, setCarsCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(searchParams.get("page") || 1);
 
   const filters = getAllParamsFilters();
 
@@ -36,7 +37,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
   /* scroll to top when filters change */
   useEffect(() => {
     scrollToTopFunction();
-  }, [searchParams]);
+  }, [searchParams, currentPage]);
 
   /* ---Filter the cars based on the filters--- */
   const displayedCars = cars.filter((car) => {
@@ -65,13 +66,19 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
   });
 
   /* === Pagination === */
-  const [currentPage, setCurrentPage] = useState(1);
-
   const currentPageData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * 8;
     const lastPageIndex = firstPageIndex + 8;
     return displayedCars.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, displayedCars]);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    setSearchParams((prevParams) => {
+      prevParams.set("page", page);
+      return prevParams;
+    });
+  };
 
   /*--- Skeleton loading ---*/
   if (!carsCount) {
@@ -118,13 +125,13 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
         ""
       )}
       {/* --- footer --- */}
-      <footer className="flex justify-center items-center relative mt-10">
+      <footer className="flex justify-center items-center relative my-10">
         <Pagination
           className="flex gap-2 mx-auto p-3"
           currentPage={currentPage}
           totalCount={displayedCars.length}
           pageSize={10}
-          onPageChange={(page) => setCurrentPage(page)}
+          onPageChange={(page) => handlePageChange(page)}
         />
         {isCompact && (
           <>
