@@ -6,7 +6,7 @@ import SkeletonFilters from "./SkeletonFilters";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import CloseIcon from "src/assets/Icons/CloseIcon";
 
-const FilterSidebar = ({ setShowMobileFilters }) => {
+const FilterSidebar = ({ setShowMobileFilters, showMobileFilters }) => {
   /**=== Hooks ===**/
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
@@ -112,10 +112,12 @@ const FilterSidebar = ({ setShowMobileFilters }) => {
 
   return (
     <>
-      <div className="relative">
+      <div className="relative py-10 lg:py-0">
         {/* close button */}
         <div
-          className="lg:hidden absolute right-0 top-0 p-3 cursor-pointer"
+          className={`${
+            !showMobileFilters && "lg:hidden"
+          }  absolute right-0 top-0 p-3 cursor-pointer`}
           onClick={() => setShowMobileFilters(false)}
         >
           <CloseIcon />
