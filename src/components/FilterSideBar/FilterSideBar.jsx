@@ -87,7 +87,11 @@ const FilterSidebar = ({ setShowMobileFilters }) => {
           break;
         /* delete all filters with that key*/
         case "delete-key":
-          prevParams.delete(key);
+          if (isSingleValue) {
+            prevParams.delete(key);
+          } else {
+            prevParams.delete(key, value);
+          }
           break;
         /* delete all filters*/
         case "delete-all":

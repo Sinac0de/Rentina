@@ -21,7 +21,7 @@ const Checkbox = ({ id, label, count, onChange, param }) => {
   /*--- Check for params change ---*/
   useEffect(() => {
     setChecked(isChecked);
-  }, [searchParams.get(param)]);
+  }, [searchParams.getAll(param).includes(label)]);
 
   return (
     <div key={id} className="flex items-center">
