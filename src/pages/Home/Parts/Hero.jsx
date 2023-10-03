@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <div className="flex gap-7">
       {/* behind the hero (white background) */}
-      <div className="bg-white h-[15%] w-full absolute -z-10 left-0 md:hidden"></div>
+      <div className="dark:bg-slate-800 bg-white h-[15%] w-full absolute -z-10 left-0 md:hidden"></div>
 
       <div className="bg-[#54A6FF] w-full rounded-lg flex justify-center items-center relative min-h-[260px] md:min-h-[360px] overflow-hidden">
         <img
