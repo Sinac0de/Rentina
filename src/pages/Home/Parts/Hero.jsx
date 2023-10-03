@@ -7,14 +7,14 @@ const Hero = () => {
   return (
     <div className="flex gap-7">
       {/* behind the hero (white background) */}
-      <div className="dark:bg-slate-800 bg-white h-[15%] w-full absolute -z-10 left-0 md:hidden"></div>
+      <div className="dark:bg-slate-900 bg-white h-[15%] w-full absolute z-0 left-0 md:hidden"></div>
 
       <div className="bg-[#54A6FF] w-full rounded-lg flex justify-center items-center relative min-h-[260px] md:min-h-[360px] overflow-hidden">
         <img
           src={circlePatternUrl}
           className="absolute left-0 bottom-0 right-0 w-full"
         />
-        <div className="dark:text-slate-200 absolute w-full h-full p-5 text-white flex flex-col items-start justify-between md:justify-normal md:gap-6">
+        <div className="dark:text-slate-200 absolute w-full h-full p-5 text-white flex flex-col items-start justify-between md:justify-normal gap-2 md:gap-6">
           {/* hero header */}
           <div className="flex flex-col md:max-w-[284px] gap-2">
             <h3 className="text-base font-semibold md:text-[32px] md:font-medium leading-10">
