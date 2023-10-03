@@ -87,7 +87,7 @@ const FilterSidebar = ({ setShowMobileFilters, showMobileFilters }) => {
           // delete all key values
           prevParams.delete(key);
 
-          // append remaining value
+          // append remaining
           for (const remainingValue of allParams.filter(
             (item) => item !== value
           ))
@@ -127,66 +127,70 @@ const FilterSidebar = ({ setShowMobileFilters, showMobileFilters }) => {
           <CloseIcon />
         </div>
         {/* ---Type--- */}
-        <h3 className="text-xs text-secondary-300 tracking-widest">TYPE</h3>
-        {/* checkboxes */}
-        <ul className="flex flex-col gap-4 text-xl my-5 mb-10">
-          {types.map((type, index) => {
-            return (
-              <Checkbox
-                id={index}
-                key={index}
-                label={type.typeName}
-                count={type.count}
-                param="type"
-                onChange={handleFilterChange}
-              />
-            );
-          })}
-        </ul>
-      </div>
-      {/* ---Seating--- */}
-      <div>
-        <h3 className="text-xs text-secondary-300 tracking-widest">Seating</h3>
-        {/* checkboxes */}
-        <ul className="flex flex-col gap-4 text-xl my-5 mb-10">
-          {seats.map((seats, index) => {
-            return (
-              <Checkbox
-                id={index}
-                key={index}
-                label={seats.seats}
-                count={seats.count}
-                param="seats"
-                onChange={handleFilterChange}
-              />
-            );
-          })}
-        </ul>
-      </div>
-      {/* ---Price--- */}
-      <div>
-        <h3 className="text-xs text-secondary-300 tracking-widest">PRICE</h3>
-        <div className="my-5 mb-10">
-          <RangeInput
-            min={Math.min(...prices)}
-            max={Math.max(...prices)}
-            onChange={handleFilterChange}
-            param="maxPrice"
-          />
-        </div>
-      </div>
-
-      {/* ---Remove all filters--- */}
-      {location.search ? (
         <div>
-          <button
-            className="dark:text-slate-200 bg-primary-500 p-3 rounded-[10px] text-white"
-            onClick={() => handleFilterChange(null, null, "delete-all", null)}
-          >
-            Reset Filters
-          </button>
+          <h3 className="text-xs text-secondary-300 tracking-widest">TYPE</h3>
+          {/* checkboxes */}
+          <ul className="flex flex-col gap-4 text-xl my-5">
+            {types.map((type, index) => {
+              return (
+                <Checkbox
+                  id={index}
+                  key={index}
+                  label={type.typeName}
+                  count={type.count}
+                  param="type"
+                  onChange={handleFilterChange}
+                />
+              );
+            })}
+          </ul>
         </div>
-      ) : null}
+        {/* ---Seating--- */}
+        <div>
+          <h3 className="text-xs text-secondary-300 tracking-widest">
+            SEATING
+          </h3>
+          {/* checkboxes */}
+          <ul className="flex flex-col gap-4 text-xl my-5 mb-10">
+            {seats.map((seats, index) => {
+              return (
+                <Checkbox
+                  id={index}
+                  key={index}
+                  label={seats.seats}
+                  count={seats.count}
+                  param="seats"
+                  onChange={handleFilterChange}
+                />
+              );
+            })}
+          </ul>
+        </div>
+        {/* ---Price--- */}
+        <div>
+          <h3 className="text-xs text-secondary-300 tracking-widest">PRICE</h3>
+          <div className="my-5 mb-10">
+            <RangeInput
+              min={Math.min(...prices)}
+              max={Math.max(...prices)}
+              onChange={handleFilterChange}
+              param="maxPrice"
+            />
+          </div>
+        </div>
+
+        {/* ---Remove all filters--- */}
+        {location.search ? (
+          <div>
+            <button
+              className="dark:text-slate-200 bg-primary-500 p-3 rounded-[10px] text-white"
+              onClick={() => handleFilterChange(null, null, "delete-all", null)}
+            >
+              Reset Filters
+            </button>
+          </div>
+        ) : null}
+      </div>
     </>
   );
 };
