@@ -71,6 +71,7 @@ const FilterSidebar = ({ setShowMobileFilters, showMobileFilters }) => {
   /* ===Handlers=== */
   /* handle filters */
   function handleFilterChange(key, value, func, isSingleValue) {
+    const allParams = searchParams.getAll(key);
     setSearchParams((prevParams) => {
       switch (func) {
         /* add a filter with a key and value */
@@ -83,15 +84,18 @@ const FilterSidebar = ({ setShowMobileFilters, showMobileFilters }) => {
           break;
         /* delete a filter with that key and value */
         case "delete-value":
-          prevParams.delete(key, value);
+          // delete all key values
+          prevParams.delete(key);
+
+          // append remaining value
+          for (const remainingValue of allParams.filter(
+            (item) => item !== value
+          ))
+            prevParams.append(key, remainingValue);
           break;
         /* delete all filters with that key*/
         case "delete-key":
-          if (isSingleValue) {
-            prevParams.delete(key);
-          } else {
-            prevParams.delete(key, value);
-          }
+          prevParams.delete(key);
           break;
         /* delete all filters*/
         case "delete-all":
