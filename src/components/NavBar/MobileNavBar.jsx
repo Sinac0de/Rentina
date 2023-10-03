@@ -25,15 +25,15 @@ const MobileNavBar = ({ isNavCollapsed, setIsNavCollapsed }) => {
         {/* Nav body */}
         <div className="px-3 flex-1 overflow-y-auto">
           <div className="flex flex-col w-full gap-3">
-            <div className="border-2 p-4 border border-secondary-400 rounded-full cursor-pointer flex items-center gap-2">
+            <div className="border-2 p-4 border-secondary-400 rounded-full cursor-pointer flex items-center gap-2">
               <FavoritesIcon />
               <h3>Favorites</h3>
             </div>
-            <div className="border-2 p-4 border border-secondary-400 rounded-full cursor-pointer flex items-center gap-2">
+            <div className="border-2 p-4 border-secondary-400 rounded-full cursor-pointer flex items-center gap-2">
               <NotificationsIcon />
               <h3>Notifications</h3>
             </div>
-            <div className="border-2 p-4 border border-secondary-400 rounded-full cursor-pointer flex items-center gap-2">
+            <div className="border-2 p-4 border-secondary-400 rounded-full cursor-pointer flex items-center gap-2">
               <SettingsIcon />
               <h3>Settings</h3>
             </div>
