@@ -110,7 +110,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
       {/* recommended car cards */}
       <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 my-5">
         {currentPageData.map((car) => {
-          return <CarCard key={car.id} carData={car} />;
+          return <CarCard key={car._id} carData={car} />;
         })}
       </div>
       {/* if there is no car */}

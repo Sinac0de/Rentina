@@ -72,7 +72,7 @@ const Slider = ({ title }) => {
       >
         {cars.slice(24, 32).map((car) => {
           return (
-            <SwiperSlide key={car.id}>
+            <SwiperSlide key={car._id}>
               <CarCard isSlideCard carData={car} />
             </SwiperSlide>
           );

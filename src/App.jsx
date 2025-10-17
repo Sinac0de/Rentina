@@ -11,19 +11,25 @@ import RentalCars from "./pages/Cars/RentalCars";
 import CarDetails from "./pages/Cars/CarDetails/CarDetails";
 import Cars from "./pages/Cars/Cars";
 import Payment from "./pages/Payment/Payment";
+import Signup from "./pages/Authentication/Signup";
+import Signin from "./pages/Authentication/Signin";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="shop" element={<Cars />}>
-          <Route index element={<RentalCars />} />
-          <Route path=":id" element={<CarDetails />} />
+      <>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="shop" element={<Cars />}>
+            <Route index element={<RentalCars />} />
+            <Route path=":id" element={<CarDetails />} />
+          </Route>
+          <Route path="payment/:id" element={<Payment />} />
         </Route>
-        <Route path="payment/:id" element={<Payment />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<Signin />} />
         <Route path="*" element={<h1>Page not found!</h1>} />
-      </Route>
+      </>
     )
   );
   return <RouterProvider router={router} />;
