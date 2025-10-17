@@ -14,7 +14,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   if (carData) {
-    const { id, make, model, thumbnail_img, specs } = carData;
+    const { _id: id, make, model, thumbnail_img, specs } = carData;
 
     const {
       rental_price,
