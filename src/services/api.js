@@ -29,7 +29,7 @@ export async function getCarsSpecs() {
   try {
     const response = await API.get("/cars");
     const data = response.data;
-    
+
     // Gather all the specs of cars
     const carsSpecs = [];
     data.forEach((car) => {
@@ -47,7 +47,7 @@ export async function getCarsByName(name) {
   try {
     const response = await API.get("/cars");
     const data = response.data;
-    
+
     const cars = data.filter((car) => {
       const carName = `${car.make.toLowerCase()} ${car.model.toLowerCase()}`;
       return carName.includes(name.toLowerCase());
