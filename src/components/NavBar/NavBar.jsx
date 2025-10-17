@@ -1,7 +1,7 @@
 import FavoritesIcon from "../../assets/Icons/FavoritesIcon";
-import NotificationsIcon from "../../assets/Icons/NotificationsIcon";
 import ProfileIcon from "../../assets/Icons/ProfileIcon";
 import SettingsIcon from "../../assets/Icons/SettingsIcon";
+import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
 
 const NavBar = () => {
   return (
@@ -10,7 +10,7 @@ const NavBar = () => {
         <FavoritesIcon />
       </span>
       <span className="dark:border-slate-500 p-2 border rounded-full cursor-pointer">
-        <NotificationsIcon />
+        <AnimatedThemeToggler />
       </span>
       <span className="dark:border-slate-500 p-2 border rounded-full cursor-pointer">
         <SettingsIcon />
