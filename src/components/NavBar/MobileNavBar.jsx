@@ -2,6 +2,7 @@ import FavoritesIcon from "../../assets/Icons/FavoritesIcon";
 import NotificationsIcon from "../../assets/Icons/NotificationsIcon";
 import ProfileIcon from "../../assets/Icons/ProfileIcon";
 import SettingsIcon from "../../assets/Icons/SettingsIcon";
+import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
 
 const MobileNavBar = ({ isNavCollapsed, setIsNavCollapsed }) => {
   return (
@@ -42,6 +43,12 @@ const MobileNavBar = ({ isNavCollapsed, setIsNavCollapsed }) => {
 
         {/* Nav Footer */}
         <div className="w-full px-5 py-5 flex flex-col gap-3 h-[23%] justify-end">
+          <AnimatedThemeToggler
+            title="Toggle theme"
+            className={
+              "border-2 p-4 border-secondary-400 rounded-full cursor-pointer flex items-center justify-start gap-2 text-[#596780]"
+            }
+          />
           <div className="dark:border-none p-4 bg-primary-500 text-white border-secondary-400 rounded-full cursor-pointer flex items-center gap-2">
             <ProfileIcon color="white" />
             <h3 className="text-base font-semibold">Sign Up</h3>

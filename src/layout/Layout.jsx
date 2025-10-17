@@ -1,16 +1,14 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router";
-import Header from "src/components/Header";
-import Footer from "src/components/Footer";
-import MobileNavBar from "src/components/NavBar/MobileNavBar";
-import FilterSidebar from "src/components/FilterSideBar/FilterSideBar";
-import ScrollToTop from "src/components/ScrollToTop/ScrollToTop";
 import CloseIcon from "src/assets/Icons/CloseIcon";
+import Footer from "src/components/Footer";
+import Header from "src/components/Header";
+import MobileNavBar from "src/components/NavBar/MobileNavBar";
+import ScrollToTop from "src/components/ScrollToTop/ScrollToTop";
 
 const Layout = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 
-  // just for test
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   // Add a useEffect to set body overflow when the navbar opens
@@ -45,7 +43,6 @@ const Layout = () => {
         >
           <CloseIcon />
         </div>
-        {/* <FilterSidebar /> */}
       </div>
       <div onClick={() => !isNavCollapsed && setIsNavCollapsed(true)}>
         <Header
