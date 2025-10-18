@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import GalleryIcon from "src/assets/Icons/GalleryIcon";
 
 const CarPhotos = ({ photos }) => {
+  console.log(photos);
   const [activeImg, setActiveImg] = useState({ id: 1, src: photos[0].src });
   const [isLoaded, setIsLoaded] = useState([
     { id: 1, load: false },

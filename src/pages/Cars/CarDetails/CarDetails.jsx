@@ -5,7 +5,7 @@ import Slider from "src/components/Slider/Slider";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router";
-import { getCars } from "src/services/api";
+import { getCarById } from "src/services/api";
 import SkeletonPhotos from "./parts/CarPhotos/SkeletonPhotos";
 import SkeletonInfo from "./parts/CarInfo/SkeletonInfo";
 import SkeletonReviews from "./parts/CarReviews/SkeletonReviews";
@@ -20,9 +20,14 @@ const CarDetails = () => {
     setIsLoading(true);
     // fetch car data
     async function fetchCarDetails() {
-      const data = await getCars(id);
-      setCarData(data);
-      setIsLoading(false); // Set loading to false when data is fetched
+      try {
+        const data = await getCarById(id);
+        setCarData(data);
+      } catch (error) {
+        console.error("Error fetching car details:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchCarDetails();
   }, [id]);
@@ -47,8 +52,7 @@ const CarDetails = () => {
   return (
     <div className="flex flex-col gap-5 py-8">
       <div className="flex flex-col gap-7 lg:flex-row">
-        <CarPhotos photos={carData.img_urls} />
-        <CarInfo info={carData} />
+        <CarPhotos photos={carData.img_urls} /> <CarInfo info={carData} />
       </div>
 
       <CarReviews reviews={carData.reviews} />

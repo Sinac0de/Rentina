@@ -13,17 +13,27 @@ import SkeletonCard from "../CarCard/SkeletonCard";
 
 const Slider = ({ title }) => {
   const [cars, setCars] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // fetch all cars
     async function fetchCars() {
-      setCars(await getCars());
+      try {
+        // Fetch cars sorted by rating (popular cars)
+        const data = await getCars({ sort: 'rating', pageSize: 12 });
+        setCars(data.cars || []);
+      } catch (error) {
+        console.error("Error fetching cars for slider:", error);
+        setCars([]);
+      } finally {
+        setLoading(false);
+      }
     }
     fetchCars();
   }, []);
 
   /* --- Skeleton Loading --- */
-  if (!cars.length) {
+  if (loading) {
     return (
       <section className="my-2">
         <header className="flex justify-between mb-5">
@@ -34,14 +44,16 @@ const Slider = ({ title }) => {
             <p>View all</p>
           </Link>
         </header>
-        {/* ---Swiper Slider--- */}
+        {/* ---Swiper Slider--- */
+}
         <Swiper
           grabCursor={true}
           spaceBetween="30"
           slidesPerView={"auto"}
           className="mySwiper z-0"
         >
-          {/* ---Create 8 skeleton cards--- */}
+          {/* ---Create 8 skeleton cards--- */
+}
           {Array.from({ length: 8 }).map((_, index) => (
             <SwiperSlide key={index}>
               <SkeletonCard isSlideCard />
@@ -63,14 +75,15 @@ const Slider = ({ title }) => {
           <p>View all</p>
         </Link>
       </header>
-      {/* ---Swiper Slider--- */}
+      {/* ---Swiper Slider--- */
+}
       <Swiper
         grabCursor={true}
         spaceBetween="20"
         slidesPerView={"auto"}
         className="mySwiper z-0"
       >
-        {cars.slice(24, 32).map((car) => {
+        {cars.slice(0, 8).map((car) => { // Changed from slice(24, 32) to slice(0, 8)
           return (
             <SwiperSlide key={car._id}>
               <CarCard isSlideCard carData={car} />
