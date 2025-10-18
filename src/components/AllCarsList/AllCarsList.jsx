@@ -117,7 +117,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
       {!currentPageData.length ? (
         <div className="dark:text-slate-300 flex flex-col items-center gap-1 mt-10 w-full text-base md:text-xl">
           <h4>No cars found! please change filters.</h4>
-          <Link to="/shop" className="underline text-primary-500">
+          <Link to="/cars" className="underline text-primary-500">
             Reset filters?
           </Link>
         </div>
@@ -136,7 +136,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
         {isCompact && (
           <>
             <Link
-              to="/shop"
+              to="/cars"
               className="dark:border-primary-500 dark:hover:bg-transparent dark:text-slate-300 bg-primary-500 text-white border-2 hover:text-primary-500 hover:bg-white hover:border-primary-500 transition-all duration-300 py-3 px-[20px] rounded-[4px] text-xs font-medium lg:text-base"
             >
               Show More Cars

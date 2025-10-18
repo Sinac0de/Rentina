@@ -64,7 +64,7 @@ const FilterSidebar = ({ setShowMobileFilters, showMobileFilters }) => {
   /* --- navigate to shop page when filters change --- */
   useEffect(() => {
     if (location.search) {
-      navigate(`/shop${location.search}`);
+      navigate(`/cars${location.search}`);
     }
   }, [location.search]);
 

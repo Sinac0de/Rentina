@@ -30,7 +30,7 @@ const Slider = ({ title }) => {
           <h3 className="text-secondary-300 font-semibold text-sm md:text-base md:px-2">
             {title}
           </h3>
-          <Link to="/shop" className="text-primary-500 font-semibold">
+          <Link to="/cars" className="text-primary-500 font-semibold">
             <p>View all</p>
           </Link>
         </header>
@@ -59,7 +59,7 @@ const Slider = ({ title }) => {
         <h3 className="text-secondary-300 font-semibold text-sm md:text-base md:px-2">
           {title}
         </h3>
-        <Link to="/shop" className="text-primary-500 font-semibold">
+        <Link to="/cars" className="text-primary-500 font-semibold">
           <p>View all</p>
         </Link>
       </header>

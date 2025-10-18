@@ -27,7 +27,7 @@ const Hero = () => {
           </div>
           {/* hero footer */}
           <Link
-            to="/shop"
+            to="/cars"
             className="bg-primary-500 py-3 px-[20px] rounded-[4px] text-xs md:text-base font-medium z-10"
           >
             Go to store
@@ -52,7 +52,7 @@ const Hero = () => {
           </div>
           {/* hero footer */}
           <Link
-            to="/shop"
+            to="/cars"
             className="bg-[#54A6FF] py-3 px-[20px] rounded-[4px] text-xs md:text-base font-medium z-10"
           >
             Rental now

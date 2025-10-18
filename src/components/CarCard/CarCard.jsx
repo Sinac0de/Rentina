@@ -65,7 +65,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
         <div className="flex justify-between">
           <Link
             className="flex flex-col p-0"
-            to={filterParams ? `/shop/${id}${filterParams}` : `/shop/${id}`}
+            to={filterParams ? `/cars/${id}${filterParams}` : `/cars/${id}`}
           >
             <h3 className="dark:text-slate-300 text-base font-semibold text-secondary-500 mb-1">
               {`${make} ${model}`}
@@ -83,7 +83,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
         </div>
         {/* card body */}
         <Link
-          to={filterParams ? `/shop/${id}${filterParams}` : `/shop/${id}`}
+          to={filterParams ? `/cars/${id}${filterParams}` : `/cars/${id}`}
           className={`flex ${
             isSlideCard ? "flex-col" : "mb-5"
           } justify-between gap-5`}

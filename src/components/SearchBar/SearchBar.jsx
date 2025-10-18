@@ -54,7 +54,7 @@ const SearchBar = () => {
             {cars.map((car, index) => {
               return (
                 <Link
-                  to={`/shop/${car._id}`}
+                  to={`/cars/${car._id}`}
                   key={index}
                   className="w-full flex items-center justify-between h-20 p-5 border-t-2 first:border-none"
                   onClick={handleResetSearch}

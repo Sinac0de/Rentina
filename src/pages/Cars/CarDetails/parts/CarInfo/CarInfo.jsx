@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { calTotalPrice } from "src/utils/usefulFunctions";
 
 const CarInfo = ({ info }) => {
-  const { id, make, model, specs, reviews } = info;
+  const { _id: id, make, model, specs, reviews } = info;
 
   const {
     rental_price,
