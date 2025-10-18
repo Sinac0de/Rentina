@@ -16,10 +16,10 @@ const useAuthStore = create(
         set({ isLoading: true, error: null });
         try {
           const response = await loginUser({ email, password });
-          
+
           // Ensure we're setting the user correctly
           const user = response.user || response;
-          
+
           set({
             user,
             isAuthenticated: true,
@@ -45,10 +45,10 @@ const useAuthStore = create(
         set({ isLoading: true, error: null });
         try {
           const response = await registerUser(userData);
-          
+
           // Ensure we're setting the user correctly
           const user = response.user || response;
-          
+
           set({
             user,
             isAuthenticated: true,
@@ -94,10 +94,10 @@ const useAuthStore = create(
         set({ isLoading: true });
         try {
           const response = await getUserProfile();
-          
+
           // Ensure we're setting the user correctly
           const user = response.user || response;
-          
+
           set({
             user,
             isAuthenticated: true,
@@ -127,7 +127,7 @@ const useAuthStore = create(
         try {
           const response = await getUserProfile();
           const user = response.user || response;
-          
+
           set({ user, isAuthenticated: true });
         } catch (error) {
           localStorage.removeItem("token");
@@ -137,13 +137,13 @@ const useAuthStore = create(
       },
 
       // Clear error
-      clearError: () => set({ error: null })
+      clearError: () => set({ error: null }),
     }),
     {
       name: "auth-storage", // Unique name for the storage key
-      partialize: (state) => ({ 
-        user: state.user, 
-        isAuthenticated: state.isAuthenticated 
+      partialize: (state) => ({
+        user: state.user,
+        isAuthenticated: state.isAuthenticated,
       }), // Only persist user and isAuthenticated
     }
   )
