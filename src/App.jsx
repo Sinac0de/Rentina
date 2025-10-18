@@ -13,6 +13,7 @@ import Cars from "./pages/Cars/Cars";
 import Payment from "./pages/Payment/Payment";
 import Signup from "./pages/Authentication/Signup";
 import Signin from "./pages/Authentication/Signin";
+import Profile from "./pages/Authentication/Profile";
 
 function App() {
   const router = createBrowserRouter(
@@ -25,6 +26,7 @@ function App() {
             <Route path=":id" element={<CarDetails />} />
           </Route>
           <Route path="payment/:id" element={<Payment />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />

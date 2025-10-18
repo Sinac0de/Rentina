@@ -1,6 +1,5 @@
-import RatingStars from "src/components/common/RatingStars";
-import carImg from "src/assets/images/Cars/test/car-img-1_1.png";
 import { useState } from "react";
+import RatingStars from "src/components/common/RatingStars";
 import TextInput from "src/components/common/TextInput";
 import { calTotalPrice } from "src/utils/utils";
 

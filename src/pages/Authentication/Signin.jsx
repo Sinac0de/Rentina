@@ -3,14 +3,15 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthNavbar from "src/components/NavBar/AuthNavbar";
 import TextInput from "../../components/common/TextInput";
-import { loginUser } from "../../services/api";
+import useAuthStore from "../../store/authStore";
 import { signinValidationRules } from "./validation";
+import toast from "react-hot-toast";
 
 const Signin = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [apiError, setApiError] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { login, isLoading } = useAuthStore();
 
   const {
     register,
@@ -24,19 +25,22 @@ const Signin = () => {
   const successMessage = location.state?.message;
 
   const onSubmit = async (data) => {
-    setIsSubmitting(true);
     setApiError("");
 
     try {
-      await loginUser(data);
+      const result = await login(data.email, data.password);
 
-      navigate("/");
+      if (result.success) {
+        toast.success("Sign in successful!");
+        navigate("/");
+      } else {
+        toast.error(result.error);
+        setApiError(result.error);
+      }
     } catch (err) {
       setApiError(
         err.message || "Failed to sign in. Please check your credentials."
       );
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -155,10 +159,10 @@ const Signin = () => {
           <div>
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isLoading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-400 dark:focus:ring-offset-gray-900"
             >
-              {isSubmitting ? (
+              {isLoading ? (
                 <span className="flex items-center">
                   <svg
                     className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

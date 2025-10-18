@@ -14,6 +14,19 @@ API.interceptors.request.use((config) => {
   return config;
 });
 
+// Response interceptor to handle token refresh/expiry
+API.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Clear tokens on unauthorized responses
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    }
+    return Promise.reject(error);
+  }
+);
+
 export async function getCars(id) {
   try {
     const url = id ? `/cars/${id}` : "/cars";
@@ -63,23 +76,32 @@ export async function getCarsByName(name) {
 export async function registerUser(userData) {
   try {
     const response = await API.post("/users/register", userData);
-    return response.data;
+    const data = response.data;
+    
+    // Save token to localStorage if provided
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+    }
+    
+    return data;
   } catch (error) {
-    throw error.response.data;
+    throw error.response?.data || { message: "Registration failed" };
   }
 }
 
 export async function loginUser(userData) {
   try {
     const response = await API.post("/users/login", userData);
-    // Save token to localStorage
-    if (response.data.token) {
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data));
+    const data = response.data;
+    
+    // Save token to localStorage if provided
+    if (data.token) {
+      localStorage.setItem("token", data.token);
     }
-    return response.data;
+    
+    return data;
   } catch (error) {
-    throw error.response.data;
+    throw error.response?.data || { message: "Login failed" };
   }
 }
 
@@ -88,6 +110,6 @@ export async function getUserProfile() {
     const response = await API.get("/users/profile");
     return response.data;
   } catch (error) {
-    throw error.response.data;
+    throw error.response?.data || { message: "Failed to fetch profile" };
   }
 }
