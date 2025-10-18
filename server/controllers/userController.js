@@ -36,6 +36,7 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      favorites: user.favorites,
       token: generateToken(user._id)
     });
   } else {
@@ -60,6 +61,7 @@ const loginUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      favorites: user.favorites,
       token: generateToken(user._id)
     });
   } else {
@@ -76,12 +78,57 @@ const getUserProfile = asyncHandler(async (req, res) => {
     _id: req.user._id,
     name: req.user.name,
     email: req.user.email,
-    role: req.user.role
+    role: req.user.role,
+    favorites: req.user.favorites,
+    avatar: req.user.avatar,
+    bio: req.user.bio,
+    location: req.user.location,
+    phone: req.user.phone
   });
+});
+
+// @desc    Update user profile
+// @route   PUT /api/users/profile
+// @access  Private
+const updateUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.avatar = req.body.avatar || user.avatar;
+    user.bio = req.body.bio || user.bio;
+    user.location = req.body.location || user.location;
+    user.phone = req.body.phone || user.phone;
+    
+    // Only admins can update role
+    if (req.user.role === 'admin') {
+      user.role = req.body.role || user.role;
+    }
+    
+    const updatedUser = await user.save();
+    
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      role: updatedUser.role,
+      favorites: updatedUser.favorites,
+      avatar: updatedUser.avatar,
+      bio: updatedUser.bio,
+      location: updatedUser.location,
+      phone: updatedUser.phone,
+      token: generateToken(updatedUser._id)
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
 });
 
 module.exports = {
   registerUser,
   loginUser,
-  getUserProfile
+  getUserProfile,
+  updateUserProfile
 };

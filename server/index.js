@@ -26,9 +26,13 @@ app.get('/', (req, res) => {
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/cars', require('./routes/carRoutes'));
 app.use('/api/bookings', require('./routes/bookingRoutes'));
+app.use('/api/blogs', require('./routes/blogRoutes'));
+app.use('/api/favorites', require('./routes/favoriteRoutes'));
+app.use('/api/stats', require('./routes/statsRoutes'));
+app.use('/api/search', require('./routes/searchRoutes'));
 
 // Error handling middleware
-app.use((err, req, res, next) => {
+app.use((err, req, res, _) => {
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
   res.status(statusCode);
   res.json({
