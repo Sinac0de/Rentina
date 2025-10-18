@@ -27,48 +27,210 @@ API.interceptors.response.use(
   }
 );
 
-export async function getCars(id) {
+// Car API functions
+export async function getCars(params = {}) {
   try {
-    const url = id ? `/cars/${id}` : "/cars";
-    const response = await API.get(url);
+    const response = await API.get("/cars", { params });
     return response.data;
   } catch (error) {
     console.error("Error fetching cars:", error);
-    alert("Something went wrong! Please refresh the page.");
+    throw error.response?.data || { message: "Failed to fetch cars" };
   }
 }
 
-export async function getCarsSpecs() {
+export async function getCarById(id) {
   try {
-    const response = await API.get("/cars");
-    const data = response.data;
-
-    // Gather all the specs of cars
-    const carsSpecs = [];
-    data.forEach((car) => {
-      carsSpecs.push(car.specs);
-    });
-    return carsSpecs;
+    const response = await API.get(`/cars/${id}`);
+    return response.data;
   } catch (error) {
-    console.error("Error fetching car specs:", error);
-    alert("Something went wrong! Please refresh the page.");
+    console.error("Error fetching car:", error);
+    throw error.response?.data || { message: "Failed to fetch car" };
   }
 }
 
-/* Search cars by name */
-export async function getCarsByName(name) {
+export async function getCarCategories() {
   try {
-    const response = await API.get("/cars");
-    const data = response.data;
+    const response = await API.get("/cars/categories");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching car categories:", error);
+    throw error.response?.data || { message: "Failed to fetch car categories" };
+  }
+}
 
-    const cars = data.filter((car) => {
-      const carName = `${car.make.toLowerCase()} ${car.model.toLowerCase()}`;
-      return carName.includes(name.toLowerCase());
+export async function getCarMakes() {
+  try {
+    const response = await API.get("/cars/makes");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching car makes:", error);
+    throw error.response?.data || { message: "Failed to fetch car makes" };
+  }
+}
+
+export async function toggleFavoriteCar(carId) {
+  try {
+    const response = await API.post(`/cars/${carId}/favorite`);
+    return response.data;
+  } catch (error) {
+    console.error("Error toggling favorite:", error);
+    throw error.response?.data || { message: "Failed to toggle favorite" };
+  }
+}
+
+export async function removeFavoriteCar(carId) {
+  try {
+    const response = await API.delete(`/cars/${carId}/favorite`);
+    return response.data;
+  } catch (error) {
+    console.error("Error removing favorite:", error);
+    throw error.response?.data || { message: "Failed to remove favorite" };
+  }
+}
+
+export async function getFavoriteCars() {
+  try {
+    const response = await API.get("/cars/favorites");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching favorite cars:", error);
+    throw error.response?.data || { message: "Failed to fetch favorite cars" };
+  }
+}
+
+// Blog API functions
+export async function getBlogs(params = {}) {
+  try {
+    const response = await API.get("/blogs", { params });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
+    throw error.response?.data || { message: "Failed to fetch blogs" };
+  }
+}
+
+export async function getBlogById(id) {
+  try {
+    const response = await API.get(`/blogs/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching blog:", error);
+    throw error.response?.data || { message: "Failed to fetch blog" };
+  }
+}
+
+export async function getBlogBySlug(slug) {
+  try {
+    const response = await API.get(`/blogs/slug/${slug}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching blog by slug:", error);
+    throw error.response?.data || { message: "Failed to fetch blog" };
+  }
+}
+
+export async function getFeaturedBlogs() {
+  try {
+    const response = await API.get("/blogs/featured");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching featured blogs:", error);
+    throw error.response?.data || { message: "Failed to fetch featured blogs" };
+  }
+}
+
+export async function getBlogCategories() {
+  try {
+    const response = await API.get("/blogs/categories");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching blog categories:", error);
+    throw error.response?.data || { message: "Failed to fetch blog categories" };
+  }
+}
+
+// Favorite API functions
+export async function getUserFavorites() {
+  try {
+    const response = await API.get("/favorites");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user favorites:", error);
+    throw error.response?.data || { message: "Failed to fetch favorites" };
+  }
+}
+
+export async function addFavorite(carId) {
+  try {
+    const response = await API.post(`/favorites/${carId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error adding favorite:", error);
+    throw error.response?.data || { message: "Failed to add favorite" };
+  }
+}
+
+export async function removeFavorite(carId) {
+  try {
+    const response = await API.delete(`/favorites/${carId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error removing favorite:", error);
+    throw error.response?.data || { message: "Failed to remove favorite" };
+  }
+}
+
+export async function checkFavorite(carId) {
+  try {
+    const response = await API.get(`/favorites/check/${carId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error checking favorite:", error);
+    throw error.response?.data || { message: "Failed to check favorite" };
+  }
+}
+
+// Search API functions
+export async function globalSearch(query, limit = 10) {
+  try {
+    const response = await API.get("/search", { params: { q: query, limit } });
+    return response.data;
+  } catch (error) {
+    console.error("Error performing search:", error);
+    throw error.response?.data || { message: "Failed to perform search" };
+  }
+}
+
+export async function searchCars(query, params = {}) {
+  try {
+    const response = await API.get("/search/cars", { 
+      params: { q: query, ...params } 
     });
-    return cars;
+    return response.data;
   } catch (error) {
     console.error("Error searching cars:", error);
-    alert("Something went wrong! Please refresh the page.");
+    throw error.response?.data || { message: "Failed to search cars" };
+  }
+}
+
+// Stats API functions
+export async function getDashboardStats() {
+  try {
+    const response = await API.get("/stats/dashboard");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching dashboard stats:", error);
+    throw error.response?.data || { message: "Failed to fetch dashboard stats" };
+  }
+}
+
+export async function getCarStats() {
+  try {
+    const response = await API.get("/stats/cars");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching car stats:", error);
+    throw error.response?.data || { message: "Failed to fetch car stats" };
   }
 }
 
@@ -113,3 +275,14 @@ export async function getUserProfile() {
     throw error.response?.data || { message: "Failed to fetch profile" };
   }
 }
+
+export async function updateUserProfile(userData) {
+  try {
+    const response = await API.put("/users/profile", userData);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || { message: "Failed to update profile" };
+  }
+}
+
+export default API;

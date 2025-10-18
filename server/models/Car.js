@@ -27,7 +27,7 @@ const carSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ['SUV', 'Sedan', 'Hatchback', 'Convertible', 'Coupe', 'Luxury', 'Electric'],
+    enum: ['SUV', 'Sedan', 'Hatchback', 'Convertible', 'Coupe', 'Luxury', 'Electric', 'Muscle Car', 'Sports Car'],
     index: true
   },
   specs: {
@@ -73,7 +73,19 @@ const carSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
     index: true
-  }
+  },
+  // Additional fields from existing data structure
+  thumbnail_img: String,
+  img_urls: [{
+    id: Number,
+    src: String
+  }],
+  reviews: [{
+    id: Number,
+    name: String,
+    Occupation: String,
+    review: String
+  }]
 }, {
   timestamps: true,
   toJSON: { virtuals: true },

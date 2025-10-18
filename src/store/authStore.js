@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { loginUser, registerUser, getUserProfile } from "../services/api";
+import { loginUser, registerUser, getUserProfile, updateUserProfile } from "../services/api";
 
 // Secure authentication store with persistence
 const useAuthStore = create(
@@ -133,6 +133,30 @@ const useAuthStore = create(
           localStorage.removeItem("token");
           localStorage.removeItem("user");
           set({ user: null, isAuthenticated: false });
+        }
+      },
+
+      // Update user profile
+      updateProfile: async (userData) => {
+        set({ isLoading: true, error: null });
+        try {
+          const response = await updateUserProfile(userData);
+          const user = response.user || response;
+
+          set({
+            user,
+            isLoading: false,
+            error: null,
+          });
+
+          return { success: true, user };
+        } catch (error) {
+          const errorMessage = error.message || "Failed to update profile";
+          set({
+            isLoading: false,
+            error: errorMessage,
+          });
+          return { success: false, error: errorMessage };
         }
       },
 
