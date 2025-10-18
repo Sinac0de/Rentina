@@ -14,12 +14,14 @@ import Payment from "./pages/Payment/Payment";
 import Signup from "./pages/Authentication/Signup";
 import Signin from "./pages/Authentication/Signin";
 import Profile from "./pages/Authentication/Profile";
+import NotFoundPage from "./pages/Error/NotFoundPage";
+import ErrorPage from "./pages/Error/ErrorPage";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
           <Route index element={<Home />} />
           <Route path="cars" element={<Cars />}>
             <Route index element={<RentalCars />} />
@@ -30,7 +32,7 @@ function App() {
         </Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="*" element={<h1>Page not found!</h1>} />
+        <Route path="*" element={<NotFoundPage />} />
       </>
     ),
     {
@@ -44,7 +46,9 @@ function App() {
       },
     }
   );
-  return <RouterProvider router={router} future={{ v7_startTransition: true }} />;
+  return (
+    <RouterProvider router={router} future={{ v7_startTransition: true }} />
+  );
 }
 
 export default App;
