@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import securityIconImg from "src/assets/images/security.png";
 
 const Confirmation = () => {

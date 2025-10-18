@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import ProfileIcon from "../../assets/Icons/ProfileIcon";
 import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
 import useAuthStore from "../../store/authStore";

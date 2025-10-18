@@ -1,7 +1,7 @@
 import { getCarsByName } from "src/services/api";
 import SearchIcon from "../../assets/Icons/SearchIcon";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const SearchBar = () => {
   const [cars, setCars] = useState([]);

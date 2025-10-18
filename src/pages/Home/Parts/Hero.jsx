@@ -1,7 +1,7 @@
 import circlePatternUrl from "src/assets/images/Patterns/circularPattern.png";
 import heroCarImageUrl from "src/assets/images/Cars/Koenigsegg-Sport.png";
 import heroCar2ImageUrl from "src/assets/images/Cars/Nissan_GT-R.png";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const Hero = () => {
   return (

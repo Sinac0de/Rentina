@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CarCard from "../CarCard/CarCard";
 import { getCars } from "src/services/api";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router";
 import SkeletonCard from "../CarCard/SkeletonCard";
 import {
   calTotalPrice,

@@ -1,9 +1,9 @@
 import {
   Route,
-  RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-} from "react-router-dom";
+} from "react-router";
+import { RouterProvider } from "react-router/dom";
 
 import Home from "./pages/Home/Home";
 import Layout from "./layout/Layout";
@@ -32,9 +32,19 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="*" element={<h1>Page not found!</h1>} />
       </>
-    )
+    ),
+    {
+      future: {
+        v7_relativeSplatPath: true,
+        v7_startTransition: true,
+        v7_fetcherPersist: true,
+        v7_normalizeFormMethod: true,
+        v7_partialHydration: true,
+        v7_skipActionErrorRevalidation: true,
+      },
+    }
   );
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router} future={{ v7_startTransition: true }} />;
 }
 
 export default App;

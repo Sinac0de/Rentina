@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 
 const RangeInput = ({ min, max, onChange, param }) => {
   const [searchParams, setSearchParams] = useSearchParams();

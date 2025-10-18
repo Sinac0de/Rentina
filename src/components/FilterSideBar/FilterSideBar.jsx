@@ -3,7 +3,7 @@ import RangeInput from "../common/RangeInput";
 import { useState, useEffect } from "react";
 import { getCarsSpecs } from "src/services/api";
 import SkeletonFilters from "./SkeletonFilters";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router";
 import CloseIcon from "src/assets/Icons/CloseIcon";
 
 const FilterSidebar = ({ setShowMobileFilters, showMobileFilters }) => {

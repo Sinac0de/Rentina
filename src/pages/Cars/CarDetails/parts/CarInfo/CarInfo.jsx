@@ -1,5 +1,5 @@
 import RatingStars from "src/components/common/RatingStars";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { calTotalPrice } from "src/utils/utils";
 
 const CarInfo = ({ info }) => {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 import FilterSidebar from "src/components/FilterSideBar/FilterSideBar";
 
 const Cars = () => {

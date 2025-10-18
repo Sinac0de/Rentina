@@ -5,7 +5,7 @@ import PaymentMethod from "./Parts/PaymentMethod";
 import RentalInfo from "./Parts/RentalInfo";
 import RentalSummary from "./Parts/RentalSummary";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
 const Payment = () => {
   const [carData, setCarData] = useState({});

@@ -3,7 +3,7 @@ import BulletIcon from "src/assets/Icons/BulletIcon";
 import visaImg from "src/assets/images/Visa.png";
 import paypalImg from "src/assets/images/PayPal.png";
 import bitcoinImg from "src/assets/images/Bitcoin.png";
-import { Form } from "react-router-dom";
+import { Form } from "react-router";
 
 const PaymentMethod = () => {
   return (

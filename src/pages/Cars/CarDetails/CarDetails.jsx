@@ -4,7 +4,7 @@ import CarInfo from "./parts/CarInfo/CarInfo";
 import Slider from "src/components/Slider/Slider";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { getCars } from "src/services/api";
 import SkeletonPhotos from "./parts/CarPhotos/SkeletonPhotos";
 import SkeletonInfo from "./parts/CarInfo/SkeletonInfo";

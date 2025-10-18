@@ -77,12 +77,12 @@ export async function registerUser(userData) {
   try {
     const response = await API.post("/users/register", userData);
     const data = response.data;
-    
+
     // Save token to localStorage if provided
     if (data.token) {
       localStorage.setItem("token", data.token);
     }
-    
+
     return data;
   } catch (error) {
     throw error.response?.data || { message: "Registration failed" };
@@ -93,12 +93,12 @@ export async function loginUser(userData) {
   try {
     const response = await API.post("/users/login", userData);
     const data = response.data;
-    
+
     // Save token to localStorage if provided
     if (data.token) {
       localStorage.setItem("token", data.token);
     }
-    
+
     return data;
   } catch (error) {
     throw error.response?.data || { message: "Login failed" };

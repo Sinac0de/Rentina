@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import CarCard from "../CarCard/CarCard";
 import { useEffect, useState } from "react";
 import { getCars } from "src/services/api";

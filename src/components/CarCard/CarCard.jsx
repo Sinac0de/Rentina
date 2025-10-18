@@ -5,7 +5,7 @@ import PeopleIcon from "../../assets/Icons/PeopleIcon";
 import { useState } from "react";
 import HeartFilled from "../../assets/Icons/HeartFilled";
 import { motion } from "framer-motion";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router";
 import { calTotalPrice } from "src/utils/utils";
 
 const CarCard = ({ isSlideCard = false, carData }) => {

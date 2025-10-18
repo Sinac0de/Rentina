@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router";
 import AuthNavbar from "src/components/NavBar/AuthNavbar";
 import TextInput from "../../components/common/TextInput";
 import useAuthStore from "../../store/authStore";

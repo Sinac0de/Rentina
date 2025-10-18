@@ -1,5 +1,5 @@
 import { CarIcon, X } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router";
 import FavoritesIcon from "../../assets/Icons/FavoritesIcon";
 import ProfileIcon from "../../assets/Icons/ProfileIcon";
 import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
