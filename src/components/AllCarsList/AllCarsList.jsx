@@ -7,7 +7,7 @@ import {
   calTotalPrice,
   getAllParamsFilters,
   scrollToTopFunction,
-} from "src/utils/usefulFunctions";
+} from "src/utils/utils";
 import { useMemo } from "react";
 import Pagination from "../Pagination/Pagination";
 

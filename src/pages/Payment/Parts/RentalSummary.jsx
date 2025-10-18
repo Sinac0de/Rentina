@@ -2,7 +2,7 @@ import RatingStars from "src/components/common/RatingStars";
 import carImg from "src/assets/images/Cars/test/car-img-1_1.png";
 import { useState } from "react";
 import TextInput from "src/components/common/TextInput";
-import { calTotalPrice } from "src/utils/usefulFunctions";
+import { calTotalPrice } from "src/utils/utils";
 
 const RentalSummary = ({ info }) => {
   const { id, make, model, specs, img_urls } = info;

@@ -1,6 +1,6 @@
 import RatingStars from "src/components/common/RatingStars";
 import { Link } from "react-router-dom";
-import { calTotalPrice } from "src/utils/usefulFunctions";
+import { calTotalPrice } from "src/utils/utils";
 
 const CarInfo = ({ info }) => {
   const { _id: id, make, model, specs, reviews } = info;
