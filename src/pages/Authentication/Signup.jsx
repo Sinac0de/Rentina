@@ -1,47 +1,30 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { signupResolver } from "./validation";
+import { Link, useNavigate } from "react-router-dom";
+import AuthNavbar from "src/components/NavBar/AuthNavbar";
 import TextInput from "../../components/common/TextInput";
 import { registerUser } from "../../services/api";
-import { AnimatedThemeToggler } from "src/components/ui/animated-theme-toggler";
-import { ArrowLeft } from "lucide-react";
-import AuthNavbar from "src/components/NavBar/AuthNavbar";
+import { signupValidationRules } from "./validation";
 
 const Signup = () => {
   const navigate = useNavigate();
   const [apiError, setApiError] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    watch,
-    setError,
-  } = useForm();
+    formState: { errors, isSubmitting: formIsSubmitting },
+    getValues,
+  } = useForm({
+    mode: "onChange",
+    reValidateMode: "onChange",
+  });
 
   const onSubmit = async (data) => {
-    setIsSubmitting(true);
     setApiError("");
 
-    // Client-side validation with Zod
-    const validation = signupResolver(data);
-    if (!validation.success) {
-      Object.keys(validation.errors).forEach((field) => {
-        setError(field, {
-          type: "manual",
-          message: validation.errors[field],
-        });
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
-      // Call API to register user
-      const response = await registerUser(data);
+      await registerUser(data);
 
       // On success, redirect to signin
       navigate("/signin", {
@@ -52,8 +35,6 @@ const Signup = () => {
     } catch (err) {
       // Handle API errors
       setApiError(err.message || "Failed to create account. Please try again.");
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -111,9 +92,10 @@ const Signup = () => {
               type="text"
               autoComplete="name"
               required
-              register={register("name", { required: "Name is required" })}
+              register={register("name", signupValidationRules.name)}
               error={errors.name?.message}
               placeholder="John Doe"
+              validationRules={{ name: signupValidationRules.name }}
             />
 
             <TextInput
@@ -123,9 +105,10 @@ const Signup = () => {
               type="email"
               autoComplete="email"
               required
-              register={register("email", { required: "Email is required" })}
+              register={register("email", signupValidationRules.email)}
               error={errors.email?.message}
               placeholder="john@example.com"
+              validationRules={{ email: signupValidationRules.email }}
             />
 
             <TextInput
@@ -135,11 +118,11 @@ const Signup = () => {
               type="password"
               autoComplete="new-password"
               required
-              register={register("password", {
-                required: "Password is required",
-              })}
+              register={register("password", signupValidationRules.password)}
               error={errors.password?.message}
               placeholder="At least 8 characters"
+              showPasswordToggle={true}
+              validationRules={{ password: signupValidationRules.password }}
             />
 
             <TextInput
@@ -150,22 +133,23 @@ const Signup = () => {
               autoComplete="new-password"
               required
               register={register("confirmPassword", {
-                required: "Please confirm your password",
+                ...signupValidationRules.confirmPassword,
                 validate: (value) =>
-                  value === watch("password") || "Passwords don't match",
+                  value === getValues("password") || "Passwords do not match",
               })}
               error={errors.confirmPassword?.message}
               placeholder="Repeat your password"
+              showPasswordToggle={true}
             />
           </div>
 
           <div>
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={formIsSubmitting}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-400 dark:focus:ring-offset-gray-900"
             >
-              {isSubmitting ? (
+              {formIsSubmitting ? (
                 <span className="flex items-center">
                   <svg
                     className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

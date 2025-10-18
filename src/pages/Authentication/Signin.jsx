@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { signinResolver } from "./validation";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import AuthNavbar from "src/components/NavBar/AuthNavbar";
 import TextInput from "../../components/common/TextInput";
 import { loginUser } from "../../services/api";
-import AuthNavbar from "src/components/NavBar/AuthNavbar";
+import { signinValidationRules } from "./validation";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -17,37 +16,22 @@ const Signin = () => {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
-  } = useForm();
+  } = useForm({
+    mode: "onChange",
+    reValidateMode: "onChange",
+  });
 
-  // Get success message from signup if exists
   const successMessage = location.state?.message;
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     setApiError("");
 
-    // Client-side validation with Zod
-    const validation = signinResolver(data);
-    if (!validation.success) {
-      Object.keys(validation.errors).forEach((field) => {
-        setError(field, {
-          type: "manual",
-          message: validation.errors[field],
-        });
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
-      // Call API to login user
-      const response = await loginUser(data);
+      await loginUser(data);
 
-      // On success, redirect to home
       navigate("/");
     } catch (err) {
-      // Handle API errors
       setApiError(
         err.message || "Failed to sign in. Please check your credentials."
       );
@@ -65,7 +49,7 @@ const Signin = () => {
             Sign in to your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-300">
-            Don't have an account?{" "}
+            Don&apos;t have an account?
             <Link
               to="/signup"
               className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
@@ -136,9 +120,10 @@ const Signin = () => {
               type="email"
               autoComplete="email"
               required
-              register={register("email", { required: "Email is required" })}
+              register={register("email", signinValidationRules.email)}
               error={errors.email?.message}
               placeholder="john@example.com"
+              validationRules={{ email: signinValidationRules.email }}
             />
 
             <TextInput
@@ -148,11 +133,11 @@ const Signin = () => {
               type="password"
               autoComplete="current-password"
               required
-              register={register("password", {
-                required: "Password is required",
-              })}
+              register={register("password", signinValidationRules.password)}
               error={errors.password?.message}
               placeholder="Your password"
+              showPasswordToggle={true}
+              validationRules={{ password: signinValidationRules.password }}
             />
           </div>
 
