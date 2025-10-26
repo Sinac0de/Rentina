@@ -44,12 +44,15 @@ const Layout = () => {
           <CloseIcon />
         </div>
       </div>
-      <div onClick={() => !isNavCollapsed && setIsNavCollapsed(true)}>
+      <div
+        className="bg-slate-100 dark:bg-slate-800"
+        onClick={() => !isNavCollapsed && setIsNavCollapsed(true)}
+      >
         <Header
           setIsNavCollapsed={setIsNavCollapsed}
           setIsFilterOpen={setIsFilterOpen}
         />
-        <main className="dark:bg-slate-800 min-h-screen">
+        <main className="bg-slate-100 dark:bg-slate-800 min-h-screen">
           <Outlet />
         </main>
         <Footer />
