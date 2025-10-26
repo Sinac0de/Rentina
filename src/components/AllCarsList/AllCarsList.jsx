@@ -3,85 +3,85 @@ import CarCard from "../CarCard/CarCard";
 import { getCars } from "src/services/api";
 import { Link, useSearchParams } from "react-router";
 import SkeletonCard from "../CarCard/SkeletonCard";
-import {
-  calTotalPrice,
-  getAllParamsFilters,
-  scrollToTopFunction,
-} from "src/utils/utils";
-import { useMemo } from "react";
+import { scrollToTopFunction } from "src/utils/utils";
 import Pagination from "../Pagination/Pagination";
 
 const AllCarsList = ({ isCompact, hasHeader, header }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [cars, setCars] = useState([]);
-  const [carsCount, setCarsCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState(searchParams.get("page") || 1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [totalCars, setTotalCars] = useState(0);
 
-  const filters = getAllParamsFilters();
+  // Get page from URL or default to 1
+  const currentPage = parseInt(searchParams.get("page")) || 1;
+  const pageSize = isCompact ? 8 : 12;
 
   /* === UseEffects === */
-  /*--- fetch all cars ---*/
+  /*--- fetch all cars with pagination and filters ---*/
   useEffect(() => {
     async function fetchCars() {
-      const data = await getCars();
-      if (isCompact) {
-        setCars(data.slice(0, 8));
-      } else {
-        setCars(data);
+      setLoading(true);
+      setError(null);
+
+      try {
+        // Build params object from search params
+        const params = {};
+
+        // Add pagination
+        params.page = currentPage;
+        params.pageSize = pageSize;
+
+        // Add filters from search params
+        for (let [key, value] of searchParams.entries()) {
+          // Skip page parameter as we handle it separately
+          if (key !== "page") {
+            params[key] = value;
+          }
+        }
+
+        // Add sort parameter if not present
+        if (!params.sort) {
+          params.sort = "rating"; // Default sort by rating
+        }
+
+        const data = await getCars(params);
+
+        if (isCompact) {
+          setCars(data.cars || []);
+        } else {
+          setCars(data.cars || []);
+        }
+
+        setTotalCars(data.total || 0);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message || "Failed to fetch cars");
+        setLoading(false);
       }
-      setCarsCount(data.length);
     }
+
     fetchCars();
-  }, []);
+  }, [searchParams, currentPage, pageSize, isCompact]);
 
   /* scroll to top when filters change */
   useEffect(() => {
     scrollToTopFunction();
   }, [searchParams, currentPage]);
 
-  /* ---Filter the cars based on the filters--- */
-  const displayedCars = cars.filter((car) => {
-    // Filter by type
-    if (filters.types.length > 0 && !filters.types.includes(car.specs.type)) {
-      return false;
-    }
-
-    // Filter by seats
-    if (filters.seats.length > 0 && !filters.seats.includes(car.specs.seats)) {
-      return false;
-    }
-
-    // Filter by maxPrice
-    /* calculate total price of the car with discount */
-    const carTotalPrice = calTotalPrice(
-      car.specs.rental_price,
-      car.specs.discount_percent
-    );
-    if (filters.maxPrice && carTotalPrice > filters.maxPrice) {
-      return false;
-    }
-
-    // If all filters pass, include the car
-    return true;
-  });
-
-  /* === Pagination === */
-  const currentPageData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * 8;
-    const lastPageIndex = firstPageIndex + 8;
-    return displayedCars.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, displayedCars]);
-
   const handlePageChange = (page) => {
-    setCurrentPage(page);
     setSearchParams((prevParams) => {
-      prevParams.set("page", page);
+      if (page === 1) {
+        prevParams.delete("page");
+      } else {
+        prevParams.set("page", page);
+      }
       return prevParams;
     });
   };
 
   /*--- Skeleton loading ---*/
-  if (!carsCount) {
+  if (loading) {
     return (
       <div className="md:my-7 md:mb-14">
         <header className={`${!hasHeader ? "hidden" : ""}`}>
@@ -92,9 +92,26 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
         {/* recommended car cards */}
         <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 my-5">
           {/* 8 cards skeleton */}
-          {Array.from({ length: 8 }).map((_, index) => (
+          {Array.from({ length: pageSize }).map((_, index) => (
             <SkeletonCard key={index} />
           ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Handle error state
+  if (error) {
+    return (
+      <div className="md:my-7 md:mb-14">
+        <div className="flex flex-col items-center gap-1 mt-10 w-full text-base md:text-xl">
+          <h4 className="text-red-500">Error: {error}</h4>
+          <button
+            className="underline text-primary-500"
+            onClick={() => window.location.reload()}
+          >
+            Retry?
+          </button>
         </div>
       </div>
     );
@@ -109,28 +126,26 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
       </header>
       {/* recommended car cards */}
       <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 my-5">
-        {currentPageData.map((car) => {
+        {cars.map((car) => {
           return <CarCard key={car._id} carData={car} />;
         })}
       </div>
       {/* if there is no car */}
-      {!currentPageData.length ? (
+      {!cars.length ? (
         <div className="dark:text-slate-300 flex flex-col items-center gap-1 mt-10 w-full text-base md:text-xl">
           <h4>No cars found! please change filters.</h4>
           <Link to="/cars" className="underline text-primary-500">
             Reset filters?
           </Link>
         </div>
-      ) : (
-        ""
-      )}
+      ) : null}
       {/* --- footer --- */}
       <footer className="flex justify-center items-center relative my-10">
         <Pagination
           className="flex gap-2 mx-auto p-3"
           currentPage={currentPage}
-          totalCount={displayedCars.length}
-          pageSize={10}
+          totalCount={totalCars}
+          pageSize={pageSize}
           onPageChange={(page) => handlePageChange(page)}
         />
         {isCompact && (
@@ -142,7 +157,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
               Show More Cars
             </Link>
             <h3 className="font-bold text-secondary-300 absolute text-sm right-5">
-              {carsCount} cars
+              {totalCars} cars
             </h3>
           </>
         )}

@@ -1,7 +1,7 @@
 import Checkbox from "../common/Checkbox";
 import RangeInput from "../common/RangeInput";
 import { useState, useEffect } from "react";
-import { getCarsSpecs } from "src/services/api";
+import { getCarCategories, getCarMakes } from "src/services/api";
 import SkeletonFilters from "./SkeletonFilters";
 import { useLocation, useNavigate, useSearchParams } from "react-router";
 import CloseIcon from "src/assets/Icons/CloseIcon";
@@ -13,52 +13,35 @@ const FilterSidebar = ({ setShowMobileFilters, showMobileFilters }) => {
   const navigate = useNavigate();
 
   /* --- Filter Data --- */
-  const [types, setTypes] = useState([]);
-  const [seats, setSeats] = useState([]);
-  const [prices, setPrices] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [makes, setMakes] = useState([]);
+  const [prices, setPrices] = useState({ min: 0, max: 500 });
+  const [loading, setLoading] = useState(true);
 
   /**=== USE Effects ===**/
   /* --- fetch filters --- */
   useEffect(() => {
-    const allTypes = [];
-    const allSeats = [];
-    const allPrices = [];
-
-    /* ---Get All Specs of cars--- */
-    async function fetchCarsSpecs() {
-      const data = await getCarsSpecs();
-
-      data.forEach((specs) => {
-        /* ---Gather types--- */
-        const typeData = {
-          count: data.filter((data) => data.type === specs.type).length,
-          typeName: specs.type,
-        };
-        if (!allTypes.some((item) => item.typeName === specs.type)) {
-          allTypes.push(typeData);
-        }
-
-        /* ---Gather Seats--- */
-        const seatsData = {
-          count: data.filter((data) => data.seats === specs.seats).length,
-          seats: `${specs.seats} seats`,
-        };
-        if (!allSeats.some((item) => item.seats === `${specs.seats} seats`)) {
-          allSeats.push(seatsData);
-        }
-
-        /* ---Gather Prices--- */
-        const pricesData = specs.rental_price;
-        if (!allPrices.some((price) => price === specs.rental_price)) {
-          allPrices.push(pricesData);
-        }
-      });
-
-      setTypes(allTypes);
-      setSeats(allSeats);
-      setPrices(allPrices);
-    }
-    fetchCarsSpecs();
+    const fetchFilters = async () => {
+      setLoading(true);
+      try {
+        // Fetch car categories
+        const categoriesData = await getCarCategories();
+        setCategories(categoriesData || []);
+        
+        // Fetch car makes
+        const makesData = await getCarMakes();
+        setMakes(makesData || []);
+        
+        // Set price range (you might want to fetch this from API)
+        setPrices({ min: 0, max: 500 });
+      } catch (error) {
+        console.error("Error fetching filters:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchFilters();
   }, []);
 
   /* --- navigate to shop page when filters change --- */
@@ -71,46 +54,47 @@ const FilterSidebar = ({ setShowMobileFilters, showMobileFilters }) => {
   /* ===Handlers=== */
   /* handle filters */
   function handleFilterChange(key, value, func, isSingleValue) {
-    const allParams = searchParams.getAll(key);
     setSearchParams((prevParams) => {
+      const newParams = new URLSearchParams(prevParams);
+      
       switch (func) {
         /* add a filter with a key and value */
         case "add-value":
           if (isSingleValue) {
-            prevParams.set(key, value); // set key-value pair
+            newParams.set(key, value); // set key-value pair
           } else {
-            prevParams.append(key, value); // <-- append key-value pair
+            newParams.append(key, value); // <-- append key-value pair
           }
           break;
         /* delete a filter with that key and value */
-        case "delete-value":
-          // delete all key values
-          prevParams.delete(key);
-
-          // append remaining
-          for (const remainingValue of allParams.filter(
+        case "delete-value": {
+          const allValues = newParams.getAll(key);
+          newParams.delete(key);
+          for (const remainingValue of allValues.filter(
             (item) => item !== value
-          ))
-            prevParams.append(key, remainingValue);
+          )) {
+            newParams.append(key, remainingValue);
+          }
           break;
+        }
         /* delete all filters with that key*/
         case "delete-key":
-          prevParams.delete(key);
+          newParams.delete(key);
           break;
         /* delete all filters*/
         case "delete-all":
-          [...prevParams.keys()].forEach((key) => {
-            prevParams.delete(key);
+          newParams.forEach((value, key) => {
+            newParams.delete(key);
           });
           break;
       }
 
-      return prevParams;
+      return newParams;
     });
   }
 
   /* ---Skeleton Loading--- */
-  if (!types.length) {
+  if (loading) {
     return <SkeletonFilters />;
   }
 
@@ -126,56 +110,75 @@ const FilterSidebar = ({ setShowMobileFilters, showMobileFilters }) => {
         >
           <CloseIcon />
         </div>
-        {/* ---Type--- */}
+        
+        {/* ---Category--- */}
         <div>
-          <h3 className="text-xs text-secondary-300 tracking-widest">TYPE</h3>
+          <h3 className="text-xs text-secondary-300 tracking-widest">CATEGORY</h3>
           {/* checkboxes */}
           <ul className="flex flex-col gap-4 text-xl my-5">
-            {types.map((type, index) => {
+            {categories.map((category, index) => {
               return (
                 <Checkbox
                   id={index}
                   key={index}
-                  label={type.typeName}
-                  count={type.count}
-                  param="type"
+                  label={category._id}
+                  count={category.count}
+                  param="category"
                   onChange={handleFilterChange}
                 />
               );
             })}
           </ul>
         </div>
-        {/* ---Seating--- */}
+        
+        {/* ---Make--- */}
         <div>
-          <h3 className="text-xs text-secondary-300 tracking-widest">
-            SEATING
-          </h3>
+          <h3 className="text-xs text-secondary-300 tracking-widest">MAKE</h3>
           {/* checkboxes */}
-          <ul className="flex flex-col gap-4 text-xl my-5 mb-10">
-            {seats.map((seats, index) => {
+          <ul className="flex flex-col gap-4 text-xl my-5">
+            {makes.map((make, index) => {
               return (
                 <Checkbox
                   id={index}
                   key={index}
-                  label={seats.seats}
-                  count={seats.count}
-                  param="seats"
+                  label={make._id}
+                  count={make.count}
+                  param="make"
                   onChange={handleFilterChange}
                 />
               );
             })}
           </ul>
         </div>
+        
         {/* ---Price--- */}
         <div>
-          <h3 className="text-xs text-secondary-300 tracking-widest">PRICE</h3>
+          <h3 className="text-xs text-secondary-300 tracking-widest">PRICE PER DAY</h3>
           <div className="my-5 mb-10">
             <RangeInput
-              min={Math.min(...prices)}
-              max={Math.max(...prices)}
+              min={prices.min}
+              max={prices.max}
               onChange={handleFilterChange}
               param="maxPrice"
             />
+          </div>
+        </div>
+
+        {/* ---Sort--- */}
+        <div>
+          <h3 className="text-xs text-secondary-300 tracking-widest">SORT BY</h3>
+          <div className="my-5 mb-10">
+            <select
+              className="w-full p-2 border border-gray-300 rounded"
+              value={searchParams.get("sort") || "rating"}
+              onChange={(e) => handleFilterChange("sort", e.target.value, "add-value", true)}
+            >
+              <option value="rating">Highest Rated</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="year-new">Year: Newest First</option>
+              <option value="year-old">Year: Oldest First</option>
+            </select>
           </div>
         </div>
 
