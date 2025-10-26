@@ -5,7 +5,7 @@ const Review = ({ reviewData }) => {
   const { name, review, Occupation } = reviewData;
   return (
     <div className="flex items-start gap-2">
-      <span className="p-2 border rounded-full cursor-pointer">
+      <span className="p-2 border rounded-full">
         <ProfileIcon />
       </span>
       <div className="flex flex-col gap-3 w-full">
