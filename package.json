@@ -1,5 +1,5 @@
 {
-  "name": "morent",
+  "name": "rentina",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,6 +16,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^10.18.0",
     "lucide-react": "^0.546.0",
+    "markdown-it": "^14.1.0",
     "mongodb": "4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

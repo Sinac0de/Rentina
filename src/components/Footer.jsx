@@ -97,7 +97,7 @@ const Footer = () => {
           <Link to={"."}>Privacy & Policy</Link>
           <Link to={"."}>Terms & Condition</Link>
         </div>
-        <p className="md:order-1">©2023 Rentina. All rights reserved</p>
+        <p className="md:order-1">©2025 Rentina. All rights reserved</p>
       </div>
       <div className="dark:text-slate-500 flex justify-center items-center">
         <h4>
