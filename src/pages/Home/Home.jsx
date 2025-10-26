@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
+import AllCarsList from "src/components/AllCarsList/AllCarsList";
 import PickDrop from "src/components/PickDrop/PickDrop";
 import Slider from "src/components/Slider/Slider";
-import AllCarsList from "src/components/AllCarsList/AllCarsList";
-import Hero from "./Parts/Hero";
-import { useEffect, useState } from "react";
+import TestimonialsSection from "src/components/TestimonialsSection/TestimonialsSection";
+import TrustIndicatorsSection from "src/components/TrustIndicatorsSection/TrustIndicatorsSection";
+import ValuePropositionsSection from "src/components/ValuePropositionsSection/ValuePropositionsSection";
 import { getFeaturedBlogs } from "src/services/api";
-import { Link } from "react-router";
+import Hero from "./Parts/Hero";
 
 const Home = () => {
   const [featuredBlogs, setFeaturedBlogs] = useState([]);
@@ -28,16 +31,20 @@ const Home = () => {
   return (
     <div className="px-5 md:px-14 md:pt-8">
       <Hero />
+      <PickDrop />
+
+      {/* Recommended cars*/}
+      <AllCarsList isCompact={true} hasHeader header="Recommended Cars" />
+      <ValuePropositionsSection />
+      <TrustIndicatorsSection />
       {/* Content */}
-      <div>
-        {/* Pick - Drop */}
-        <PickDrop />
+      <div className="my-10">
         {/* Popular cars slider */}
         <div>
           <Slider title={"Popular cars"} />
         </div>
-        {/* Recommended cars*/}
-        <AllCarsList isCompact={true} hasHeader header="Recommended Cars" />
+
+        <TestimonialsSection />
 
         {/* Featured Blogs */}
         <div className="my-12">
