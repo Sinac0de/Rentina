@@ -12,7 +12,7 @@ const Blogs = () => {
   const [error, setError] = useState(null);
   const [totalBlogs, setTotalBlogs] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  
+
   const currentPage = parseInt(searchParams.get("page")) || 1;
   const selectedCategory = searchParams.get("category") || "";
   const searchQuery = searchParams.get("search") || "";
@@ -26,7 +26,7 @@ const Blogs = () => {
         console.error("Error fetching categories:", err);
       }
     };
-    
+
     fetchCategories();
   }, []);
 
@@ -34,21 +34,21 @@ const Blogs = () => {
     const fetchBlogs = async () => {
       setLoading(true);
       setError(null);
-      
+
       try {
         const params = {
           page: currentPage,
           pageSize: 12,
         };
-        
+
         if (selectedCategory) {
           params.category = selectedCategory;
         }
-        
+
         if (searchQuery) {
           params.search = searchQuery;
         }
-        
+
         const data = await getBlogs(params);
         setBlogs(data.blogs || []);
         setTotalBlogs(data.total || 0);
@@ -59,7 +59,7 @@ const Blogs = () => {
         setLoading(false);
       }
     };
-    
+
     fetchBlogs();
   }, [currentPage, selectedCategory, searchQuery]);
 
@@ -92,7 +92,7 @@ const Blogs = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const query = formData.get("search");
-    
+
     setSearchParams((prevParams) => {
       const newParams = new URLSearchParams(prevParams);
       if (query) {
@@ -109,7 +109,9 @@ const Blogs = () => {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Car Rental Blog</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            Car Rental Blog
+          </h1>
           <p className="mt-2 text-gray-600 dark:text-gray-400">
             Tips, guides, and news about car rentals
           </p>
@@ -117,7 +119,10 @@ const Blogs = () => {
 
         {/* Search and Filter Section */}
         <div className="mb-8 bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
+          <form
+            onSubmit={handleSearch}
+            className="flex flex-col md:flex-row gap-4"
+          >
             <div className="flex-1">
               <input
                 type="text"
@@ -136,7 +141,9 @@ const Blogs = () => {
           </form>
 
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Categories</h3>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
+              Categories
+            </h3>
             <div className="flex flex-wrap gap-2">
               <button
                 className={`px-3 py-1 rounded-full text-sm ${
