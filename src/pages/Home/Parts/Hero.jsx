@@ -1,6 +1,6 @@
-import circlePatternUrl from "src/assets/images/Patterns/circularPattern.png";
-import heroCarImageUrl from "src/assets/images/Cars/Nissan_GT-R.png";
 import { Link } from "react-router";
+import heroCarImageUrl from "src/assets/images/Cars/Nissan_GT-R.png";
+import circlePatternUrl from "src/assets/images/Patterns/circularPattern.png";
 
 const Hero = () => {
   return (
@@ -23,7 +23,10 @@ const Hero = () => {
           <div className="flex-1 text-center lg:text-left mb-8 lg:mb-0">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               The Best Platform for
-              <span className="text-yellow-300"> Car Rental</span>
+              <span className="text-secondary-800 dark:text-secondary-300">
+                {" "}
+                Car Rental
+              </span>
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto lg:mx-0">
               Experience effortless car rental with our wide selection of
