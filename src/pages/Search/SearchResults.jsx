@@ -3,6 +3,7 @@ import { useSearchParams, Link } from "react-router";
 import { globalSearch } from "../../services/api";
 import CarCard from "../../components/CarCard/CarCard";
 import SkeletonCard from "../../components/CarCard/SkeletonCard";
+import BlogCard from "../Blogs/BlogCard";
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
@@ -57,7 +58,8 @@ const SearchResults = () => {
             Search Results for "{query}"
           </h1>
           <p className="mt-2 text-gray-600 dark:text-gray-400">
-            Found {results.cars.length} cars and {results.blogs.length} blog posts
+            Found {results.cars.length} cars and {results.blogs.length} blog
+            posts
           </p>
         </div>
 
@@ -148,58 +150,7 @@ const SearchResults = () => {
               {results.blogs.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {results.blogs.map((blog) => (
-                    <div
-                      key={blog._id}
-                      className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden hover:shadow-lg transition-shadow"
-                    >
-                      {blog.image ? (
-                        <img
-                          src={blog.image}
-                          alt={blog.title}
-                          className="w-full h-48 object-cover"
-                        />
-                      ) : (
-                        <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-48" />
-                      )}
-                      <div className="p-6">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
-                            {blog.category}
-                          </span>
-                          <span className="text-sm text-gray-500 dark:text-gray-400">
-                            {new Date(blog.createdAt).toLocaleDateString()}
-                          </span>
-                        </div>
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                          {blog.title}
-                        </h3>
-                        <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
-                          {blog.excerpt || blog.content.substring(0, 150) + "..."}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center">
-                            {blog.author?.avatar ? (
-                              <img
-                                src={blog.author.avatar}
-                                alt={blog.author.name}
-                                className="w-8 h-8 rounded-full"
-                              />
-                            ) : (
-                              <div className="bg-gray-200 border-2 border-dashed rounded-xl w-8 h-8" />
-                            )}
-                            <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
-                              {blog.author?.name}
-                            </span>
-                          </div>
-                          <Link
-                            to={`/blogs/${blog._id}`}
-                            className="text-primary-500 hover:text-primary-600 font-medium"
-                          >
-                            Read more
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
+                    <BlogCard key={blog._id} blog={blog} />
                   ))}
                 </div>
               ) : (

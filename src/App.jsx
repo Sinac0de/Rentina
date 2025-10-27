@@ -5,7 +5,7 @@ import {
 } from "react-router";
 import { RouterProvider } from "react-router/dom";
 
-import Home from "./pages/Home/Home";
+import Home from "./pages/Home/Parts/Home";
 import Layout from "./layout/Layout";
 import RentalCars from "./pages/Cars/RentalCars";
 import CarDetails from "./pages/Cars/CarDetails/CarDetails";

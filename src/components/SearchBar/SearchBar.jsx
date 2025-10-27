@@ -20,7 +20,7 @@ const SearchBar = () => {
       <form onSubmit={handleSubmit} className="w-full">
         <label
           htmlFor="search"
-          className="absolute left-6 top-0 bottom-0 flex items-center z-10 opacity-80"
+          className="absolute left-6 top-1 bottom-0 flex items-center z-10 opacity-80"
         >
           <SearchIcon />
         </label>
