@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getBlogById } from "../../services/api";
 import { Link, useNavigate } from "react-router";
-import MarkdownIt from "markdown-it";
-
-const md = MarkdownIt();
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -94,8 +93,6 @@ const BlogDetails = () => {
     );
   }
 
-  const parsedContent = md.render(blog?.content || "");
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -130,10 +127,85 @@ const BlogDetails = () => {
           )}
 
           <div className="p-6">
-            <div
-              className="prose prose-lg dark:prose-invert max-w-none"
-              dangerouslySetInnerHTML={{ __html: parsedContent }}
-            />
+            <div className="prose prose-lg dark:prose-invert max-w-none blog-content">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  h1: ({ ...props }) => (
+                    <h1
+                      className="text-3xl font-bold mt-6 mb-4 text-gray-900 dark:text-white"
+                      {...props}
+                    />
+                  ),
+                  h2: ({ ...props }) => (
+                    <h2
+                      className="text-2xl font-bold mt-5 mb-3 text-gray-800 dark:text-gray-200"
+                      {...props}
+                    />
+                  ),
+                  h3: ({ ...props }) => (
+                    <h3
+                      className="text-xl font-bold mt-4 mb-2 text-gray-700 dark:text-gray-300"
+                      {...props}
+                    />
+                  ),
+                  p: ({ ...props }) => (
+                    <p
+                      className="mb-4 text-gray-600 dark:text-gray-400 leading-relaxed"
+                      {...props}
+                    />
+                  ),
+                  ul: ({ ...props }) => (
+                    <ul className="list-disc pl-5 mb-4 space-y-1" {...props} />
+                  ),
+                  ol: ({ ...props }) => (
+                    <ol
+                      className="list-decimal pl-5 mb-4 space-y-1"
+                      {...props}
+                    />
+                  ),
+                  li: ({ ...props }) => (
+                    <li
+                      className="text-gray-600 dark:text-gray-400"
+                      {...props}
+                    />
+                  ),
+                  a: ({ ...props }) => (
+                    <a
+                      className="text-primary-500 hover:text-primary-600 underline"
+                      {...props}
+                    />
+                  ),
+                  img: ({ ...props }) => (
+                    <img
+                      className="rounded-lg my-4"
+                      {...props}
+                      alt={props.alt || "Blog image"}
+                    />
+                  ),
+                  blockquote: ({ ...props }) => (
+                    <blockquote
+                      className="border-l-4 border-primary-500 pl-4 italic text-gray-600 dark:text-gray-400 my-4"
+                      {...props}
+                    />
+                  ),
+                  code: ({ ...props }) => (
+                    <code
+                      className="bg-gray-100 dark:bg-gray-700 rounded px-1.5 py-0.5 text-sm font-mono"
+                      {...props}
+                    />
+                  ),
+                  pre: ({ ...props }) => (
+                    <pre
+                      className="bg-gray-800 text-gray-100 rounded-lg p-4 my-4 overflow-x-auto"
+                      {...props}
+                    />
+                  ),
+                }}
+              >
+                {blog.content}
+              </ReactMarkdown>
+            </div>
           </div>
 
           <footer className="p-6 border-t border-gray-200 dark:border-gray-700">
