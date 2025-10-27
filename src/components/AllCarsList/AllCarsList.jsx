@@ -5,6 +5,7 @@ import { Link, useSearchParams } from "react-router";
 import SkeletonCard from "../CarCard/SkeletonCard";
 import { scrollToTopFunction } from "src/utils/utils";
 import Pagination from "../Pagination/Pagination";
+import { ArrowRightIcon, MoveRight } from "lucide-react";
 
 const AllCarsList = ({ isCompact, hasHeader, header }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -141,25 +142,26 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
       ) : null}
       {/* --- footer --- */}
       <footer className="flex justify-center items-center relative my-10">
-        <Pagination
-          className="flex gap-2 mx-auto p-3"
-          currentPage={currentPage}
-          totalCount={totalCars}
-          pageSize={pageSize}
-          onPageChange={(page) => handlePageChange(page)}
-        />
-        {isCompact && (
+        {isCompact ? (
           <>
             <Link
               to="/cars"
-              className="dark:border-primary-500 dark:hover:bg-transparent dark:text-slate-300 bg-primary-500 text-white border-2 hover:text-primary-500 hover:bg-white hover:border-primary-500 transition-all duration-300 py-3 px-[20px] rounded-[4px] text-xs font-medium lg:text-base"
+              className="flex gap-1 items-center justify-center rounded-2xl dark:border-primary-500 dark:hover:bg-transparent dark:text-slate-300 bg-primary-500 text-white border-2 hover:text-primary-500 hover:bg-white hover:border-primary-500 transition-all duration-300 py-3 px-10 w-1/3 text-xs font-medium lg:text-base"
             >
-              Show More Cars
+              Show More Cars <ArrowRightIcon className="mt-1 w-4 h-4" />
             </Link>
             <h3 className="font-bold text-secondary-300 absolute text-sm right-5">
               {totalCars} cars
             </h3>
           </>
+        ) : (
+          <Pagination
+            className="flex gap-2 mx-auto p-3"
+            currentPage={currentPage}
+            totalCount={totalCars}
+            pageSize={pageSize}
+            onPageChange={(page) => handlePageChange(page)}
+          />
         )}
       </footer>
     </div>
