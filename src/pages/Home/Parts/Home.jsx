@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import AllCarsList from "src/components/AllCarsList/AllCarsList";
+import FAQ from "src/components/FAQ";
 import PickDrop from "src/components/PickDrop/PickDrop";
 import Slider from "src/components/Slider/Slider";
 import TestimonialsSection from "src/pages/Home/Parts/TestimonialsSection/TestimonialsSection";
@@ -75,7 +76,7 @@ const Home = () => {
               ))}
             </div>
           ) : (
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-8 text-center">
+            <div className="rounded-2xl bg-white dark:bg-gray-800  shadow p-8 text-center">
               <h3 className="text-lg font-medium text-gray-900 dark:text-white">
                 No featured blog posts yet
               </h3>
@@ -91,6 +92,9 @@ const Home = () => {
             </div>
           )}
         </div>
+
+        {/* FAQ Section */}
+        <FAQ />
       </div>
     </div>
   );
