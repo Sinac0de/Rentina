@@ -3,13 +3,13 @@ import { Link } from "react-router";
 import AllCarsList from "src/components/AllCarsList/AllCarsList";
 import PickDrop from "src/components/PickDrop/PickDrop";
 import Slider from "src/components/Slider/Slider";
-import TestimonialsSection from "src/components/TestimonialsSection/TestimonialsSection";
-import TrustIndicatorsSection from "src/components/TrustIndicatorsSection/TrustIndicatorsSection";
-import ValuePropositionsSection from "src/components/ValuePropositionsSection/ValuePropositionsSection";
+import TestimonialsSection from "src/pages/Home/Parts/TestimonialsSection/TestimonialsSection";
+import TrustIndicatorsSection from "src/pages/Home/Parts/TrustIndicatorsSection/TrustIndicatorsSection";
+import ValuePropositionsSection from "src/pages/Home/Parts/ValuePropositionsSection/ValuePropositionsSection";
 import { getFeaturedBlogs } from "src/services/api";
-import Hero from "./Parts/Hero";
-import BlogCard from "../Blogs/BlogCard";
-import SkeletonBlogCard from "../Blogs/SkeletonBlogCard";
+import BlogCard from "../../Blogs/BlogCard";
+import SkeletonBlogCard from "../../Blogs/SkeletonBlogCard";
+import Hero from "./Hero";
 
 const Home = () => {
   const [featuredBlogs, setFeaturedBlogs] = useState([]);
@@ -70,7 +70,7 @@ const Home = () => {
             </div>
           ) : featuredBlogs.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {featuredBlogs.map((blog) => (
+              {featuredBlogs.slice(0, 3).map((blog) => (
                 <BlogCard key={blog._id} blog={blog} />
               ))}
             </div>

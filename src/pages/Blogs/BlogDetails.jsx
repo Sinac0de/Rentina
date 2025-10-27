@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getBlogById } from "../../services/api";
 import { Link, useNavigate } from "react-router";
+import MarkdownIt from "markdown-it";
+
+const md = MarkdownIt();
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -91,6 +94,8 @@ const BlogDetails = () => {
     );
   }
 
+  const parsedContent = md.render(blog?.content || "");
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -127,7 +132,7 @@ const BlogDetails = () => {
           <div className="p-6">
             <div
               className="prose prose-lg dark:prose-invert max-w-none"
-              dangerouslySetInnerHTML={{ __html: blog.content }}
+              dangerouslySetInnerHTML={{ __html: parsedContent }}
             />
           </div>
 
