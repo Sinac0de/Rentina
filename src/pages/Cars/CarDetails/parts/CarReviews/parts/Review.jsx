@@ -2,11 +2,30 @@ import ProfileIcon from "src/assets/Icons/ProfileIcon";
 import RatingStars from "src/components/common/RatingStars";
 
 const Review = ({ reviewData }) => {
-  const { name, review, Occupation } = reviewData;
+  const { name, review, Occupation, date, profile_img } = reviewData;
+
+  // Fallback for profile image
+  const displayProfileImg = profile_img || "";
+
+  // Fallback for date
+  const displayDate = date || "";
+
   return (
     <div className="flex items-start gap-2">
-      <span className="p-2 border rounded-full">
-        <ProfileIcon />
+      <span className="border rounded-full">
+        <div className="w-12 h-12 rounded-full overflow-hidden">
+          {displayProfileImg ? (
+            <img
+              src={displayProfileImg}
+              alt={name}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+              <ProfileIcon />
+            </div>
+          )}
+        </div>
       </span>
       <div className="flex flex-col gap-3 w-full">
         {/* comment header */}
@@ -18,9 +37,11 @@ const Review = ({ reviewData }) => {
             </h4>
           </div>
           <div className="flex flex-col justify-between items-end pt-1">
-            <h4 className="text-xs text-secondary-300 font-medium">
-              21 July 2022
-            </h4>
+            {displayDate && (
+              <h4 className="text-xs text-secondary-300 font-medium">
+                {displayDate}
+              </h4>
+            )}
             <div>
               <RatingStars />
             </div>

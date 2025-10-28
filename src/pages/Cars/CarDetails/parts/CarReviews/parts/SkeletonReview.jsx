@@ -10,7 +10,9 @@ const SkeletonReview = () => {
   return (
     <div className="flex items-start gap-2">
       <span className="p-2 border rounded-full cursor-pointer">
-        <ProfileIcon />
+        <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+          <ProfileIcon />
+        </div>
       </span>
       <div className="flex flex-col gap-3 w-full">
         {/* comment header */}
