@@ -32,7 +32,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="px-5 md:px-14 md:pt-8">
+    <div className="px-5 lg:px-14 lg:pt-8">
       <Hero />
       <PickDrop />
 
@@ -64,13 +64,13 @@ const Home = () => {
           </div>
 
           {loadingBlogs ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-6">
               {Array.from({ length: 3 }).map((_, index) => (
                 <SkeletonBlogCard key={index} />
               ))}
             </div>
           ) : featuredBlogs.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredBlogs.slice(0, 3).map((blog) => (
                 <BlogCard key={blog._id} blog={blog} />
               ))}

@@ -167,9 +167,9 @@ const CarCard = ({ isSlideCard = false, carData }) => {
       <div className="flex items-center h-full justify-between">
         {/* price and rating */}
         <div>
-          <h3 className="dark:text-slate-300 font-semibold text-base text-secondary-500 md:text-xl">
+          <h3 className="dark:text-slate-300 font-semibold text-base text-secondary-500 lg:text-xl">
             ${specs?.rental_price?.toFixed(2)}/
-            <span className="font-medium text-xs text-secondary-300 md:text-base">
+            <span className="font-medium text-xs text-secondary-300 lg:text-base">
               day
             </span>
           </h3>

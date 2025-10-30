@@ -91,7 +91,7 @@ const TrustIndicatorsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-4 gap-8">
           {guarantees.map((guarantee, index) => (
             <div key={index} className="text-center p-6">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 text-primary-600 mb-4">

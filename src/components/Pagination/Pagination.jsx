@@ -24,7 +24,7 @@ const Pagination = (props) => {
 
   const styles = {
     pageItem:
-      "flex justify-center items-center text-center w-7 h-7 lg:w-10 lg:h-10 md:text-base text-black text-sm font-semibold cursor-pointer",
+      "flex justify-center items-center text-center w-7 h-7 lg:w-10 lg:h-10 lg:text-base text-black text-sm font-semibold cursor-pointer",
     disabled: "cursor-default opacity-40 pointer-events-none",
   };
 

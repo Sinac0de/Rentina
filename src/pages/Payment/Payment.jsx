@@ -29,12 +29,12 @@ const Payment = () => {
   }
 
   return (
-    <div className="relative p-5 md:p-10 flex flex-col gap-6 lg:flex-row justify-center">
-      <div className="lg:order-2 lg:w-2/3 md:w-full lg:sticky top-36 h-fit">
+    <div className="relative p-5 lg:p-10 flex flex-col gap-6 lg:flex-row justify-center">
+      <div className="lg:order-2 lg:w-2/3 lg:w-full lg:sticky top-36 h-fit">
         <RentalSummary info={carData} />
       </div>
 
-      <div className="md:order-1 flex flex-col gap-6 w-full">
+      <div className="lg:order-1 flex flex-col gap-6 w-full">
         <BillingInfo />
         <RentalInfo />
         <PaymentMethod />

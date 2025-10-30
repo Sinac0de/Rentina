@@ -69,7 +69,7 @@ const SearchResults = () => {
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                 Cars
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 gap-6">
                 {Array.from({ length: 4 }).map((_, index) => (
                   <SkeletonCard key={index} />
                 ))}
@@ -79,7 +79,7 @@ const SearchResults = () => {
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                 Blog Posts
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-6">
                 {Array.from({ length: 3 }).map((_, index) => (
                   <SkeletonCard key={index} />
                 ))}
@@ -115,7 +115,7 @@ const SearchResults = () => {
                 )}
               </div>
               {results.cars.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 gap-6">
                   {results.cars.map((car) => (
                     <CarCard key={car._id} carData={car} />
                   ))}
@@ -148,7 +148,7 @@ const SearchResults = () => {
                 )}
               </div>
               {results.blogs.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-6">
                   {results.blogs.map((blog) => (
                     <BlogCard key={blog._id} blog={blog} />
                   ))}

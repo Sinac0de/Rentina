@@ -16,7 +16,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex gap-3 my-5 relative md:flex-1 md:max-w-[492px] md:h-11">
+    <div className="flex gap-3 my-5 relative lg:flex-1 lg:max-w-[492px] lg:h-11">
       <form onSubmit={handleSubmit} className="w-full">
         <label
           htmlFor="search"
@@ -31,7 +31,7 @@ const SearchBar = () => {
           placeholder="Search for cars, blogs..."
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
-          className="dark:bg-slate-800 dark:border-slate-500 dark:placeholder:text-slate-300 dark:text-slate-300 dark:focus:outline-none w-full relative flex items-center flex-1 gap-2 p-3 pl-14 rounded-lg border md:rounded-full"
+          className="dark:bg-slate-800 dark:border-slate-500 dark:placeholder:text-slate-300 dark:text-slate-300 dark:focus:outline-none w-full relative flex items-center flex-1 gap-2 p-3 pl-14 rounded-lg border lg:rounded-full"
         />
       </form>
     </div>

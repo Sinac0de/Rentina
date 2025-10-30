@@ -4,7 +4,7 @@ import circlePatternUrl from "src/assets/images/Patterns/circularPattern.png";
 
 const Hero = () => {
   return (
-    <section className="relative my-10 md:my-0 py-16 md:py-24 overflow-hidden rounded-2xl">
+    <section className="relative my-10 lg:my-0 py-16 lg:py-24 overflow-hidden rounded-2xl">
       {/* Background pattern */}
       <div className="absolute inset-0 z-10">
         <img
@@ -21,10 +21,10 @@ const Hero = () => {
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Content section */}
           <div className="flex-1 text-center lg:text-left mb-8 lg:mb-0">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               The Best Platform for
+              <br />
               <span className="text-secondary-800 dark:text-secondary-300">
-                {" "}
                 Car Rental
               </span>
             </h1>
@@ -54,10 +54,10 @@ const Hero = () => {
               <img
                 src={heroCarImageUrl}
                 alt="Luxury sports car"
-                className="w-full md:scale-125 drop-shadow-2xl transform rotate-6 hover:rotate-0 transition-transform duration-500"
+                className="w-full lg:scale-125 drop-shadow-2xl transform rotate-6 hover:rotate-0 transition-transform duration-500"
               />
               {/* Badge */}
-              <div className="absolute -top-4 -right-0 md:-top-4 md:-right-4 bg-red-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg animate-pulse">
+              <div className="absolute -top-4 -right-0 lg:-top-4 lg:-right-4 bg-red-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg animate-pulse">
                 Hot Deal
               </div>
             </div>

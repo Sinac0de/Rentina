@@ -122,7 +122,7 @@ const Blogs = () => {
         <div className="mb-8 bg-white dark:bg-gray-800 rounded-lg shadow p-6">
           <form
             onSubmit={handleSearch}
-            className="flex flex-col md:flex-row gap-4"
+            className="flex flex-col lg:flex-row gap-4"
           >
             <div className="flex-1">
               <input
@@ -174,7 +174,7 @@ const Blogs = () => {
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, index) => (
               <SkeletonBlogCard key={index} />
             ))}
@@ -207,7 +207,7 @@ const Blogs = () => {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-6">
               {blogs.map((blog) => (
                 <BlogCard key={blog._id} blog={blog} />
               ))}

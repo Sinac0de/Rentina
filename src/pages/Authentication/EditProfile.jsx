@@ -5,7 +5,8 @@ import { updateUserProfile } from "../../services/api";
 import { User } from "lucide-react";
 
 const EditProfile = () => {
-  const { user, isAuthenticated, checkAuthStatus, refreshUser } = useAuthStore();
+  const { user, isAuthenticated, checkAuthStatus, refreshUser } =
+    useAuthStore();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -82,7 +83,9 @@ const EditProfile = () => {
               </div>
               <div className="ml-4">
                 <h1 className="text-2xl font-bold text-white">Edit Profile</h1>
-                <p className="text-blue-100">Update your personal information</p>
+                <p className="text-blue-100">
+                  Update your personal information
+                </p>
               </div>
             </div>
           </div>
@@ -95,7 +98,7 @@ const EditProfile = () => {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
                   <label
                     htmlFor="name"

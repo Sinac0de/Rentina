@@ -35,7 +35,7 @@ const Layout = () => {
       <div
         className={`${
           !isFilterOpen && "hidden"
-        } fixed top-0 left-0 w-full h-full overflow-y-auto p-10 bg-white z-30 md:hidden`}
+        } fixed top-0 left-0 w-full h-full overflow-y-auto p-10 bg-white z-30 lg:hidden`}
       >
         <div
           className="absolute top-5 right-5"

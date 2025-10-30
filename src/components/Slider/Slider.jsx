@@ -20,7 +20,7 @@ const Slider = ({ title }) => {
     async function fetchCars() {
       try {
         // Fetch cars sorted by rating (popular cars)
-        const data = await getCars({ sort: 'rating', pageSize: 12 });
+        const data = await getCars({ sort: "rating", pageSize: 12 });
         setCars(data.cars || []);
       } catch (error) {
         console.error("Error fetching cars for slider:", error);
@@ -37,23 +37,21 @@ const Slider = ({ title }) => {
     return (
       <section className="my-2">
         <header className="flex justify-between mb-5">
-          <h3 className="text-secondary-300 font-semibold text-sm md:text-base md:px-2">
+          <h3 className="text-secondary-300 font-semibold text-sm lg:text-base lg:px-2">
             {title}
           </h3>
           <Link to="/cars" className="text-primary-500 font-semibold">
             <p>View all</p>
           </Link>
         </header>
-        {/* ---Swiper Slider--- */
-}
+        {/* ---Swiper Slider--- */}
         <Swiper
           grabCursor={true}
           spaceBetween="30"
           slidesPerView={"auto"}
           className="mySwiper z-0"
         >
-          {/* ---Create 8 skeleton cards--- */
-}
+          {/* ---Create 8 skeleton cards--- */}
           {Array.from({ length: 8 }).map((_, index) => (
             <SwiperSlide key={index}>
               <SkeletonCard isSlideCard />
@@ -68,22 +66,22 @@ const Slider = ({ title }) => {
   return (
     <section className="my-2">
       <header className="flex justify-between mb-5">
-        <h3 className="text-secondary-300 font-semibold text-sm md:text-base md:px-2">
+        <h3 className="text-secondary-300 font-semibold text-sm lg:text-base lg:px-2">
           {title}
         </h3>
         <Link to="/cars" className="text-primary-500 font-semibold">
           <p>View all</p>
         </Link>
       </header>
-      {/* ---Swiper Slider--- */
-}
+      {/* ---Swiper Slider--- */}
       <Swiper
         grabCursor={true}
         spaceBetween="20"
         slidesPerView={"auto"}
         className="mySwiper z-0"
       >
-        {cars.slice(0, 8).map((car) => { // Changed from slice(24, 32) to slice(0, 8)
+        {cars.slice(0, 8).map((car) => {
+          // Changed from slice(24, 32) to slice(0, 8)
           return (
             <SwiperSlide key={car._id}>
               <CarCard isSlideCard carData={car} />

@@ -77,7 +77,7 @@ const TestimonialsSection = () => {
     <section className="rounded-2xl my-20 py-16 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             What Our Customers Say
           </h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -93,11 +93,11 @@ const TestimonialsSection = () => {
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
           >
-            <CarouselContent className="-ml-2 md:-ml-4">
+            <CarouselContent className="-ml-2 lg:-ml-4">
               {testimonials.map((testimonial) => (
                 <CarouselItem
                   key={testimonial.id}
-                  className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3"
+                  className="pl-2 lg:pl-4 basis-full lg:basis-1/2 lg:basis-1/3"
                 >
                   <div className="p-1">
                     <Card className="h-full border-0 shadow-lg rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl bg-white dark:bg-gray-800 mb-5">

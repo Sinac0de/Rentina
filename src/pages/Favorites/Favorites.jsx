@@ -26,10 +26,10 @@ const Favorites = () => {
   useEffect(() => {
     const fetchFavorites = async () => {
       if (!isAuthenticated) return;
-      
+
       setLoading(true);
       setError(null);
-      
+
       try {
         const data = await getFavoriteCars();
         setFavorites(data || []);
@@ -55,14 +55,16 @@ const Favorites = () => {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">My Favorites</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            My Favorites
+          </h1>
           <p className="mt-2 text-gray-600 dark:text-gray-400">
             Your saved cars for later
           </p>
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 gap-6">
             {Array.from({ length: 8 }).map((_, index) => (
               <SkeletonCard key={index} />
             ))}
@@ -94,7 +96,7 @@ const Favorites = () => {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 gap-6">
             {favorites.map((car) => (
               <CarCard key={car._id} carData={car} />
             ))}

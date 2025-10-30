@@ -20,10 +20,10 @@ const RentalSummary = ({ info }) => {
     <div className="dark:bg-slate-600 bg-white w-full overflow-hidden p-5 rounded-[10px] flex flex-col gap-5">
       {/* header */}
       <div className="flex flex-col gap-1">
-        <h3 className="dark:text-slate-300 text-base font-bold text-secondary-500 md:text-xl">
+        <h3 className="dark:text-slate-300 text-base font-bold text-secondary-500 lg:text-xl">
           Rental Summary
         </h3>
-        <p className="text-xs font-medium text-secondary-300 leading-5 md:text-sm">
+        <p className="text-xs font-medium text-secondary-300 leading-5 lg:text-sm">
           Prices may change depending on the length of the rental and the price
           of your rental car.
         </p>
@@ -37,7 +37,7 @@ const RentalSummary = ({ info }) => {
             className="flex-1 max-w-[35%] object-contain rounded-[10px]"
           />
           <div className="flex-1 flex flex-col gap-4 lg:gap-3">
-            <h2 className="dark:text-slate-300 text-xl font-bold lg:text-3xl md:text-2xl">
+            <h2 className="dark:text-slate-300 text-xl font-bold lg:text-3xl lg:text-2xl">
               {`${make} ${model}`}
             </h2>
             <div className="flex flex-col gap-1 lg:flex-row lg:items-center lg:gap-2 flex-wrap">
@@ -57,7 +57,7 @@ const RentalSummary = ({ info }) => {
 
         <div className="flex flex-col gap-2">
           <div className="flex justify-between font-semibold items-center">
-            <p className="dark:text-slate-300 text-xs text-secondary-300 md:text-base">
+            <p className="dark:text-slate-300 text-xs text-secondary-300 lg:text-base">
               Subtotal
             </p>
             <span className="dark:text-slate-300 text-base">
@@ -65,7 +65,7 @@ const RentalSummary = ({ info }) => {
             </span>
           </div>
           <div className="flex justify-between font-semibold items-center">
-            <p className="dark:text-slate-300 text-xs text-secondary-300 md:text-base">
+            <p className="dark:text-slate-300 text-xs text-secondary-300 lg:text-base">
               Tax
             </p>
             <span className="dark:text-slate-300 text-base">$0.00</span>
@@ -85,15 +85,15 @@ const RentalSummary = ({ info }) => {
       {/* footer */}
       <div className="flex justify-between">
         <div className="flex flex-col">
-          <h3 className="dark:text-slate-300 text-base text-secondary-500 font-bold md:text-xl">
+          <h3 className="dark:text-slate-300 text-base text-secondary-500 font-bold lg:text-xl">
             Total Rental Price
           </h3>
-          <p className="text-xs text-secondary-300 md:text-sm">
+          <p className="text-xs text-secondary-300 lg:text-sm">
             Overall price rental
           </p>
         </div>
         <div className="flex justify-end items-center">
-          <h2 className="dark:text-slate-300 font-bold text-xl text-secondary-500 md:text-3xl">
+          <h2 className="dark:text-slate-300 font-bold text-xl text-secondary-500 lg:text-3xl">
             ${totalPrice.toFixed(2)}
           </h2>
         </div>

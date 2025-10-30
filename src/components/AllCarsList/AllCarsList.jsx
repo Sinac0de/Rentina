@@ -84,14 +84,14 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
   /*--- Skeleton loading ---*/
   if (loading) {
     return (
-      <div className="md:my-7 md:mb-14">
+      <div className="lg:my-7 lg:mb-14">
         <header className={`${!hasHeader ? "hidden" : ""}`}>
-          <h3 className="text-secondary-300 font-semibold text-sm md:text-base md:px-2">
+          <h3 className="text-secondary-300 font-semibold text-sm lg:text-base lg:px-2">
             {header}
           </h3>
         </header>
         {/* recommended car cards */}
-        <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 my-5">
+        <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 my-5">
           {/* 8 cards skeleton */}
           {Array.from({ length: pageSize }).map((_, index) => (
             <SkeletonCard key={index} />
@@ -104,8 +104,8 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
   // Handle error state
   if (error) {
     return (
-      <div className="md:my-7 md:mb-14">
-        <div className="flex flex-col items-center gap-1 mt-10 w-full text-base md:text-xl">
+      <div className="lg:my-7 lg:mb-14">
+        <div className="flex flex-col items-center gap-1 mt-10 w-full text-base lg:text-xl">
           <h4 className="text-red-500">Error: {error}</h4>
           <button
             className="underline text-primary-500"
@@ -119,21 +119,21 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
   }
 
   return (
-    <div className="md:my-7 md:mb-14">
+    <div className="lg:my-7 lg:mb-14">
       <header className={`${!hasHeader ? "hidden" : ""}`}>
-        <h3 className="text-secondary-300 font-semibold text-sm md:text-base md:px-2">
+        <h3 className="text-secondary-300 font-semibold text-sm lg:text-base lg:px-2">
           {header}
         </h3>
       </header>
       {/* recommended car cards */}
-      <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 my-5">
+      <div className="grid grid-flow-row gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 my-5">
         {cars.map((car) => {
           return <CarCard key={car._id} carData={car} />;
         })}
       </div>
       {/* if there is no car */}
       {!cars.length ? (
-        <div className="dark:text-slate-300 flex flex-col items-center gap-1 mt-10 w-full text-base md:text-xl">
+        <div className="dark:text-slate-300 flex flex-col items-center gap-1 mt-10 w-full text-base lg:text-xl">
           <h4>No cars found! please change filters.</h4>
           <Link to="/cars" className="underline text-primary-500">
             Reset filters?

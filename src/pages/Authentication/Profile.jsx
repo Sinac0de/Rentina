@@ -26,7 +26,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchFavorites = async () => {
       if (!isAuthenticated || !user) return;
-      
+
       setLoadingFavorites(true);
       try {
         const data = await getFavoriteCars();
@@ -70,7 +70,7 @@ const Profile = () => {
 
           <div className="p-6">
             {/* User Info Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 text-center">
                 <Heart className="mx-auto text-red-500" size={24} />
                 <h3 className="mt-2 text-lg font-semibold text-gray-900 dark:text-white">
@@ -145,13 +145,13 @@ const Profile = () => {
               </div>
 
               {loadingFavorites ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 gap-6">
                   {Array.from({ length: 4 }).map((_, index) => (
                     <SkeletonCard key={index} />
                   ))}
                 </div>
               ) : favorites.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 gap-6">
                   {favorites.map((car) => (
                     <CarCard key={car._id} carData={car} />
                   ))}
@@ -176,7 +176,7 @@ const Profile = () => {
             </div>
 
             {/* Personal Information */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                   Personal Information

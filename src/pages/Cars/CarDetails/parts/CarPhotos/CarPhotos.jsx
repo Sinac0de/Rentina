@@ -44,7 +44,7 @@ const CarPhotos = ({ photos }) => {
       </div>
 
       {/* ===Small images=== */}
-      <div className="grid grid-cols-3 grid-rows-1 w-full gap-5 h-2/5 min-h-[50px] md:flex-1">
+      <div className="grid grid-cols-3 grid-rows-1 w-full gap-5 h-2/5 min-h-[50px] lg:flex-1">
         {photos.map((photo) => {
           return (
             <div
@@ -70,7 +70,7 @@ const CarPhotos = ({ photos }) => {
               <div
                 className={`${
                   isLoaded[photo.id - 1].load ? "hidden" : "flex"
-                } h-14 md:h-20 lg:h-[99px] xl:h-28 w-full flex justify-center items-center rounded-md animate-pulse`}
+                } h-14 lg:h-20 lg:h-[99px] xl:h-28 w-full flex justify-center items-center rounded-md animate-pulse`}
               >
                 <div className="dark:bg-slate-600 bg-white py-5 w-full h-full flex justify-center items-center rounded-[10px]">
                   <GalleryIcon />

@@ -6,7 +6,7 @@ const SkeletonPhotos = () => {
       <div className="dark:bg-slate-600 w-full h-56 lg:h-80  rounded-[10px] bg-white flex justify-center items-center">
         <GalleryIcon isBig />
       </div>
-      <div className="grid grid-cols-3 grid-rows-1 w-full gap-5 h-14 md:h-20 lg:h-[99px] md:flex-1">
+      <div className="grid grid-cols-3 grid-rows-1 w-full gap-5 h-14 lg:h-20 lg:h-[99px] lg:flex-1">
         {Array.from({ length: 3 }).map((_, index) => {
           return (
             <div
