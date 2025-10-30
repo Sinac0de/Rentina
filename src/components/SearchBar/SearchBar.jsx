@@ -9,9 +9,21 @@ const SearchBar = () => {
   /* === Handlers === */
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (searchValue.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchValue.trim())}`);
+    const trimmedValue = searchValue.trim();
+    if (trimmedValue && trimmedValue.length >= 2) {
+      navigate(`/search?q=${encodeURIComponent(trimmedValue)}`);
       setSearchValue("");
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    // Submit on Enter key
+    if (e.key === "Enter") {
+      handleSubmit(e);
     }
   };
 
@@ -30,7 +42,8 @@ const SearchBar = () => {
           id="search"
           placeholder="Search for cars, blogs..."
           value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={handleInputChange}
+          onKeyPress={handleKeyPress}
           className="dark:bg-slate-800 dark:border-slate-500 dark:placeholder:text-slate-300 dark:text-slate-300 dark:focus:outline-none w-full relative flex items-center flex-1 gap-2 p-3 pl-14 rounded-lg border lg:rounded-full"
         />
       </form>

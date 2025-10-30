@@ -89,14 +89,18 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
   if (loading) {
     return (
       <div
-        className={`${isCompact ? "bg-white rounded-xl shadow-sm p-6" : ""}`}
+        className={`${
+          isCompact ? "bg-white dark:bg-slate-700 rounded-xl shadow-sm p-6" : ""
+        }`}
       >
         <header
           className={`${
             !hasHeader ? "hidden" : ""
           } flex justify-between items-center mb-6`}
         >
-          <h3 className="text-gray-800 font-semibold text-lg">{header}</h3>
+          <h3 className="text-gray-800 dark:text-gray-300 font-semibold text-lg">
+            {header}
+          </h3>
         </header>
         {/* car cards */}
         <div className="grid grid-flow-row gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
@@ -112,7 +116,9 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
   if (error) {
     return (
       <div
-        className={`${isCompact ? "bg-white rounded-xl shadow-sm p-6" : ""}`}
+        className={`${
+          isCompact ? "bg-white dark:bg-slate-700 rounded-xl shadow-sm p-6" : ""
+        }`}
       >
         <div className="flex flex-col items-center gap-1 mt-10 w-full text-base lg:text-xl">
           <h4 className="text-red-500 text-lg font-medium">Error: {error}</h4>
@@ -128,13 +134,17 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
   }
 
   return (
-    <div className={`${isCompact ? "bg-white rounded-xl shadow-sm p-6" : ""}`}>
+    <div
+      className={`${
+        isCompact ? "bg-white dark:bg-slate-700 rounded-xl shadow-sm p-6" : ""
+      }`}
+    >
       <header
         className={`${
           !hasHeader ? "hidden" : ""
         } flex justify-between items-center mb-6`}
       >
-        <h3 className="text-gray-800 font-semibold text-lg">
+        <h3 className="text-gray-800 dark:text-gray-300 font-semibold text-lg">
           {header || "Available Cars"}
         </h3>
       </header>

@@ -3,7 +3,7 @@ const Blog = require("../models/Blog");
 const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
 
-// @desc    Global search across cars, blogs, and users
+// @desc    Global search across blogs and users (cars now handled by frontend)
 // @route   GET /api/search
 // @access  Public
 const globalSearch = asyncHandler(async (req, res) => {
@@ -14,41 +14,31 @@ const globalSearch = asyncHandler(async (req, res) => {
     return res.json({
       cars: [],
       blogs: [],
-      users: [],
     });
   }
 
-  // Search cars by make or model
-  const cars = await Car.find({
-    $or: [
-      { make: { $regex: query, $options: "i" } },
-      { model: { $regex: query, $options: "i" } },
-    ],
-    availability: true,
-  }).limit(limit);
+  // Escape special regex characters
+  const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-  // Search blogs by title or content
+  // Search blogs by title, excerpt, or content
   const blogs = await Blog.find({
-    $or: [
-      { title: { $regex: query, $options: "i" } },
-      { content: { $regex: query, $options: "i" } },
+    $and: [
+      {
+        $or: [
+          { title: { $regex: escapedQuery, $options: "i" } },
+          { excerpt: { $regex: escapedQuery, $options: "i" } },
+          { content: { $regex: escapedQuery, $options: "i" } },
+        ],
+      },
+      { published: true },
     ],
-    published: true,
   })
     .populate("author", "name")
     .limit(limit);
 
-  // Search users by name (only for admin, limited for public)
-  const users = await User.find({
-    name: { $regex: query, $options: "i" },
-  })
-    .select("name email role")
-    .limit(req.user && req.user.role === "admin" ? limit : 0);
-
   res.json({
-    cars,
+    cars: [], // Cars now handled by frontend using getCars
     blogs,
-    users,
   });
 });
 
@@ -62,22 +52,25 @@ const searchCars = asyncHandler(async (req, res) => {
   let filter = { availability: true };
 
   if (query) {
-    // Split the search query into words
-    const searchTerms = query.trim().split(/\s+/);
+    // Escape special regex characters
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-    // For each term, create an OR condition for make or model
+    // Split the search query into words
+    const searchTerms = escapedQuery.trim().split(/\s+/);
+
+    // For each term, create an OR condition for make, model, or specs.type
     filter.$and = searchTerms.map((term) => ({
       $or: [
         { make: { $regex: term, $options: "i" } },
         { model: { $regex: term, $options: "i" } },
-        { category: { $regex: term, $options: "i" } },
+        { "specs.type": { $regex: term, $options: "i" } },
       ],
     }));
   }
 
   // Additional filters from query params
   if (req.query.category) {
-    filter.category = req.query.category;
+    filter["specs.type"] = req.query.category;
   }
 
   if (req.query.minPrice || req.query.maxPrice) {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router";
-import { globalSearch } from "../../services/api";
+import { globalSearch, searchCars } from "../../services/api";
 import CarCard from "../../components/CarCard/CarCard";
 import SkeletonCard from "../../components/CarCard/SkeletonCard";
 import BlogCard from "../Blogs/BlogCard";
@@ -14,8 +14,16 @@ const SearchResults = () => {
 
   useEffect(() => {
     const performSearch = async () => {
-      if (!query) {
-        setResults({ cars: [], blogs: [] });
+      // Reset results when query changes
+      setResults({ cars: [], blogs: [] });
+
+      if (!query || query.trim().length === 0) {
+        setLoading(false);
+        return;
+      }
+
+      // Don't search for very short queries
+      if (query.trim().length < 2) {
         setLoading(false);
         return;
       }
@@ -24,10 +32,18 @@ const SearchResults = () => {
       setError(null);
 
       try {
-        const data = await globalSearch(query, 10);
-        setResults(data);
+        // Global search now uses getCars internally for car search
+        const data = await globalSearch(query.trim(), 10);
+        
+        // Ensure we're only using cars and blogs from the response
+        setResults({
+          cars: Array.isArray(data.cars) ? data.cars : [],
+          blogs: Array.isArray(data.blogs) ? data.blogs : [],
+        });
       } catch (err) {
+        console.error("Search error:", err);
         setError(err.message || "Failed to perform search");
+        setResults({ cars: [], blogs: [] });
       } finally {
         setLoading(false);
       }
@@ -50,17 +66,33 @@ const SearchResults = () => {
     );
   }
 
+  if (query.trim().length < 2) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-8 text-center">
+            <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+              Please enter at least 2 characters to search
+            </h3>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Search Results for "{query}"
+            Search Results for &quot;{query}&quot;
           </h1>
-          <p className="mt-2 text-gray-600 dark:text-gray-400">
-            Found {results.cars.length} cars and {results.blogs.length} blog
-            posts
-          </p>
+          {!loading && !error && (
+            <p className="mt-2 text-gray-600 dark:text-gray-400">
+              Found {results.cars.length} cars and {results.blogs.length} blog
+              posts
+            </p>
+          )}
         </div>
 
         {loading ? (
@@ -69,7 +101,7 @@ const SearchResults = () => {
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                 Cars
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {Array.from({ length: 4 }).map((_, index) => (
                   <SkeletonCard key={index} />
                 ))}
@@ -79,7 +111,7 @@ const SearchResults = () => {
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                 Blog Posts
               </h2>
-              <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {Array.from({ length: 3 }).map((_, index) => (
                   <SkeletonCard key={index} />
                 ))}
@@ -107,7 +139,7 @@ const SearchResults = () => {
                 </h2>
                 {results.cars.length > 0 && (
                   <Link
-                    to={`/cars?search=${query}`}
+                    to={`/cars?search=${encodeURIComponent(query)}`}
                     className="text-primary-500 hover:text-primary-600"
                   >
                     View all cars
@@ -115,7 +147,7 @@ const SearchResults = () => {
                 )}
               </div>
               {results.cars.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {results.cars.map((car) => (
                     <CarCard key={car._id} carData={car} />
                   ))}
@@ -140,7 +172,7 @@ const SearchResults = () => {
                 </h2>
                 {results.blogs.length > 0 && (
                   <Link
-                    to={`/blogs?search=${query}`}
+                    to={`/blogs?search=${encodeURIComponent(query)}`}
                     className="text-primary-500 hover:text-primary-600"
                   >
                     View all blog posts
@@ -148,7 +180,7 @@ const SearchResults = () => {
                 )}
               </div>
               {results.blogs.length > 0 ? (
-                <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                   {results.blogs.map((blog) => (
                     <BlogCard key={blog._id} blog={blog} />
                   ))}

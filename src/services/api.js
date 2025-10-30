@@ -200,8 +200,17 @@ export async function checkFavorite(carId) {
 // Search API functions
 export async function globalSearch(query, limit = 10) {
   try {
-    const response = await API.get("/search", { params: { q: query, limit } });
-    return response.data;
+    // For global search, we'll search blogs through the global search endpoint
+    // and cars through the getCars function with search parameters
+    const [carsResponse, globalResponse] = await Promise.all([
+      getCars({ search: query, limit: limit }),
+      API.get("/search", { params: { q: query, limit } }),
+    ]);
+
+    return {
+      cars: carsResponse.cars || carsResponse || [],
+      blogs: globalResponse.data.blogs || [],
+    };
   } catch (error) {
     console.error("Error performing search:", error);
     throw error.response?.data || { message: "Failed to perform search" };
