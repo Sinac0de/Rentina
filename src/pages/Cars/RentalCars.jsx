@@ -9,7 +9,7 @@ const RentalCars = () => {
   };
   return (
     <>
-      <PickDrop />
+      {/* <PickDrop /> */}
       <div className="flex justify-end gap-2">
         <button className="hidden border border-primary-500 text-primary-500 py-2 px-4 rounded-[10px]">
           sort

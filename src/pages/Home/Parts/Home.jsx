@@ -34,7 +34,7 @@ const Home = () => {
   return (
     <div className="px-5 lg:px-14 lg:pt-8">
       <Hero />
-      <PickDrop />
+      {/* <PickDrop /> */}
 
       {/* Recommended cars*/}
       <AllCarsList isCompact={true} hasHeader header="Recommended Cars" />
