@@ -140,12 +140,13 @@ const FilterSidebar = ({ setShowMobileFilters }) => {
         case "delete-all": {
           // Keep only the page parameter
           const page = newParams.get("page");
-          newParams.forEach((value, key) => {
+          // Get all keys first, then delete them to avoid iteration issues
+          const keysToDelete = Array.from(newParams.keys()).filter(
+            (key) => key !== "page"
+          );
+          keysToDelete.forEach((key) => {
             newParams.delete(key);
           });
-          if (page) {
-            newParams.set("page", page);
-          }
           break;
         }
         default:
@@ -269,7 +270,9 @@ const FilterSidebar = ({ setShowMobileFilters }) => {
                       key={index}
                       className="flex items-center bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-200 rounded-full px-3 py-1 text-sm"
                     >
-                      <span className="mr-1">{value}</span>
+                      <span className="mr-1">
+                        {key}:{value}
+                      </span>
                       <button
                         onClick={() =>
                           handleFilterChange(key, value, "delete-value", false)

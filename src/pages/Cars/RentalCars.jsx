@@ -44,7 +44,7 @@ const RentalCars = () => {
   return (
     <div className="flex flex-col gap-2 p-5">
       {/* Search and Sort Section */}
-      <div className="bg-white rounded-xl shadow-sm p-6">
+      <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm p-6">
         <div className="flex flex-col md:flex-row gap-4">
           {/* Search Input */}
           <div className="relative flex-1">
@@ -56,7 +56,7 @@ const RentalCars = () => {
               value={searchQuery}
               onChange={handleSearchChange}
               placeholder="Search by make, model..."
-              className="w-full pl-10 pr-10 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition"
+              className="w-full pl-10 pr-10 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition bg-white dark:bg-slate-700"
             />
             {searchQuery && (
               <button
@@ -91,7 +91,7 @@ const RentalCars = () => {
                   return newParams;
                 });
               }}
-              className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition appearance-none bg-white"
+              className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition appearance-none bg-white dark:bg-slate-700"
             >
               <option value="rating">Highest Rated</option>
               <option value="price-low">Price: Low to High</option>
