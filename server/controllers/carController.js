@@ -30,7 +30,7 @@ const getCars = asyncHandler(async (req, res) => {
 
   // Filter by category
   if (req.query.category) {
-    filter['specs.type'] = req.query.category;
+    filter["specs.type"] = req.query.category;
   }
 
   // Filter by year range
@@ -129,10 +129,8 @@ const createCar = asyncHandler(async (req, res) => {
     model,
     year,
     pricePerDay,
-    specs: {
-      ...specs,
-      type: category // Map category to specs.type
-    },
+    category,
+    specs,
     images: images || [],
   });
 
@@ -162,11 +160,8 @@ const updateCar = asyncHandler(async (req, res) => {
     car.model = model || car.model;
     car.year = year || car.year;
     car.pricePerDay = pricePerDay || car.pricePerDay;
-    car.specs = {
-      ...car.specs,
-      ...specs,
-      type: category || car.specs?.type // Map category to specs.type
-    };
+    car.category = category || car.category;
+    car.specs = specs || car.specs;
     car.images = images || car.images;
     car.availability =
       availability !== undefined ? availability : car.availability;
@@ -198,12 +193,31 @@ const deleteCar = asyncHandler(async (req, res) => {
 // @route   GET /api/cars/categories
 // @access  Public
 const getCarCategories = asyncHandler(async (req, res) => {
+  // First, let's check if there are any cars in the database
+  const totalCars = await Car.countDocuments();
+  console.log(`Total cars in database: ${totalCars}`);
+
+  // Check how many cars have availability: true
+  const availableCars = await Car.countDocuments({ availability: true });
+  console.log(`Available cars: ${availableCars}`);
+
+  // Check how many cars have availability: false
+  const unavailableCars = await Car.countDocuments({ availability: false });
+  console.log(`Unavailable cars: ${unavailableCars}`);
+
+  // Check cars with no availability field
+  const noAvailabilityCars = await Car.countDocuments({
+    availability: { $exists: false },
+  });
+  console.log(`Cars with no availability field: ${noAvailabilityCars}`);
+
   const categories = await Car.aggregate([
-    { $match: { availability: true } },
-    { $group: { _id: '$specs.type', count: { $sum: 1 } } },
-    { $sort: { count: -1 } }
+    // { $match: { availability: true } },  // Temporarily remove this filter to diagnose the issue
+    { $group: { _id: "$specs.type", count: { $sum: 1 } } },
+    { $sort: { count: -1 } },
   ]);
-  
+
+  console.log("Categories result:", categories);
   res.json(categories);
 });
 
@@ -211,12 +225,14 @@ const getCarCategories = asyncHandler(async (req, res) => {
 // @route   GET /api/cars/makes
 // @access  Public
 const getCarMakes = asyncHandler(async (req, res) => {
+  // Check what makes we have in the database
   const makes = await Car.aggregate([
-    { $match: { availability: true } },
-    { $group: { _id: '$make', count: { $sum: 1 } } },
-    { $sort: { count: -1 } }
+    // { $match: { availability: true } },  // Temporarily remove this filter to diagnose the issue
+    { $group: { _id: "$make", count: { $sum: 1 } } },
+    { $sort: { count: -1 } },
   ]);
-  
+
+  console.log("Makes result:", makes);
   res.json(makes);
 });
 
