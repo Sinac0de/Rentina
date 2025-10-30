@@ -3,7 +3,7 @@ import { Outlet } from "react-router";
 import FilterSidebar from "src/components/FilterSideBar/FilterSideBar";
 
 const Cars = () => {
-  const [showMobileFilters, setShowMobileFilters] = useState("");
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   // Add a useEffect to set body overflow when the navbar opens
   useEffect(() => {
@@ -20,20 +20,26 @@ const Cars = () => {
   }, [showMobileFilters]);
 
   return (
-    <div className="flex relative">
+    <div className="flex relative min-h-screen">
+      {/* Mobile Filter Overlay */}
+      {showMobileFilters && (
+        <div
+          className="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"
+          onClick={() => setShowMobileFilters(false)}
+        ></div>
+      )}
+
+      {/* Filter Sidebar */}
       <div
-        className={`dark:bg-slate-800  lg:dark:bg-slate-700 ${
-          showMobileFilters
-            ? "fixed top-0 right-0 bottom-0 left-0 z-50 w-full h-full"
-            : "hidden lg:top-auto lg:bottom-auto lg:w-1/8 lg:relative xl:block"
-        }  bg-white p-5 px-10 w-[20%] overflow-y-auto`}
+        className={`fixed lg:sticky lg:top-24 inset-y-0 left-0 z-10 w-80 h-full bg-white dark:bg-slate-900 transform transition-transform duration-300 ease-in-out ${
+          showMobileFilters ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 lg:transform-none lg:block lg:w-80 lg:min-w-[20rem] h-screen lg:h-[calc(100vh-1rem)] overflow-hidden border-r border-gray-200 dark:border-gray-700`}
       >
-        <FilterSidebar
-          setShowMobileFilters={setShowMobileFilters}
-          showMobileFilters={showMobileFilters}
-        />
+        <FilterSidebar setShowMobileFilters={setShowMobileFilters} />
       </div>
-      <div className="flex-1 overflow-y-auto px-5">
+
+      {/* Main Content */}
+      <div className="flex-1 overflow-y-auto">
         <Outlet context={[showMobileFilters, setShowMobileFilters]} />
       </div>
     </div>

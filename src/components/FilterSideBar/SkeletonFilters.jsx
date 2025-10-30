@@ -1,44 +1,96 @@
 const SkeletonFilters = () => {
   return (
-    <>
-      <div>
-        {/* ---Types--- */}
-        <h3 className="text-xs text-secondary-300 tracking-widest">TYPE</h3>
-        {/* checkboxes */}
-        <ul className="flex flex-col gap-4 text-xl my-5 mb-10">
-          {Array.from({ length: 5 }).map((_, index) => (
-            <div className="animate-pulse flex flex-row gap-2" key={index}>
-              <div className="w-4 h-4 rounded-full bg-primary-300"></div>
-              <div className="w-28 h-4 rounded-full bg-primary-300"></div>
+    <div className="space-y-6">
+      {/* Category Skeleton */}
+      <div className="border-b border-slate-200 pb-4">
+        <div className="flex justify-between items-center w-full py-3">
+          <div className="h-5 bg-slate-300 rounded animate-pulse w-1/3"></div>
+          <div className="h-5 w-5 bg-slate-300 rounded-full animate-pulse"></div>
+        </div>
+        <div className="mt-2 space-y-3">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <div key={index} className="flex items-center space-x-3">
+              <div className="h-4 w-4 rounded bg-slate-300 animate-pulse"></div>
+              <div className="h-4 flex-1 rounded bg-slate-300 animate-pulse"></div>
+              <div className="h-4 w-8 rounded-full bg-slate-300 animate-pulse"></div>
             </div>
           ))}
-        </ul>
+        </div>
       </div>
-      {/* ---Seatings--- */}
-      <div>
-        <h3 className="text-xs text-secondary-300 tracking-widest">SEATING</h3>
-        {/* checkboxes */}
-        <ul className="flex flex-col gap-4 text-xl my-5 mb-10">
+
+      {/* Make Skeleton */}
+      <div className="border-b border-slate-200 pb-4">
+        <div className="flex justify-between items-center w-full py-3">
+          <div className="h-5 bg-slate-300 rounded animate-pulse w-1/3"></div>
+          <div className="h-5 w-5 bg-slate-300 rounded-full animate-pulse"></div>
+        </div>
+        <div className="mt-2 space-y-3">
           {Array.from({ length: 5 }).map((_, index) => (
-            <div className="animate-pulse flex flex-row gap-2" key={index}>
-              <div className="w-4 h-4 rounded-full bg-primary-300"></div>
-              <div className="w-28 h-4 rounded-full bg-primary-300"></div>
+            <div key={index} className="flex items-center space-x-3">
+              <div className="h-4 w-4 rounded bg-slate-300 animate-pulse"></div>
+              <div className="h-4 flex-1 rounded bg-slate-300 animate-pulse"></div>
+              <div className="h-4 w-8 rounded-full bg-slate-300 animate-pulse"></div>
             </div>
           ))}
-        </ul>
+        </div>
       </div>
-      {/* ---Price--- */}
-      <div>
-        <h3 className="text-xs text-secondary-300 tracking-widest">PRICE</h3>
-        <div className="my-5 mb-10">
-          <div className="animate-pulse flex flex-col gap-2">
-            <div className="w-full h-4 rounded-full bg-secondary-300"></div>
-            <div className="w-2/3 h-4 rounded-full bg-secondary-300"></div>
-            <div className="w-1/3 h-4 rounded-full bg-secondary-300"></div>
+
+      {/* Price Range Skeleton */}
+      <div className="border-b border-slate-200 pb-4">
+        <div className="flex justify-between items-center w-full py-3">
+          <div className="h-5 bg-slate-300 rounded animate-pulse w-1/3"></div>
+          <div className="h-5 w-5 bg-slate-300 rounded-full animate-pulse"></div>
+        </div>
+        <div className="mt-3 space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="w-2/5">
+              <div className="h-4 bg-slate-300 rounded animate-pulse mb-2 w-1/3"></div>
+              <div className="h-10 bg-slate-300 rounded animate-pulse"></div>
+            </div>
+            <div className="h-4 w-4 bg-slate-300 rounded animate-pulse"></div>
+            <div className="w-2/5">
+              <div className="h-4 bg-slate-300 rounded animate-pulse mb-2 w-1/3"></div>
+              <div className="h-10 bg-slate-300 rounded animate-pulse"></div>
+            </div>
+          </div>
+          <div className="pt-2">
+            <div className="h-2 bg-slate-300 rounded-full animate-pulse"></div>
           </div>
         </div>
       </div>
-    </>
+
+      {/* Specifications Skeleton */}
+      <div className="border-b border-slate-200 pb-4">
+        <div className="flex justify-between items-center w-full py-3">
+          <div className="h-5 bg-slate-300 rounded animate-pulse w-1/3"></div>
+          <div className="h-5 w-5 bg-slate-300 rounded-full animate-pulse"></div>
+        </div>
+        <div className="mt-3 space-y-4">
+          <div>
+            <div className="h-4 bg-slate-300 rounded animate-pulse w-1/4 mb-3"></div>
+            <div className="flex flex-wrap gap-2">
+              {Array.from({ length: 4 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="h-8 w-16 rounded-full bg-slate-300 animate-pulse"
+                ></div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="h-4 bg-slate-300 rounded animate-pulse w-1/4 mb-3"></div>
+            <div className="flex flex-wrap gap-2">
+              {Array.from({ length: 2 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="h-8 w-20 rounded-full bg-slate-300 animate-pulse"
+                ></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
