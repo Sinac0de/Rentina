@@ -34,7 +34,7 @@ const SearchResults = () => {
       try {
         // Global search now uses getCars internally for car search
         const data = await globalSearch(query.trim(), 10);
-        
+
         // Ensure we're only using cars and blogs from the response
         setResults({
           cars: Array.isArray(data.cars) ? data.cars : [],

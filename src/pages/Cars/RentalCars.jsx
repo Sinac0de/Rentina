@@ -5,7 +5,7 @@ import AllCarsList from "src/components/AllCarsList/AllCarsList";
 import { Input, Option, Select } from "@material-tailwind/react";
 
 const RentalCars = () => {
-  const [showMobileFilters, setShowMobileFilters] = useOutletContext();
+  const [, setShowMobileFilters] = useOutletContext();
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(
     searchParams.get("search") || ""
@@ -74,6 +74,14 @@ const RentalCars = () => {
               onChange={handleSearchChange}
               size="lg"
               icon={<SearchIcon size={20} />}
+              color="orange"
+              className="dark:focus:!text-white dark:!text-white"
+              labelProps={{
+                className: "dark:!text-white",
+              }}
+              containerProps={{
+                className: "dark:focus-within:!border-orange-500",
+              }}
             />
             {searchQuery && (
               <button
@@ -93,13 +101,51 @@ const RentalCars = () => {
               value={sortValue}
               onChange={handleSortChange}
               size="lg"
+              color="orange"
+              className="dark:focus:!text-white dark:!text-white"
+              labelProps={{
+                className: "dark:!text-white",
+              }}
+              menuProps={{
+                className: "dark:bg-slate-800 dark:border-slate-700",
+              }}
             >
-              <Option value="rating">Highest Rated</Option>
-              <Option value="price-low">Price: Low to High</Option>
-              <Option value="price-high">Price: High to Low</Option>
-              <Option value="year-new">Year: Newest First</Option>
-              <Option value="year-old">Year: Oldest First</Option>
-              <Option value="newest">Newest Added</Option>
+              <Option
+                className="dark:hover:!bg-slate-700 dark:focus:!bg-slate-700"
+                value="rating"
+              >
+                Highest Rated
+              </Option>
+              <Option
+                className="dark:hover:!bg-slate-700 dark:focus:!bg-slate-700"
+                value="price-low"
+              >
+                Price: Low to High
+              </Option>
+              <Option
+                className="dark:hover:!bg-slate-700 dark:focus:!bg-slate-700"
+                value="price-high"
+              >
+                Price: High to Low
+              </Option>
+              <Option
+                className="dark:hover:!bg-slate-700 dark:focus:!bg-slate-700"
+                value="year-new"
+              >
+                Year: Newest First
+              </Option>
+              <Option
+                className="dark:hover:!bg-slate-700 dark:focus:!bg-slate-700"
+                value="year-old"
+              >
+                Year: Oldest First
+              </Option>
+              <Option
+                className="dark:hover:!bg-slate-700 dark:focus:!bg-slate-700"
+                value="newest"
+              >
+                Newest Added
+              </Option>
             </Select>
           </div>
         </div>
