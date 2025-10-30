@@ -35,7 +35,7 @@ const CarDetails = () => {
   /*--- Skeleton loading ---*/
   if (isLoading) {
     return (
-      <div className="flex flex-col gap-5 py-8">
+      <div className="max-w-7xl mx-auto flex flex-col gap-5 py-8">
         <div className="flex flex-col gap-7 lg:flex-row">
           <SkeletonPhotos />
           <SkeletonInfo />
@@ -50,7 +50,7 @@ const CarDetails = () => {
 
   /*--- Fetched Data ---*/
   return (
-    <div className="flex flex-col gap-5 py-8">
+    <div className="max-w-7xl mx-auto flex flex-col gap-5 py-8">
       <div className="flex flex-col gap-7 lg:flex-row">
         <CarPhotos photos={carData.img_urls} /> <CarInfo info={carData} />
       </div>

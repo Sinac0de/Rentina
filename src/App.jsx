@@ -31,8 +31,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="cars" element={<Cars />}>
             <Route index element={<RentalCars />} />
-            <Route path=":id" element={<CarDetails />} />
           </Route>
+          <Route path="cars/:id" element={<CarDetails />} />
           <Route path="payment/:id" element={<Payment />} />
           <Route path="profile" element={<Profile />} />
           <Route path="profile/edit" element={<EditProfile />} />

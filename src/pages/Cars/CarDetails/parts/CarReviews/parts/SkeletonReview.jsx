@@ -9,11 +9,9 @@ const SkeletonReview = () => {
   };
   return (
     <div className="flex items-start gap-2">
-      <span className="p-2 border rounded-full cursor-pointer">
-        <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-          <ProfileIcon />
-        </div>
-      </span>
+      <div className="border aspect-square flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
+        <ProfileIcon />
+      </div>
       <div className="flex flex-col gap-3 w-full">
         {/* comment header */}
         <div className="flex justify-between">

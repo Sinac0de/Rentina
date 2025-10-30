@@ -89,7 +89,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="dark:bg-slate-600 flex flex-col gap-5 bg-white rounded-lg p-3 h-full"
+      className="dark:bg-slate-600 flex flex-col gap-5 bg-white rounded-lg p-3 h-full hover:shadow-md transition-all duration-200"
     >
       {/* card header */}
       <div className="flex justify-between">
