@@ -30,7 +30,12 @@ API.interceptors.response.use(
 // Car API functions
 export async function getCars(params = {}) {
   try {
-    const response = await API.get("/cars", { params });
+    const response = await API.get("/cars", {
+      params,
+      paramsSerializer: {
+        indexes: null, // This ensures arrays are sent as fuel=Petrol&fuel=Diesel instead of fuel[]=Petrol&fuel[]=Diesel
+      },
+    });
     return response.data;
   } catch (error) {
     console.error("Error fetching cars:", error);
@@ -145,7 +150,9 @@ export async function getBlogCategories() {
     return response.data;
   } catch (error) {
     console.error("Error fetching blog categories:", error);
-    throw error.response?.data || { message: "Failed to fetch blog categories" };
+    throw (
+      error.response?.data || { message: "Failed to fetch blog categories" }
+    );
   }
 }
 
@@ -203,8 +210,8 @@ export async function globalSearch(query, limit = 10) {
 
 export async function searchCars(query, params = {}) {
   try {
-    const response = await API.get("/search/cars", { 
-      params: { q: query, ...params } 
+    const response = await API.get("/search/cars", {
+      params: { q: query, ...params },
     });
     return response.data;
   } catch (error) {
@@ -220,7 +227,9 @@ export async function getDashboardStats() {
     return response.data;
   } catch (error) {
     console.error("Error fetching dashboard stats:", error);
-    throw error.response?.data || { message: "Failed to fetch dashboard stats" };
+    throw (
+      error.response?.data || { message: "Failed to fetch dashboard stats" }
+    );
   }
 }
 

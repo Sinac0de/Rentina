@@ -37,7 +37,15 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
         for (let [key, value] of searchParams.entries()) {
           // Skip page parameter as we handle it separately
           if (key !== "page") {
-            params[key] = value;
+            // Handle multiple values for the same key
+            const allValues = searchParams.getAll(key);
+            if (allValues.length > 1) {
+              // If there are multiple values, send them as an array
+              params[key] = allValues;
+            } else {
+              // Single value
+              params[key] = value;
+            }
           }
         }
 

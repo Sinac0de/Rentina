@@ -18,9 +18,15 @@ const getCars = asyncHandler(async (req, res) => {
     filter.availability = req.query.availability === "true";
   }
 
-  // Filter by make
+  // Filter by multiple makes - support array of values
   if (req.query.make) {
-    filter.make = { $regex: req.query.make, $options: "i" };
+    if (Array.isArray(req.query.make)) {
+      // Multiple makes selected - show all selected makes
+      filter.make = { $in: req.query.make };
+    } else {
+      // Single make selected
+      filter.make = req.query.make;
+    }
   }
 
   // Filter by model
@@ -28,9 +34,15 @@ const getCars = asyncHandler(async (req, res) => {
     filter.model = { $regex: req.query.model, $options: "i" };
   }
 
-  // Filter by category
+  // Filter by category - support multiple categories (using specs.type)
   if (req.query.category) {
-    filter["specs.type"] = req.query.category;
+    if (Array.isArray(req.query.category)) {
+      // Multiple categories selected - show all selected categories
+      filter["specs.type"] = { $in: req.query.category };
+    } else {
+      // Single category selected
+      filter["specs.type"] = req.query.category;
+    }
   }
 
   // Filter by year range
@@ -40,34 +52,62 @@ const getCars = asyncHandler(async (req, res) => {
     if (req.query.maxYear) filter.year.$lte = parseInt(req.query.maxYear);
   }
 
-  // Filter by price range
+  // Filter by price range (using specs.rental_price)
   if (req.query.minPrice || req.query.maxPrice) {
-    filter.pricePerDay = {};
+    filter["specs.rental_price"] = {};
     if (req.query.minPrice)
-      filter.pricePerDay.$gte = parseInt(req.query.minPrice);
+      filter["specs.rental_price"].$gte = parseInt(req.query.minPrice);
     if (req.query.maxPrice)
-      filter.pricePerDay.$lte = parseInt(req.query.maxPrice);
+      filter["specs.rental_price"].$lte = parseInt(req.query.maxPrice);
   }
 
-  // Filter by specs
+  // Filter by fuel type - support multiple fuel types (using specs.fuel)
   if (req.query.fuel) {
-    filter["specs.fuel"] = req.query.fuel;
+    if (Array.isArray(req.query.fuel)) {
+      // Multiple fuel types selected
+      filter["specs.fuel"] = { $in: req.query.fuel };
+    } else {
+      // Single fuel type selected
+      filter["specs.fuel"] = req.query.fuel;
+    }
   }
 
+  // Filter by transmission - support multiple transmissions (using specs.transmission)
   if (req.query.transmission) {
-    filter["specs.transmission"] = req.query.transmission;
+    if (Array.isArray(req.query.transmission)) {
+      // Multiple transmissions selected
+      filter["specs.transmission"] = { $in: req.query.transmission };
+    } else {
+      // Single transmission selected
+      filter["specs.transmission"] = req.query.transmission;
+    }
   }
 
-  if (req.query.capacity) {
-    filter["specs.capacity"] = parseInt(req.query.capacity);
+  // Filter by capacity - support multiple capacities (using specs.seats)
+  if (req.query.seats) {
+    if (Array.isArray(req.query.seats)) {
+      // Multiple capacities selected
+      filter["specs.seats"] = {
+        $in: req.query.seats.map((seat) => parseInt(seat)),
+      };
+    } else {
+      // Single capacity selected
+      filter["specs.seats"] = parseInt(req.query.seats);
+    }
   }
 
   // Search by make or model
   if (req.query.search) {
-    filter.$or = [
-      { make: { $regex: req.query.search, $options: "i" } },
-      { model: { $regex: req.query.search, $options: "i" } },
-    ];
+    // Split the search query into words
+    const searchTerms = req.query.search.trim().split(/\s+/);
+
+    // Search for cars where ALL terms match either make or model
+    filter.$and = searchTerms.map((term) => ({
+      $or: [
+        { make: { $regex: term, $options: "i" } },
+        { model: { $regex: term, $options: "i" } },
+      ],
+    }));
   }
 
   // Build sort object
@@ -76,10 +116,10 @@ const getCars = asyncHandler(async (req, res) => {
   if (req.query.sort) {
     switch (req.query.sort) {
       case "price-low":
-        sort = { pricePerDay: 1 };
+        sort = { "specs.rental_price": 1 };
         break;
       case "price-high":
-        sort = { pricePerDay: -1 };
+        sort = { "specs.rental_price": -1 };
         break;
       case "year-new":
         sort = { year: -1 };
@@ -90,6 +130,11 @@ const getCars = asyncHandler(async (req, res) => {
       case "rating":
         sort = { rating: -1 };
         break;
+      case "newest":
+        sort = { createdAt: -1 };
+        break;
+      default:
+        sort = { createdAt: -1 }; // Default sort by newest
     }
   }
 

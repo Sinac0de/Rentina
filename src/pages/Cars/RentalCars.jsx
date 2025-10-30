@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { SearchIcon, FilterIcon } from "lucide-react";
+import { SearchIcon, FilterIcon, X } from "lucide-react";
 import { useOutletContext, useSearchParams } from "react-router";
 import AllCarsList from "src/components/AllCarsList/AllCarsList";
+import { Input, Option, Select } from "@material-tailwind/react";
 
 const RentalCars = () => {
   const [showMobileFilters, setShowMobileFilters] = useOutletContext();
@@ -9,6 +10,14 @@ const RentalCars = () => {
   const [searchQuery, setSearchQuery] = useState(
     searchParams.get("search") || ""
   );
+  const [sortValue, setSortValue] = useState(
+    searchParams.get("sort") || "rating"
+  );
+
+  // Update sortValue when searchParams change
+  useEffect(() => {
+    setSortValue(searchParams.get("sort") || "rating");
+  }, [searchParams]);
 
   // Debounce search input
   useEffect(() => {
@@ -37,6 +46,16 @@ const RentalCars = () => {
     setSearchQuery(e.target.value);
   };
 
+  const handleSortChange = (val) => {
+    setSortValue(val);
+    setSearchParams((prev) => {
+      const newParams = new URLSearchParams(prev);
+      newParams.set("sort", val);
+      newParams.set("page", "1"); // Reset to first page when sort changes
+      return newParams;
+    });
+  };
+
   const clearSearch = () => {
     setSearchQuery("");
   };
@@ -45,60 +64,43 @@ const RentalCars = () => {
     <div className="flex flex-col gap-2 p-5">
       {/* Search and Sort Section */}
       <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm p-6">
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col md:flex-row md:items-end gap-4">
           {/* Search Input */}
           <div className="relative flex-1">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <SearchIcon size={20} className="text-gray-400" />
-            </div>
-            <input
+            <Input
               type="text"
+              label="Search by make, model..."
               value={searchQuery}
               onChange={handleSearchChange}
-              placeholder="Search by make, model..."
-              className="w-full pl-10 pr-10 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition bg-white dark:bg-slate-700"
+              size="lg"
+              icon={<SearchIcon size={20} />}
             />
             {searchQuery && (
               <button
                 onClick={clearSearch}
-                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
+                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                aria-label="Clear search"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                <X size={20} />
               </button>
             )}
           </div>
 
           {/* Sort Select */}
-          <div className="w-full md:w-64">
-            <select
-              value={searchParams.get("sort") || "rating"}
-              onChange={(e) => {
-                setSearchParams((prev) => {
-                  const newParams = new URLSearchParams(prev);
-                  newParams.set("sort", e.target.value);
-                  newParams.set("page", "1"); // Reset to first page when sort changes
-                  return newParams;
-                });
-              }}
-              className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition appearance-none bg-white dark:bg-slate-700"
+          <div className="w-full md:w-72">
+            <Select
+              label="Sort By"
+              value={sortValue}
+              onChange={handleSortChange}
+              size="lg"
             >
-              <option value="rating">Highest Rated</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="year-new">Year: Newest First</option>
-              <option value="year-old">Year: Oldest First</option>
-            </select>
+              <Option value="rating">Highest Rated</Option>
+              <Option value="price-low">Price: Low to High</Option>
+              <Option value="price-high">Price: High to Low</Option>
+              <Option value="year-new">Year: Newest First</Option>
+              <Option value="year-old">Year: Oldest First</Option>
+              <Option value="newest">Newest Added</Option>
+            </Select>
           </div>
         </div>
       </div>

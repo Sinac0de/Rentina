@@ -118,7 +118,11 @@ const FilterSidebar = ({ setShowMobileFilters }) => {
           if (isSingleValue) {
             newParams.set(key, value); // set key-value pair
           } else {
-            newParams.append(key, value); // <-- append key-value pair
+            // For multiple values, we need to handle them properly
+            const existingValues = newParams.getAll(key);
+            if (!existingValues.includes(value)) {
+              newParams.append(key, value); // <-- append key-value pair
+            }
           }
           break;
         /* delete a filter with that key and value */
@@ -459,48 +463,7 @@ const FilterSidebar = ({ setShowMobileFilters }) => {
             onToggle={() => toggleSection("specs")}
           >
             <div className="mt-3 space-y-4">
-              {/* Fuel Type */}
-              <div>
-                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Fuel Type
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {["Petrol", "Diesel", "Electric", "Hybrid"].map(
-                    (fuel, index) => (
-                      <button
-                        key={index}
-                        type="button"
-                        onClick={() => {
-                          if (isSelected("fuel", fuel)) {
-                            handleFilterChange(
-                              "fuel",
-                              fuel,
-                              "delete-value",
-                              false
-                            );
-                          } else {
-                            handleFilterChange(
-                              "fuel",
-                              fuel,
-                              "add-value",
-                              false
-                            );
-                          }
-                        }}
-                        className={`px-3 py-1 text-sm rounded-full transition-colors ${
-                          isSelected("fuel", fuel)
-                            ? "bg-primary-500 text-white shadow-sm"
-                            : "bg-slate-100 text-gray-700 hover:bg-slate-200 dark:bg-slate-700 dark:text-gray-300 dark:hover:bg-slate-600"
-                        }`}
-                      >
-                        {fuel}
-                      </button>
-                    )
-                  )}
-                </div>
-              </div>
-
-              {/* Transmission */}
+              {/* Transmission - Using specs.transmission */}
               <div>
                 <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Transmission
@@ -539,40 +502,40 @@ const FilterSidebar = ({ setShowMobileFilters }) => {
                 </div>
               </div>
 
-              {/* Capacity */}
+              {/* Capacity - Using specs.seats instead of specs.capacity */}
               <div>
                 <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Capacity
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {[2, 4, 5, 7].map((capacity, index) => (
+                  {[2, 4, 5, 7].map((seats, index) => (
                     <button
                       key={index}
                       type="button"
                       onClick={() => {
-                        if (isSelected("capacity", capacity.toString())) {
+                        if (isSelected("seats", seats.toString())) {
                           handleFilterChange(
-                            "capacity",
-                            capacity.toString(),
+                            "seats",
+                            seats.toString(),
                             "delete-value",
                             false
                           );
                         } else {
                           handleFilterChange(
-                            "capacity",
-                            capacity.toString(),
+                            "seats",
+                            seats.toString(),
                             "add-value",
                             false
                           );
                         }
                       }}
                       className={`px-3 py-1 text-sm rounded-full transition-colors ${
-                        isSelected("capacity", capacity.toString())
+                        isSelected("seats", seats.toString())
                           ? "bg-primary-500 text-white shadow-sm"
                           : "bg-slate-100 text-gray-700 hover:bg-slate-200 dark:bg-slate-700 dark:text-gray-300 dark:hover:bg-slate-600"
                       }`}
                     >
-                      {capacity}+ Seats
+                      {seats}+ Seats
                     </button>
                   ))}
                 </div>

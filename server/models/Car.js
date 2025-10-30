@@ -19,6 +19,7 @@ const carSchema = new mongoose.Schema(
       required: true,
       index: true,
     },
+    // Changed from pricePerDay to match actual data structure
     pricePerDay: {
       type: Number,
       required: true,
@@ -27,11 +28,15 @@ const carSchema = new mongoose.Schema(
     },
 
     specs: {
-      fuel: {
-        type: String,
+      // Changed field names to match actual data structure
+      rental_price: {
+        type: Number,
         required: true,
-        enum: ["Petrol", "Diesel", "Electric", "Hybrid"],
-        index: true,
+        min: 0,
+      },
+      discount_percent: {
+        type: Number,
+        default: 0,
       },
       type: {
         type: String,
@@ -49,22 +54,23 @@ const carSchema = new mongoose.Schema(
         ],
         index: true,
       },
+      desc: {
+        type: String,
+      },
       transmission: {
         type: String,
         required: true,
         enum: ["Manual", "Automatic"],
         index: true,
       },
-      capacity: {
+      seats: {
         type: Number,
         required: true,
         min: 1,
         max: 10,
       },
-      steering: {
-        type: String,
-        required: true,
-        enum: ["Left", "Right"],
+      fuel_capacity: {
+        type: Number,
       },
     },
     rating: {
@@ -117,6 +123,6 @@ const carSchema = new mongoose.Schema(
 // Add indexes for better query performance
 carSchema.index({ make: 1, model: 1 });
 carSchema.index({ pricePerDay: 1, availability: 1 });
-carSchema.index({ category: 1, rating: -1 });
+carSchema.index({ "specs.type": 1, rating: -1 });
 
 module.exports = mongoose.model("Car", carSchema);

@@ -14,7 +14,7 @@ export function scrollToTopFunction() {
 export function getAllParamsFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
   return {
-    types: searchParams.getAll("type"),
+    types: searchParams.getAll("category"),
     seats: searchParams.getAll("seats").map((value) => parseInt(value)),
     maxPrice: searchParams.get("maxPrice"),
   };
