@@ -303,4 +303,25 @@ export async function updateUserProfile(userData) {
   }
 }
 
+// Booking API functions
+export async function createBooking(bookingData) {
+  try {
+    const response = await API.post("/bookings", bookingData);
+    return response.data;
+  } catch (error) {
+    console.error("Error creating booking:", error);
+    throw error.response?.data || { message: "Failed to create booking" };
+  }
+}
+
+export async function getUserBookings() {
+  try {
+    const response = await API.get("/bookings/mybookings");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user bookings:", error);
+    throw error.response?.data || { message: "Failed to fetch bookings" };
+  }
+}
+
 export default API;

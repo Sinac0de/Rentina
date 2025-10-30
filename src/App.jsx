@@ -22,6 +22,7 @@ import Blogs from "./pages/Blogs/Blogs";
 import BlogDetails from "./pages/Blogs/BlogDetails";
 import SearchResults from "./pages/Search/SearchResults";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Booking from "./pages/Booking/Booking";
 
 function App() {
   const router = createBrowserRouter(
@@ -41,6 +42,9 @@ function App() {
           <Route path="blogs/:id" element={<BlogDetails />} />
           <Route path="search" element={<SearchResults />} />
           <Route path="dashboard" element={<Dashboard />} />
+          {/* Add the booking route */}
+          <Route path="booking" element={<Booking />} />
+          <Route path="booking/:id" element={<Booking />} />
         </Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
