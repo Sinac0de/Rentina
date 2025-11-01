@@ -150,7 +150,7 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
       </header>
 
       {/* car cards */}
-      <div className="grid grid-flow-row gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+      <div className="grid grid-flow-row gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 ">
         {cars.map((car) => {
           return <CarCard key={car._id} carData={car} />;
         })}
