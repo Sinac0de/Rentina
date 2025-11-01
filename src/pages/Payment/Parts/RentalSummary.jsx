@@ -4,11 +4,18 @@ import TextInput from "src/components/common/TextInput";
 import { calTotalPrice } from "src/utils/utils";
 
 const RentalSummary = ({ info }) => {
-  const { id, make, model, specs, img_urls } = info;
-  const { rental_price, discount_percent } = specs;
+  const { _id, make, model, specs, images, pricePerDay } = info;
+
+  // Use pricePerDay if available, otherwise fallback to specs.rental_price
+  const rentalPrice = pricePerDay || specs?.rental_price || 0;
+  const discountPercent = specs?.discount_percent || 0;
 
   // Calculate the total price
-  const totalPrice = calTotalPrice(rental_price, discount_percent);
+  const totalPrice = calTotalPrice(rentalPrice, discountPercent);
+
+  // Calculate tax (10%)
+  const tax = totalPrice * 0.1;
+  const finalTotal = totalPrice + tax;
 
   const [promoCode, setPromoCode] = useState("");
 
@@ -32,10 +39,15 @@ const RentalSummary = ({ info }) => {
       {/* body */}
       <div className="flex flex-col gap-5">
         <div className="flex border-b-[1px] border-[#C3D4E966]/40 pb-5 gap-5">
-          <img
-            src={img_urls[1].src}
-            className="flex-1 max-w-[35%] object-contain rounded-[10px]"
-          />
+          {images?.[0] ? (
+            <img
+              src={images[0]}
+              className="flex-1 max-w-[35%] object-contain rounded-[10px]"
+              alt={`${make} ${model}`}
+            />
+          ) : (
+            <div className="flex-1 max-w-[35%] bg-gray-200 border-2 border-dashed rounded-xl dark:bg-gray-700" />
+          )}
           <div className="flex-1 flex flex-col gap-4 lg:gap-3">
             <h2 className="dark:text-slate-300 text-xl font-bold lg:text-3xl lg:text-2xl">
               {`${make} ${model}`}
@@ -55,8 +67,8 @@ const RentalSummary = ({ info }) => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <div className="flex justify-between font-semibold items-center">
+        <div className="flex flex-col gap-3">
+          <div className="flex justify-between font-medium items-center">
             <p className="dark:text-slate-300 text-xs text-secondary-300 lg:text-base">
               Subtotal
             </p>
@@ -64,12 +76,24 @@ const RentalSummary = ({ info }) => {
               ${totalPrice.toFixed(2)}
             </span>
           </div>
-          <div className="flex justify-between font-semibold items-center">
+          <div className="flex justify-between font-medium items-center">
             <p className="dark:text-slate-300 text-xs text-secondary-300 lg:text-base">
-              Tax
+              Tax (10%)
             </p>
-            <span className="dark:text-slate-300 text-base">$0.00</span>
+            <span className="dark:text-slate-300 text-base">
+              ${tax.toFixed(2)}
+            </span>
           </div>
+          {discountPercent > 0 && (
+            <div className="flex justify-between font-medium items-center text-green-600">
+              <p className="dark:text-green-400 text-xs lg:text-base">
+                Discount ({discountPercent}%)
+              </p>
+              <span className="dark:text-green-400">
+                -${(totalPrice * (discountPercent / 100)).toFixed(2)}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* promo code */}
@@ -83,7 +107,7 @@ const RentalSummary = ({ info }) => {
         />
       </div>
       {/* footer */}
-      <div className="flex justify-between">
+      <div className="flex justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
         <div className="flex flex-col">
           <h3 className="dark:text-slate-300 text-base text-secondary-500 font-bold lg:text-xl">
             Total Rental Price
@@ -94,7 +118,7 @@ const RentalSummary = ({ info }) => {
         </div>
         <div className="flex justify-end items-center">
           <h2 className="dark:text-slate-300 font-bold text-xl text-secondary-500 lg:text-3xl">
-            ${totalPrice.toFixed(2)}
+            ${finalTotal.toFixed(2)}
           </h2>
         </div>
       </div>

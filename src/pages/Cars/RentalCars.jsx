@@ -154,7 +154,7 @@ const RentalCars = () => {
       {/* Filters Button (Mobile) and Results Header */}
       <div className="flex justify-between items-center">
         <button
-          className="flex items-center gap-2 border border-primary-500 text-primary-500 py-2 px-4 rounded-lg lg:hidden hover:bg-primary-50 transition-colors"
+          className="flex items-center gap-2 border border-primary-500 text-primary-500 py-2 px-4 rounded-lg lg:hidden hover:bg-primary-50 transition-colors w-full"
           onClick={() => setShowMobileFilters(true)}
         >
           <FilterIcon size={18} />
