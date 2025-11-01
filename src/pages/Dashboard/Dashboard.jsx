@@ -177,14 +177,6 @@ const Dashboard = () => {
                   size={24}
                 />
               </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                  Total Bookings
-                </p>
-                <p className="text-2xl font-semibold text-gray-900 dark:text-white">
-                  {stats?.stats?.bookings || 0}
-                </p>
-              </div>
             </div>
           </div>
         </div>

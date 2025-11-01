@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router";
 import useAuthStore from "../../store/authStore";
-import { User, Heart, BookOpen, Calendar, CreditCard } from "lucide-react";
-import { getFavoriteCars } from "../../services/api";
+import { User, Heart, Car, CreditCard } from "lucide-react";
+import { getFavoriteCars, getUserRentedCars } from "../../services/api";
 import CarCard from "../../components/CarCard/CarCard";
 import SkeletonCard from "../../components/CarCard/SkeletonCard";
 
@@ -10,7 +10,9 @@ const Profile = () => {
   const { user, isAuthenticated, checkAuthStatus } = useAuthStore();
   const navigate = useNavigate();
   const [favorites, setFavorites] = useState([]);
+  const [rentedCars, setRentedCars] = useState([]);
   const [loadingFavorites, setLoadingFavorites] = useState(true);
+  const [loadingRented, setLoadingRented] = useState(true);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -39,6 +41,27 @@ const Profile = () => {
     };
 
     fetchFavorites();
+  }, [isAuthenticated, user]);
+
+  // Fetch rented cars from backend
+  useEffect(() => {
+    const fetchRentedCars = async () => {
+      if (!isAuthenticated || !user) return;
+
+      setLoadingRented(true);
+      try {
+        // Fetch rented cars from backend
+        const rentedCarsData = await getUserRentedCars();
+        setRentedCars(rentedCarsData || []);
+      } catch (error) {
+        console.error("Error fetching rented cars:", error);
+        setRentedCars([]);
+      } finally {
+        setLoadingRented(false);
+      }
+    };
+
+    fetchRentedCars();
   }, [isAuthenticated, user]);
 
   if (!isAuthenticated) {
@@ -70,7 +93,7 @@ const Profile = () => {
 
           <div className="p-6">
             {/* User Info Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 text-center">
                 <Heart className="mx-auto text-red-500" size={24} />
                 <h3 className="mt-2 text-lg font-semibold text-gray-900 dark:text-white">
@@ -88,46 +111,59 @@ const Profile = () => {
               </div>
 
               <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 text-center">
-                <BookOpen className="mx-auto text-blue-500" size={24} />
+                <Car className="mx-auto text-green-500" size={24} />
                 <h3 className="mt-2 text-lg font-semibold text-gray-900 dark:text-white">
-                  Blog Posts
+                  Rented Cars
                 </h3>
-                <p className="text-gray-500 dark:text-gray-400">0 posts</p>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {rentedCars.length} cars
+                </p>
                 <Link
-                  to="/blogs"
+                  to="/profile"
                   className="mt-2 text-primary-500 hover:text-primary-600 text-sm font-medium"
                 >
                   View All
                 </Link>
+              </div>
+            </div>
+
+            {/* Rented Cars Preview */}
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  Your Rented Cars
+                </h2>
               </div>
 
-              <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 text-center">
-                <Calendar className="mx-auto text-green-500" size={24} />
-                <h3 className="mt-2 text-lg font-semibold text-gray-900 dark:text-white">
-                  Bookings
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">0 bookings</p>
-                <Link
-                  to="/bookings"
-                  className="mt-2 text-primary-500 hover:text-primary-600 text-sm font-medium"
-                >
-                  View All
-                </Link>
-              </div>
-
-              <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 text-center">
-                <CreditCard className="mx-auto text-purple-500" size={24} />
-                <h3 className="mt-2 text-lg font-semibold text-gray-900 dark:text-white">
-                  Payments
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">0 payments</p>
-                <Link
-                  to="/payments"
-                  className="mt-2 text-primary-500 hover:text-primary-600 text-sm font-medium"
-                >
-                  View All
-                </Link>
-              </div>
+              {loadingRented ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {Array.from({ length: 4 }).map((_, index) => (
+                    <SkeletonCard key={index} />
+                  ))}
+                </div>
+              ) : rentedCars.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {rentedCars.map((rental) => (
+                    <CarCard key={rental._id} carData={rental.car} />
+                  ))}
+                </div>
+              ) : (
+                <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-8 text-center">
+                  <Car className="mx-auto text-gray-400" size={48} />
+                  <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
+                    No rented cars yet
+                  </h3>
+                  <p className="mt-2 text-gray-500 dark:text-gray-400">
+                    Start exploring our cars and rent your first car
+                  </p>
+                  <Link
+                    to="/cars"
+                    className="mt-4 inline-flex items-center px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600"
+                  >
+                    Browse Cars
+                  </Link>
+                </div>
+              )}
             </div>
 
             {/* Favorite Cars Preview */}
@@ -145,13 +181,13 @@ const Profile = () => {
               </div>
 
               {loadingFavorites ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {Array.from({ length: 4 }).map((_, index) => (
                     <SkeletonCard key={index} />
                   ))}
                 </div>
               ) : favorites.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {favorites.map((car) => (
                     <CarCard key={car._id} carData={car} />
                   ))}

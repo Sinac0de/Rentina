@@ -40,10 +40,10 @@ const Hero = () => {
                 Browse Cars
               </Link>
               <Link
-                to="/booking"
+                to="/blogs"
                 className="bg-white hover:bg-gray-100 text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                Quick Booking
+                Explore Blogs
               </Link>
             </div>
           </div>
