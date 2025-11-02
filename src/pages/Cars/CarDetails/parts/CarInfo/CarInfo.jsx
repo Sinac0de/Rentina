@@ -7,7 +7,7 @@ import { getUserRentedCars } from "src/services/api";
 
 const CarInfo = ({ info }) => {
   const { _id: id, make, model, specs, reviews } = info;
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, isLoading } = useAuthStore();
   const navigate = useNavigate();
   const [isRented, setIsRented] = useState(false);
 
@@ -132,17 +132,21 @@ const CarInfo = ({ info }) => {
             ) : null}
           </div>
 
-          <button
-            onClick={handleRent}
-            disabled={isRented}
-            className={`py-2 px-[20px] h-full rounded text-base lg:py-4 font-medium ${
-              isRented
-                ? "dark:text-slate-200 text-white bg-gray-400 cursor-not-allowed"
-                : "dark:text-slate-200 text-white bg-primary-500 hover:bg-primary-600"
-            }`}
-          >
-            {isRented ? "Rented" : "Rent now"}
-          </button>
+          {!isLoading ? (
+            <button
+              onClick={handleRent}
+              disabled={isRented}
+              className={`py-2 px-[20px] h-full rounded text-base lg:py-4 font-medium ${
+                isRented
+                  ? "dark:text-slate-200 text-white bg-gray-400 cursor-not-allowed"
+                  : "dark:text-slate-200 text-white bg-primary-500 hover:bg-primary-600"
+              }`}
+            >
+              {isRented ? "Rented" : "Rent now"}
+            </button>
+          ) : (
+            <div className="py-2 px-[20px] w-[100px] h-full rounded text-base lg:py-4 font-medium bg-slate-400 animate-pulse"></div>
+          )}
         </div>
       </div>
     </div>

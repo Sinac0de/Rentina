@@ -9,7 +9,12 @@ import HeartOutlined from "../../assets/Icons/HeartOutlined";
 import PeopleIcon from "../../assets/Icons/PeopleIcon";
 import TransmissionIcon from "../../assets/Icons/TransmissionIcon";
 
-const CarCard = ({ isSlideCard = false, carData, isRented = false }) => {
+const CarCard = ({
+  isSlideCard = false,
+  carData,
+  isRented = false,
+  rentalData,
+}) => {
   const location = useLocation();
   const navigate = useNavigate();
   const filterParams = location.search;
@@ -97,6 +102,12 @@ const CarCard = ({ isSlideCard = false, carData, isRented = false }) => {
     navigate(filterParams ? `/payment/${id}${filterParams}` : `/payment/${id}`);
   };
 
+  // Format date for display
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    return new Date(dateString).toLocaleDateString();
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -176,6 +187,26 @@ const CarCard = ({ isSlideCard = false, carData, isRented = false }) => {
           })}
         </div>
       </Link>
+      {/* rental information if available */}
+      {rentalData && (
+        <div className="bg-blue-50 dark:bg-blue-900/30 rounded p-2 mb-2">
+          <div className="text-xs text-blue-800 dark:text-blue-200">
+            <div className="flex justify-between">
+              <span>Rental Period:</span>
+              <span>
+                {formatDate(rentalData.startDate)} -{" "}
+                {formatDate(rentalData.endDate)}
+              </span>
+            </div>
+            <div className="flex justify-between mt-1">
+              <span>Total Price:</span>
+              <span className="font-semibold">
+                ${rentalData.totalPrice?.toFixed(2)}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
       {/* card footer */}
       <div className="flex items-center h-full justify-between">
         {/* price and rating */}

@@ -3,15 +3,15 @@ import { useNavigate } from "react-router";
 import useAuthStore from "../../store/authStore";
 import CarCard from "../../components/CarCard/CarCard";
 import SkeletonCard from "../../components/CarCard/SkeletonCard";
-import { getFavoriteCars, getUserRentedCars } from "../../services/api";
+import { getUserRentedCars } from "../../services/api";
+import { Car } from "lucide-react";
 
-const Favorites = () => {
+const RentedCarsPage = () => {
   const { isAuthenticated, checkAuthStatus } = useAuthStore();
   const navigate = useNavigate();
-  const [favorites, setFavorites] = useState([]);
+  const [rentedCars, setRentedCars] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [rentedCarIds, setRentedCarIds] = useState(new Set());
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -25,42 +25,23 @@ const Favorites = () => {
   }, [checkAuthStatus, navigate]);
 
   useEffect(() => {
-    // fetch user's rented cars
     const fetchRentedCars = async () => {
-      if (!isAuthenticated) return;
-
-      try {
-        const rentedCarsData = await getUserRentedCars();
-        const rentedIds = new Set(
-          rentedCarsData.map((rental) => rental.car._id)
-        );
-        setRentedCarIds(rentedIds);
-      } catch (err) {
-        console.error("Error fetching rented cars:", err);
-      }
-    };
-
-    fetchRentedCars();
-  }, [isAuthenticated]);
-
-  useEffect(() => {
-    const fetchFavorites = async () => {
       if (!isAuthenticated) return;
 
       setLoading(true);
       setError(null);
 
       try {
-        const data = await getFavoriteCars();
-        setFavorites(data || []);
+        const data = await getUserRentedCars();
+        setRentedCars(data || []);
       } catch (err) {
-        setError(err.message || "Failed to fetch favorites");
+        setError(err.message || "Failed to fetch rented cars");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchFavorites();
+    fetchRentedCars();
   }, [isAuthenticated]);
 
   if (!isAuthenticated) {
@@ -76,10 +57,10 @@ const Favorites = () => {
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            My Favorites
+            My Rented Cars
           </h1>
           <p className="mt-2 text-gray-600 dark:text-gray-400">
-            Your saved cars for later
+            Your currently rented and past rented cars
           </p>
         </div>
 
@@ -100,13 +81,14 @@ const Favorites = () => {
               Retry
             </button>
           </div>
-        ) : favorites.length === 0 ? (
+        ) : rentedCars.length === 0 ? (
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-8 text-center">
+            <Car className="mx-auto text-gray-400" size={48} />
             <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-              No favorites yet
+              No rented cars yet
             </h3>
             <p className="mt-2 text-gray-500 dark:text-gray-400">
-              Start adding cars to your favorites list
+              Start renting cars to see them here
             </p>
             <button
               className="mt-4 px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600"
@@ -117,12 +99,14 @@ const Favorites = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 gap-6">
-            {favorites.map((car) => {
-              const isRented = rentedCarIds.has(car._id);
-              return (
-                <CarCard key={car._id} carData={car} isRented={isRented} />
-              );
-            })}
+            {rentedCars.map((rental) => (
+              <CarCard 
+                key={rental._id} 
+                carData={rental.car} 
+                isRented={true}
+                rentalData={rental}
+              />
+            ))}
           </div>
         )}
       </div>
@@ -130,4 +114,4 @@ const Favorites = () => {
   );
 };
 
-export default Favorites;
+export default RentedCarsPage;

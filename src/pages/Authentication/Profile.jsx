@@ -54,9 +54,9 @@ const Profile = () => {
         // Fetch rented cars from backend
         const rentedCarsData = await getUserRentedCars();
         setRentedCars(rentedCarsData || []);
-        
+
         // Create a set of rented car IDs for quick lookup
-        const ids = new Set(rentedCarsData.map(rental => rental.car._id));
+        const ids = new Set(rentedCarsData.map((rental) => rental.car._id));
         setRentedCarIds(ids);
       } catch (error) {
         console.error("Error fetching rented cars:", error);
@@ -127,7 +127,7 @@ const Profile = () => {
                   {rentedCars.length} cars
                 </p>
                 <Link
-                  to="/profile"
+                  to="/rented-cars"
                   className="mt-2 text-primary-500 hover:text-primary-600 text-sm font-medium"
                 >
                   View All
@@ -141,6 +141,13 @@ const Profile = () => {
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                   Your Rented Cars
                 </h2>
+
+                <Link
+                  to="/rented-cars"
+                  className="text-primary-500 hover:text-primary-600 font-medium"
+                >
+                  View All Rented Cars
+                </Link>
               </div>
 
               {loadingRented ? (
@@ -201,7 +208,11 @@ const Profile = () => {
               ) : favorites.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {favorites.map((car) => (
-                    <CarCard key={car._id} carData={car} isRented={rentedCarIds.has(car._id)} />
+                    <CarCard
+                      key={car._id}
+                      carData={car}
+                      isRented={rentedCarIds.has(car._id)}
+                    />
                   ))}
                 </div>
               ) : (

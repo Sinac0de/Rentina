@@ -19,10 +19,12 @@ const SearchResults = () => {
     // fetch user's rented cars
     const fetchRentedCars = async () => {
       if (!isAuthenticated) return;
-      
+
       try {
         const rentedCarsData = await getUserRentedCars();
-        const rentedIds = new Set(rentedCarsData.map(rental => rental.car._id));
+        const rentedIds = new Set(
+          rentedCarsData.map((rental) => rental.car._id)
+        );
         setRentedCarIds(rentedIds);
       } catch (err) {
         console.error("Error fetching rented cars:", err);
@@ -170,7 +172,13 @@ const SearchResults = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {results.cars.map((car) => {
                     const isRented = rentedCarIds.has(car._id);
-                    return <CarCard key={car._id} carData={car} isRented={isRented} />;
+                    return (
+                      <CarCard
+                        key={car._id}
+                        carData={car}
+                        isRented={isRented}
+                      />
+                    );
                   })}
                 </div>
               ) : (

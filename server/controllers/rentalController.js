@@ -20,28 +20,29 @@ const createRental = asyncHandler(async (req, res) => {
 
   // Validate required fields with detailed error messages
   const missingFields = [];
-  
-  if (!carId) missingFields.push('carId');
-  if (!startDate) missingFields.push('startDate');
-  if (!endDate) missingFields.push('endDate');
-  if (!pickupLocation) missingFields.push('pickupLocation');
-  if (!dropoffLocation) missingFields.push('dropoffLocation');
-  if (totalPrice === undefined || totalPrice === null) missingFields.push('totalPrice');
-  if (!paymentMethod) missingFields.push('paymentMethod');
+
+  if (!carId) missingFields.push("carId");
+  if (!startDate) missingFields.push("startDate");
+  if (!endDate) missingFields.push("endDate");
+  if (!pickupLocation) missingFields.push("pickupLocation");
+  if (!dropoffLocation) missingFields.push("dropoffLocation");
+  if (totalPrice === undefined || totalPrice === null)
+    missingFields.push("totalPrice");
+  if (!paymentMethod) missingFields.push("paymentMethod");
   if (!billingInfo) {
-    missingFields.push('billingInfo');
+    missingFields.push("billingInfo");
   } else {
     // Check billingInfo fields
-    if (!billingInfo.name) missingFields.push('billingInfo.name');
-    if (!billingInfo.address) missingFields.push('billingInfo.address');
-    if (!billingInfo.phoneNumber) missingFields.push('billingInfo.phoneNumber');
-    if (!billingInfo.townCity) missingFields.push('billingInfo.townCity');
+    if (!billingInfo.name) missingFields.push("billingInfo.name");
+    if (!billingInfo.address) missingFields.push("billingInfo.address");
+    if (!billingInfo.phoneNumber) missingFields.push("billingInfo.phoneNumber");
+    if (!billingInfo.townCity) missingFields.push("billingInfo.townCity");
   }
 
   if (missingFields.length > 0) {
     return res.status(400).json({
       success: false,
-      error: `Missing required fields: ${missingFields.join(', ')}`,
+      error: `Missing required fields: ${missingFields.join(", ")}`,
     });
   }
 
@@ -60,7 +61,7 @@ const createRental = asyncHandler(async (req, res) => {
     });
   }
 
-  if (typeof totalPrice !== 'number' || totalPrice < 0) {
+  if (typeof totalPrice !== "number" || totalPrice < 0) {
     return res.status(400).json({
       success: false,
       error: "totalPrice must be a valid positive number",

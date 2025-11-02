@@ -15,6 +15,7 @@ import Blog from "./pages/Blog/Blog";
 import CarDetails from "./pages/Cars/CarDetails/CarDetails";
 import Cars from "./pages/Cars/Cars";
 import RentalCars from "./pages/Cars/RentalCars";
+import RentedCarsPage from "./pages/Cars/RentedCarsPage";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import ErrorPage from "./pages/Error/ErrorPage";
 import NotFoundPage from "./pages/Error/NotFoundPage";
@@ -39,6 +40,7 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="profile/edit" element={<EditProfile />} />
           <Route path="favorites" element={<Favorites />} />
+          <Route path="rented-cars" element={<RentedCarsPage />} />
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:id" element={<BlogDetails />} />
           <Route path="search" element={<SearchResults />} />

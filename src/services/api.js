@@ -315,23 +315,26 @@ export async function createRental(rentalData) {
     console.error("Error response:", error.response?.data);
     console.error("Error status:", error.response?.status);
     console.error("Error headers:", error.response?.headers);
-    
+
     // If it's a 401 error, it might be an authentication issue
     if (error.response?.status === 401) {
       throw { message: "Authentication required. Please log in again." };
     }
-    
+
     // If it's a 400 error, it might be a validation issue
     if (error.response?.status === 400) {
-      const errorMessage = error.response.data?.error || "Invalid data provided.";
+      const errorMessage =
+        error.response.data?.error || "Invalid data provided.";
       throw { message: `Validation Error: ${errorMessage}` };
     }
-    
+
     // If it's a 404 error, the car might not exist
     if (error.response?.status === 404) {
-      throw { message: "Car not found. Please try again with a different car." };
+      throw {
+        message: "Car not found. Please try again with a different car.",
+      };
     }
-    
+
     throw error.response?.data || { message: "Failed to create rental" };
   }
 }
