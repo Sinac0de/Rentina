@@ -15,7 +15,16 @@ export const AnimatedThemeToggler = ({
 
   useEffect(() => {
     const updateTheme = () => {
-      setIsDark(document.documentElement.classList.contains("dark"));
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        setIsDark(savedTheme === "dark");
+        document.documentElement.classList.toggle("dark", savedTheme === "dark");
+      } else {
+        // Check system preference if no saved theme
+        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        setIsDark(systemPrefersDark);
+        document.documentElement.classList.toggle("dark", systemPrefersDark);
+      }
     };
 
     updateTheme();
