@@ -5,7 +5,7 @@ import { getBlogCategories, getBlogs } from "../../services/api";
 import BlogCard from "./BlogCard";
 import SkeletonBlogCard from "./SkeletonBlogCard";
 
-const Blogs = () => {
+const Blog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -174,7 +174,7 @@ const Blogs = () => {
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, index) => (
               <SkeletonBlogCard key={index} />
             ))}
@@ -207,7 +207,7 @@ const Blogs = () => {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {blogs.map((blog) => (
                 <BlogCard key={blog._id} blog={blog} />
               ))}
@@ -230,4 +230,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default Blog;

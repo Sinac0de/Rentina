@@ -10,8 +10,8 @@ import EditProfile from "./pages/Authentication/EditProfile";
 import Profile from "./pages/Authentication/Profile";
 import Signin from "./pages/Authentication/Signin";
 import Signup from "./pages/Authentication/Signup";
-import BlogDetails from "./pages/Blogs/BlogDetails";
-import Blogs from "./pages/Blogs/Blogs";
+import BlogDetails from "./pages/Blog/BlogDetails";
+import Blog from "./pages/Blog/Blog";
 import CarDetails from "./pages/Cars/CarDetails/CarDetails";
 import Cars from "./pages/Cars/Cars";
 import RentalCars from "./pages/Cars/RentalCars";
@@ -39,8 +39,8 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="profile/edit" element={<EditProfile />} />
           <Route path="favorites" element={<Favorites />} />
-          <Route path="blogs" element={<Blogs />} />
-          <Route path="blogs/:id" element={<BlogDetails />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="blog/:id" element={<BlogDetails />} />
           <Route path="search" element={<SearchResults />} />
           <Route path="dashboard" element={<Dashboard />} />
         </Route>

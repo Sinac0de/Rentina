@@ -7,8 +7,8 @@ import TestimonialsSection from "src/pages/Home/Parts/TestimonialsSection/Testim
 import TrustIndicatorsSection from "src/pages/Home/Parts/TrustIndicatorsSection/TrustIndicatorsSection";
 import ValuePropositionsSection from "src/pages/Home/Parts/ValuePropositionsSection/ValuePropositionsSection";
 import { getFeaturedBlogs } from "src/services/api";
-import BlogCard from "../../Blogs/BlogCard";
-import SkeletonBlogCard from "../../Blogs/SkeletonBlogCard";
+import BlogCard from "../../Blog/BlogCard";
+import SkeletonBlogCard from "../../Blog/SkeletonBlogCard";
 import Hero from "./Hero";
 
 const Home = () => {
@@ -55,7 +55,7 @@ const Home = () => {
             Featured Blog Posts
           </h2>
           <Link
-            to="/blogs"
+            to="/blog"
             className="text-primary-500 hover:text-primary-600 font-medium"
           >
             View All Posts
@@ -83,7 +83,7 @@ const Home = () => {
               Check back later for updates
             </p>
             <Link
-              to="/blogs"
+              to="/blog"
               className="mt-4 inline-flex items-center px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600"
             >
               Browse All Blog Posts

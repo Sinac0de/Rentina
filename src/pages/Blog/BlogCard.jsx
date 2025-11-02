@@ -9,7 +9,7 @@ const BlogCard = ({ blog }) => {
     >
       {image ? (
         <Link
-          to={`/blogs/${_id}`}
+          to={`/blog/${_id}`}
           className="text-primary-500 hover:text-primary-600 font-medium"
         >
           <img src={image} alt={title} className="w-full h-48 object-cover" />
@@ -24,7 +24,7 @@ const BlogCard = ({ blog }) => {
             {category}
           </span>
         </div>
-        <Link to={`/blogs/${_id}`}>
+        <Link to={`/blog/${_id}`}>
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
             {title}
           </h3>
@@ -35,7 +35,7 @@ const BlogCard = ({ blog }) => {
         </p>
         <div className="flex items-end justify-between">
           <Link
-            to={`/blogs/${_id}`}
+            to={`/blog/${_id}`}
             className="text-primary-500 hover:text-primary-600 font-medium"
           >
             Read more

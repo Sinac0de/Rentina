@@ -287,7 +287,7 @@ const Dashboard = () => {
               </span>
             </button>
             <button
-              onClick={() => navigate("/blogs")}
+              onClick={() => navigate("/blog")}
               className="flex flex-col items-center justify-center p-6 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
             >
               <BookOpen

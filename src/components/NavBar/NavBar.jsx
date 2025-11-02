@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import ProfileIcon from "../../assets/Icons/ProfileIcon";
 import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
 import useAuthStore from "../../store/authStore";
@@ -43,6 +43,16 @@ const NavBar = () => {
   return (
     <>
       <div className="flex items-center gap-5 h-fit">
+        <NavLink
+          to="/blog"
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue-600 font-bold border-b-2 border-blue-600"
+              : "text-gray-600 hover:text-blue-600"
+          }
+        >
+          Blog
+        </NavLink>
         <AnimatedThemeToggler
           className={
             "dark:border-slate-500 p-2 border rounded-full cursor-pointer text-[#596780]"

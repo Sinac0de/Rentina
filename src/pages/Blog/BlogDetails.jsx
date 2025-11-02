@@ -83,7 +83,7 @@ const BlogDetails = () => {
             </p>
             <button
               className="mt-4 px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600"
-              onClick={() => navigate("/blogs")}
+              onClick={() => navigate("/blog")}
             >
               Browse All Blogs
             </button>
@@ -97,7 +97,7 @@ const BlogDetails = () => {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <Link
-          to="/blogs"
+          to="/blog"
           className="inline-flex items-center text-primary-500 hover:text-primary-600 mb-6"
         >
           ← Back to Blogs
