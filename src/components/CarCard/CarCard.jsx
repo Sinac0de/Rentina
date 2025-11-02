@@ -231,7 +231,7 @@ const CarCard = ({
           disabled={isRented}
           className={`py-2 px-[20px] rounded text-xs font-medium ${
             isRented
-              ? "dark:text-secondary-200 text-white bg-gray-400 cursor-not-allowed"
+              ? "dark:text-slate-600 text-white bg-gray-400 cursor-not-allowed"
               : "dark:text-secondary-200 text-white bg-primary-500 hover:bg-primary-600"
           }`}
         >
