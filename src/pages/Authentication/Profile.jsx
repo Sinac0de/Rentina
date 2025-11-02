@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router";
 import useAuthStore from "../../store/authStore";
-import { User, Heart, Car, CreditCard } from "lucide-react";
+import { User, Heart, Car } from "lucide-react";
 import { getFavoriteCars, getUserRentedCars } from "../../services/api";
 import CarCard from "../../components/CarCard/CarCard";
 import SkeletonCard from "../../components/CarCard/SkeletonCard";
@@ -13,6 +13,7 @@ const Profile = () => {
   const [rentedCars, setRentedCars] = useState([]);
   const [loadingFavorites, setLoadingFavorites] = useState(true);
   const [loadingRented, setLoadingRented] = useState(true);
+  const [rentedCarIds, setRentedCarIds] = useState(new Set());
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -53,9 +54,14 @@ const Profile = () => {
         // Fetch rented cars from backend
         const rentedCarsData = await getUserRentedCars();
         setRentedCars(rentedCarsData || []);
+        
+        // Create a set of rented car IDs for quick lookup
+        const ids = new Set(rentedCarsData.map(rental => rental.car._id));
+        setRentedCarIds(ids);
       } catch (error) {
         console.error("Error fetching rented cars:", error);
         setRentedCars([]);
+        setRentedCarIds(new Set());
       } finally {
         setLoadingRented(false);
       }
@@ -71,6 +77,8 @@ const Profile = () => {
       </div>
     );
   }
+
+  console.log(rentedCars);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
@@ -144,7 +152,11 @@ const Profile = () => {
               ) : rentedCars.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {rentedCars.map((rental) => (
-                    <CarCard key={rental._id} carData={rental.car} />
+                    <CarCard
+                      key={rental._id}
+                      carData={rental.car}
+                      isRented={true}
+                    />
                   ))}
                 </div>
               ) : (
@@ -189,7 +201,7 @@ const Profile = () => {
               ) : favorites.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {favorites.map((car) => (
-                    <CarCard key={car._id} carData={car} />
+                    <CarCard key={car._id} carData={car} isRented={rentedCarIds.has(car._id)} />
                   ))}
                 </div>
               ) : (

@@ -9,7 +9,7 @@ import HeartOutlined from "../../assets/Icons/HeartOutlined";
 import PeopleIcon from "../../assets/Icons/PeopleIcon";
 import TransmissionIcon from "../../assets/Icons/TransmissionIcon";
 
-const CarCard = ({ isSlideCard = false, carData }) => {
+const CarCard = ({ isSlideCard = false, carData, isRented = false }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const filterParams = location.search;
@@ -197,9 +197,14 @@ const CarCard = ({ isSlideCard = false, carData }) => {
         </div>
         <button
           onClick={handleRent}
-          className="dark:text-secondary-200 text-white bg-primary-500 py-2 px-[20px] rounded text-xs font-medium"
+          disabled={isRented}
+          className={`py-2 px-[20px] rounded text-xs font-medium ${
+            isRented
+              ? "dark:text-secondary-200 text-white bg-gray-400 cursor-not-allowed"
+              : "dark:text-secondary-200 text-white bg-primary-500 hover:bg-primary-600"
+          }`}
         >
-          Rent now
+          {isRented ? "Rented" : "Rent now"}
         </button>
       </div>
     </motion.div>

@@ -1,7 +1,8 @@
 import { Link } from "react-router";
 import CarCard from "../CarCard/CarCard";
 import { useEffect, useState } from "react";
-import { getCars } from "src/services/api";
+import { getCars, getUserRentedCars } from "src/services/api";
+import useAuthStore from "src/store/authStore";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,6 +15,27 @@ import SkeletonCard from "../CarCard/SkeletonCard";
 const Slider = ({ title }) => {
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [rentedCarIds, setRentedCarIds] = useState(new Set());
+  const { isAuthenticated } = useAuthStore();
+
+  useEffect(() => {
+    // fetch user's rented cars
+    const fetchRentedCars = async () => {
+      if (!isAuthenticated) return;
+
+      try {
+        const rentedCarsData = await getUserRentedCars();
+        const rentedIds = new Set(
+          rentedCarsData.map((rental) => rental.car._id)
+        );
+        setRentedCarIds(rentedIds);
+      } catch (err) {
+        console.error("Error fetching rented cars:", err);
+      }
+    };
+
+    fetchRentedCars();
+  }, [isAuthenticated]);
 
   useEffect(() => {
     // fetch all cars
@@ -82,9 +104,10 @@ const Slider = ({ title }) => {
       >
         {cars.slice(0, 8).map((car) => {
           // Changed from slice(24, 32) to slice(0, 8)
+          const isRented = rentedCarIds.has(car._id);
           return (
             <SwiperSlide key={car._id}>
-              <CarCard isSlideCard carData={car} />
+              <CarCard isSlideCard carData={car} isRented={isRented} />
             </SwiperSlide>
           );
         })}

@@ -1,13 +1,15 @@
 import RatingStars from "src/components/common/RatingStars";
-import { Link } from "react-router";
 import { calTotalPrice } from "src/utils/utils";
 import useAuthStore from "src/store/authStore";
 import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { getUserRentedCars } from "src/services/api";
 
 const CarInfo = ({ info }) => {
   const { _id: id, make, model, specs, reviews } = info;
   const { isAuthenticated } = useAuthStore();
   const navigate = useNavigate();
+  const [isRented, setIsRented] = useState(false);
 
   const {
     rental_price,
@@ -18,6 +20,25 @@ const CarInfo = ({ info }) => {
     transmission,
     seats,
   } = specs;
+
+  // Check if car is Rented by the user
+  useEffect(() => {
+    const checkIfRented = async () => {
+      if (!isAuthenticated) return;
+
+      try {
+        const rentedCarsData = await getUserRentedCars();
+        const isCarRented = rentedCarsData.some(
+          (rental) => rental.car._id === id
+        );
+        setIsRented(isCarRented);
+      } catch (err) {
+        console.error("Error checking if car is rented:", err);
+      }
+    };
+
+    checkIfRented();
+  }, [isAuthenticated, id]);
 
   // Calculate the total price
   const totalPrice = calTotalPrice(rental_price, discount_percent);
@@ -113,9 +134,14 @@ const CarInfo = ({ info }) => {
 
           <button
             onClick={handleRent}
-            className="dark:text-slate-200 text-white bg-primary-500 py-2 px-[20px] h-full rounded text-base lg:py-4 font-medium"
+            disabled={isRented}
+            className={`py-2 px-[20px] h-full rounded text-base lg:py-4 font-medium ${
+              isRented
+                ? "dark:text-slate-200 text-white bg-gray-400 cursor-not-allowed"
+                : "dark:text-slate-200 text-white bg-primary-500 hover:bg-primary-600"
+            }`}
           >
-            Rent now
+            {isRented ? "Rented" : "Rent now"}
           </button>
         </div>
       </div>

@@ -118,7 +118,7 @@ const createRental = asyncHandler(async (req, res) => {
 // @access  Private
 const getUserRentals = asyncHandler(async (req, res) => {
   const rentals = await Rental.find({ user: req.user.id })
-    .populate("car", "make model year images specs")
+    .populate("car", "make model year images specs thumbnail_img")
     .sort("-createdAt");
 
   res.status(200).json({

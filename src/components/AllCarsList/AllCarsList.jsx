@@ -1,11 +1,12 @@
 import { ArrowRightIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
-import { getCars } from "src/services/api";
+import { getCars, getUserRentedCars } from "src/services/api";
 import { scrollToTopFunction } from "src/utils/utils";
 import CarCard from "../CarCard/CarCard";
 import SkeletonCard from "../CarCard/SkeletonCard";
 import Pagination from "../Pagination/Pagination";
+import useAuthStore from "src/store/authStore";
 
 const AllCarsList = ({ isCompact, hasHeader, header }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -13,12 +14,33 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [totalCars, setTotalCars] = useState(0);
+  const [rentedCarIds, setRentedCarIds] = useState(new Set());
+  const { isAuthenticated } = useAuthStore();
 
   // Get page from URL or default to 1
   const currentPage = parseInt(searchParams.get("page")) || 1;
   const pageSize = isCompact ? 8 : 12;
 
   /* === UseEffects === */
+  /*--- fetch user's rented cars ---*/
+  useEffect(() => {
+    const fetchRentedCars = async () => {
+      if (!isAuthenticated) return;
+
+      try {
+        const rentedCarsData = await getUserRentedCars();
+        const rentedIds = new Set(
+          rentedCarsData.map((rental) => rental.car._id)
+        );
+        setRentedCarIds(rentedIds);
+      } catch (err) {
+        console.error("Error fetching rented cars:", err);
+      }
+    };
+
+    fetchRentedCars();
+  }, [isAuthenticated]);
+
   /*--- fetch all cars with pagination and filters ---*/
   useEffect(() => {
     async function fetchCars() {
@@ -152,7 +174,8 @@ const AllCarsList = ({ isCompact, hasHeader, header }) => {
       {/* car cards */}
       <div className="grid grid-flow-row gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 ">
         {cars.map((car) => {
-          return <CarCard key={car._id} carData={car} />;
+          const isRented = rentedCarIds.has(car._id);
+          return <CarCard key={car._id} carData={car} isRented={isRented} />;
         })}
       </div>
 

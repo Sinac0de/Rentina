@@ -201,11 +201,11 @@ const Payment = () => {
     // Get current form values for debugging
     const formData = getValues();
     console.log("Current form data:", formData);
-    
+
     const isValid = await trigger();
     console.log("Form validation result:", isValid);
     console.log("Form errors:", errors);
-    
+
     if (isValid) {
       if (activeStep === "billing") {
         setActiveStep("rental");
@@ -215,12 +215,14 @@ const Payment = () => {
     } else {
       // Log specific validation errors
       console.log("Validation failed for step:", activeStep);
-      Object.keys(errors).forEach(key => {
+      Object.keys(errors).forEach((key) => {
         console.log(`Field ${key} error:`, errors[key]?.message);
       });
-      
+
       // Also show a more user-friendly error message
-      setSubmitError("Please correct the errors in the form before continuing.");
+      setSubmitError(
+        "Please correct the errors in the form before continuing."
+      );
     }
   };
 
@@ -239,14 +241,17 @@ const Payment = () => {
     try {
       // Log the incoming data for debugging
       console.log("Form data received in onSubmit:", data);
-      
+
       // Also get the latest form values directly
       const formData = getValues();
       console.log("Current form values from getValues():", formData);
 
       // Ensure we're on the payment step
       if (activeStep !== "payment") {
-        console.log("Form submitted but not on payment step, current step:", activeStep);
+        console.log(
+          "Form submitted but not on payment step, current step:",
+          activeStep
+        );
         throw new Error("Please complete all steps before submitting payment");
       }
 
@@ -257,50 +262,50 @@ const Payment = () => {
 
       // Simplified validation - check each field individually with better error messages
       console.log("Starting validation checks...");
-      
+
       // Billing info validation
-      if (!formData.name || formData.name.trim() === '') {
+      if (!formData.name || formData.name.trim() === "") {
         throw new Error("Full Name is required");
       }
-      
-      if (!formData.address || formData.address.trim() === '') {
+
+      if (!formData.address || formData.address.trim() === "") {
         throw new Error("Address is required");
       }
-      
-      if (!formData.phoneNumber || formData.phoneNumber.trim() === '') {
+
+      if (!formData.phoneNumber || formData.phoneNumber.trim() === "") {
         throw new Error("Phone Number is required");
       }
-      
-      if (!formData.townCity || formData.townCity.trim() === '') {
+
+      if (!formData.townCity || formData.townCity.trim() === "") {
         throw new Error("Town/City is required");
       }
-      
+
       // Rental info validation
-      if (!formData.pickLocation || formData.pickLocation.trim() === '') {
+      if (!formData.pickLocation || formData.pickLocation.trim() === "") {
         throw new Error("Pick-up Location is required");
       }
-      
-      if (!formData.pickDate || formData.pickDate.trim() === '') {
+
+      if (!formData.pickDate || formData.pickDate.trim() === "") {
         throw new Error("Pick-up Date is required");
       }
-      
-      if (!formData.pickTime || formData.pickTime.trim() === '') {
+
+      if (!formData.pickTime || formData.pickTime.trim() === "") {
         throw new Error("Pick-up Time is required");
       }
-      
-      if (!formData.dropLocation || formData.dropLocation.trim() === '') {
+
+      if (!formData.dropLocation || formData.dropLocation.trim() === "") {
         throw new Error("Drop-off Location is required");
       }
-      
-      if (!formData.dropDate || formData.dropDate.trim() === '') {
+
+      if (!formData.dropDate || formData.dropDate.trim() === "") {
         throw new Error("Drop-off Date is required");
       }
-      
-      if (!formData.dropTime || formData.dropTime.trim() === '') {
+
+      if (!formData.dropTime || formData.dropTime.trim() === "") {
         throw new Error("Drop-off Time is required");
       }
-      
-      if (!formData.paymentMethod || formData.paymentMethod.trim() === '') {
+
+      if (!formData.paymentMethod || formData.paymentMethod.trim() === "") {
         throw new Error("Payment Method is required");
       }
 
@@ -308,25 +313,29 @@ const Payment = () => {
 
       // Calculate total price - handle different data structures
       // Some cars use pricePerDay, others use specs.rental_price
-      const rentalPrice = 
-        carData.pricePerDay || 
-        carData.specs?.rental_price || 
-        carData.specs?.pricePerDay || 
+      const rentalPrice =
+        carData.pricePerDay ||
+        carData.specs?.rental_price ||
+        carData.specs?.pricePerDay ||
         0;
-      
-      const discountPercent = 
-        carData.specs?.discount_percent || 
-        carData.discountPercent || 
-        0;
-      
-      const totalPrice = parseFloat((rentalPrice * (1 - discountPercent / 100)).toFixed(2));
+
+      const discountPercent =
+        carData.specs?.discount_percent || carData.discountPercent || 0;
+
+      const totalPrice = parseFloat(
+        (rentalPrice * (1 - discountPercent / 100)).toFixed(2)
+      );
 
       // Format phone number (remove any non-digit characters)
-      const formattedPhoneNumber = formData.phoneNumber.replace(/\D/g, '');
+      const formattedPhoneNumber = formData.phoneNumber.replace(/\D/g, "");
 
       // Combine date and time
-      const pickupDateTime = new Date(`${formData.pickDate}T${formData.pickTime}`);
-      const dropoffDateTime = new Date(`${formData.dropDate}T${formData.dropTime}`);
+      const pickupDateTime = new Date(
+        `${formData.pickDate}T${formData.pickTime}`
+      );
+      const dropoffDateTime = new Date(
+        `${formData.dropDate}T${formData.dropTime}`
+      );
 
       // Validate dates
       if (isNaN(pickupDateTime.getTime()) || isNaN(dropoffDateTime.getTime())) {
@@ -440,24 +449,19 @@ const Payment = () => {
   }
 
   // Calculate pricing - handle different data structures
-  const rentalPrice = 
-    carData.pricePerDay || 
-    carData.specs?.rental_price || 
-    carData.specs?.pricePerDay || 
+  const rentalPrice =
+    carData.pricePerDay ||
+    carData.specs?.rental_price ||
+    carData.specs?.pricePerDay ||
     0;
-  
-  const discountPercent = 
-    carData.specs?.discount_percent || 
-    carData.discountPercent || 
-    0;
-  
+
+  const discountPercent =
+    carData.specs?.discount_percent || carData.discountPercent || 0;
+
   const subtotal = rentalPrice;
   const discount = subtotal * (discountPercent / 100);
   const tax = (subtotal - discount) * 0.1;
   const total = subtotal - discount + tax;
-
-  // Fallback for year if not present
-  const carYear = carData.year || carData.specs?.year || 'N/A';
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 dark:bg-gray-900">
@@ -469,7 +473,8 @@ const Payment = () => {
               Complete Your Rental
             </h1>
             <p className="mt-2 text-gray-600 dark:text-gray-400">
-              Secure checkout for your {carData.make} {carData.model} ({carYear})
+              Secure checkout for your {carData.make} {carData.model} (
+              {carData.specs.type})
             </p>
           </div>
 
@@ -936,11 +941,11 @@ const Payment = () => {
                   <div className="space-y-4">
                     {/* Car Info */}
                     <div className="flex items-center space-x-4">
-                      {carData.images?.[0] ? (
+                      {carData.thumbnail_img ? (
                         <img
-                          src={carData.images[0]}
+                          src={carData.thumbnail_img}
                           alt={`${carData.make} ${carData.model}`}
-                          className="w-16 h-16 object-cover rounded-md"
+                          className="w-24 h-w-24 object-contain rounded-md"
                         />
                       ) : (
                         <div className="w-16 h-16 bg-gray-200 border-2 border-dashed rounded-xl dark:bg-gray-700" />
@@ -949,7 +954,9 @@ const Payment = () => {
                         <h3 className="font-semibold">
                           {carData.make} {carData.model}
                         </h3>
-                        <p className="text-sm text-gray-500">{carYear}</p>
+                        <p className="text-sm text-gray-500">
+                          {carData.specs.type}
+                        </p>
                       </div>
                     </div>
 

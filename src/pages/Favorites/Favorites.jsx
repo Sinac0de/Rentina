@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import useAuthStore from "../../store/authStore";
 import CarCard from "../../components/CarCard/CarCard";
 import SkeletonCard from "../../components/CarCard/SkeletonCard";
-import { getFavoriteCars } from "../../services/api";
+import { getFavoriteCars, getUserRentedCars } from "../../services/api";
 
 const Favorites = () => {
   const { isAuthenticated, checkAuthStatus } = useAuthStore();
@@ -11,6 +11,7 @@ const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [rentedCarIds, setRentedCarIds] = useState(new Set());
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -22,6 +23,23 @@ const Favorites = () => {
 
     checkAuth();
   }, [checkAuthStatus, navigate]);
+
+  useEffect(() => {
+    // fetch user's rented cars
+    const fetchRentedCars = async () => {
+      if (!isAuthenticated) return;
+      
+      try {
+        const rentedCarsData = await getUserRentedCars();
+        const rentedIds = new Set(rentedCarsData.map(rental => rental.car._id));
+        setRentedCarIds(rentedIds);
+      } catch (err) {
+        console.error("Error fetching rented cars:", err);
+      }
+    };
+
+    fetchRentedCars();
+  }, [isAuthenticated]);
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -97,9 +115,10 @@ const Favorites = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 gap-6">
-            {favorites.map((car) => (
-              <CarCard key={car._id} carData={car} />
-            ))}
+            {favorites.map((car) => {
+              const isRented = rentedCarIds.has(car._id);
+              return <CarCard key={car._id} carData={car} isRented={isRented} />;
+            })}
           </div>
         )}
       </div>

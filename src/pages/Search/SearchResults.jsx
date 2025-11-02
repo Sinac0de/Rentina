@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import CarCard from "../../components/CarCard/CarCard";
 import SkeletonCard from "../../components/CarCard/SkeletonCard";
-import { globalSearch } from "../../services/api";
+import { globalSearch, getUserRentedCars } from "../../services/api";
 import BlogCard from "../Blog/BlogCard";
+import useAuthStore from "../../store/authStore";
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
@@ -11,6 +12,25 @@ const SearchResults = () => {
   const [results, setResults] = useState({ cars: [], blogs: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [rentedCarIds, setRentedCarIds] = useState(new Set());
+  const { isAuthenticated } = useAuthStore();
+
+  useEffect(() => {
+    // fetch user's rented cars
+    const fetchRentedCars = async () => {
+      if (!isAuthenticated) return;
+      
+      try {
+        const rentedCarsData = await getUserRentedCars();
+        const rentedIds = new Set(rentedCarsData.map(rental => rental.car._id));
+        setRentedCarIds(rentedIds);
+      } catch (err) {
+        console.error("Error fetching rented cars:", err);
+      }
+    };
+
+    fetchRentedCars();
+  }, [isAuthenticated]);
 
   useEffect(() => {
     const performSearch = async () => {
@@ -148,9 +168,10 @@ const SearchResults = () => {
               </div>
               {results.cars.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {results.cars.map((car) => (
-                    <CarCard key={car._id} carData={car} />
-                  ))}
+                  {results.cars.map((car) => {
+                    const isRented = rentedCarIds.has(car._id);
+                    return <CarCard key={car._id} carData={car} isRented={isRented} />;
+                  })}
                 </div>
               ) : (
                 <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-8 text-center">

@@ -68,11 +68,11 @@ const PaymentSuccess = () => {
               <div className="space-y-6">
                 {/* Car Info */}
                 <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg dark:bg-gray-800">
-                  {car.images?.[0] ? (
+                  {car.thumbnail_img ? (
                     <img
-                      src={car.images[0]}
+                      src={car.thumbnail_img}
                       alt={`${car.make} ${car.model}`}
-                      className="w-20 h-20 object-cover rounded-md"
+                      className="w-40 h-w-40 object-contain rounded-md"
                     />
                   ) : (
                     <div className="w-20 h-20 bg-gray-200 border-2 border-dashed rounded-xl dark:bg-gray-700" />
@@ -156,7 +156,7 @@ const PaymentSuccess = () => {
                     View My Rentals
                   </Button>
                   <Button
-                    variant="outline"
+                    variant="secondary"
                     onClick={() => navigate("/cars")}
                     className="flex-1"
                   >
@@ -166,11 +166,6 @@ const PaymentSuccess = () => {
               </div>
             </CardContent>
           </Card>
-
-          <div className="mt-8 text-center text-sm text-gray-500">
-            <p>A confirmation email has been sent to your email address.</p>
-            <p className="mt-2">Need help? Contact our support team.</p>
-          </div>
         </div>
       </div>
     </div>
