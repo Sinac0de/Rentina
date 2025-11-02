@@ -24,6 +24,10 @@ import Home from "./pages/Home/Parts/Home";
 import Payment from "./pages/Payment/Payment";
 import PaymentSuccess from "./pages/Payment/PaymentSuccess";
 import SearchResults from "./pages/Search/SearchResults";
+// Static pages
+import AboutUs from "./pages/Static/AboutUs";
+import PrivacyPolicy from "./pages/Static/PrivacyPolicy";
+import TermsConditions from "./pages/Static/TermsConditions";
 
 function App() {
   const router = createBrowserRouter(
@@ -45,6 +49,10 @@ function App() {
           <Route path="blog/:id" element={<BlogDetails />} />
           <Route path="search" element={<SearchResults />} />
           <Route path="dashboard" element={<Dashboard />} />
+          {/* Static pages */}
+          <Route path="about" element={<AboutUs />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="terms-conditions" element={<TermsConditions />} />
         </Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />

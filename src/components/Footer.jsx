@@ -1,25 +1,37 @@
 import { Link } from "react-router";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
+  const product = [
+    { id: 1, name: "Cars", path: "/cars" },
+    { id: 2, name: "Blog", path: "/blog" },
+  ];
+
   const about = [
-    { id: 1, name: "How it works", path: "." },
-    { id: 2, name: "Featured", path: "." },
-    { id: 3, name: "Partnership", path: "." },
-    { id: 4, name: "Bussiness Relation", path: "." },
+    { id: 1, name: "About Us", path: "/about" },
+    { id: 2, name: "Privacy", path: "/privacy-policy" },
+    { id: 3, name: "Terms", path: "/terms-conditions" },
   ];
 
   const socials = [
-    { id: 1, name: "Discord", path: "." },
-    { id: 2, name: "Instagram", path: "." },
-    { id: 3, name: "Twitter", path: "." },
-    { id: 4, name: "Facebook", path: "." },
-  ];
-
-  const community = [
-    { id: 1, name: "Events", path: "." },
-    { id: 2, name: "Blog", path: "." },
-    { id: 3, name: "Podcast", path: "." },
-    { id: 4, name: "Invite a friend", path: "." },
+    {
+      id: 1,
+      name: "GitHub",
+      href: "https://github.com/Sinac0de",
+      icon: FaGithub,
+    },
+    {
+      id: 2,
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/sina-moradian-198836223/",
+      icon: FaLinkedin,
+    },
+    {
+      id: 3,
+      name: "Email",
+      href: "mailto:sinacodes@gmail.com",
+      icon: FaEnvelope,
+    },
   ];
 
   return (
@@ -35,16 +47,46 @@ const Footer = () => {
             business.
           </p>
         </div>
-
         {/* Links */}
         <div className="flex gap-10 flex-wrap justify-between">
+          {/*---Product---*/}
+          <div className="flex flex-col gap-3 lg:gap-5 lg:w-40">
+            <h2 className="dark:text-slate-500 mb-2 text-secondary-500 font-semibold lg:text-xl">
+              Product
+            </h2>
+            {product.map((item) => {
+              return item.path === "." ? (
+                <span
+                  key={item.id}
+                  className="text-secondary-300 text-base cursor-default opacity-50"
+                >
+                  {item.name}
+                </span>
+              ) : (
+                <Link
+                  key={item.id}
+                  to={item.path}
+                  className="text-secondary-300 text-base"
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
+          </div>
           {/*---ABOUT---*/}
           <div className="flex flex-col gap-3 lg:gap-5 lg:w-40">
             <h2 className="dark:text-slate-500 mb-2 text-secondary-500 font-semibold lg:text-xl">
               About
             </h2>
             {about.map((item) => {
-              return (
+              return item.path === "." ? (
+                <span
+                  key={item.id}
+                  className="text-secondary-300 text-base cursor-default opacity-50"
+                >
+                  {item.name}
+                </span>
+              ) : (
                 <Link
                   key={item.id}
                   to={item.path}
@@ -58,34 +100,21 @@ const Footer = () => {
           {/*---Socials---*/}
           <div className="flex flex-col gap-3 lg:gap-5 order-2 lg:w-40">
             <h2 className="dark:text-slate-500 mb-2 text-secondary-500 font-semibold lg:text-xl">
-              Socials
+              Connect
             </h2>
             {socials.map((item) => {
+              const IconComponent = item.icon;
               return (
-                <Link
+                <a
                   key={item.id}
-                  to={item.path}
-                  className="text-secondary-300 text-base"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-secondary-300 text-base flex items-center"
                 >
+                  <IconComponent className="mr-2" />
                   {item.name}
-                </Link>
-              );
-            })}
-          </div>
-          {/*---Community---*/}
-          <div className="flex flex-col gap-3 lg:gap-5 order-1 lg:w-40">
-            <h2 className="dark:text-slate-500 mb-2 text-secondary-500 font-semibold lg:text-xl">
-              Community
-            </h2>
-            {community.map((item) => {
-              return (
-                <Link
-                  key={item.id}
-                  to={item.path}
-                  className="text-secondary-300 text-base text-base"
-                >
-                  {item.name}
-                </Link>
+                </a>
               );
             })}
           </div>
@@ -94,8 +123,8 @@ const Footer = () => {
       {/* bottom section */}
       <div className="dark:text-slate-500 flex flex-col lg:flex-row lg:justify-between gap-5 text-xs lg:text-base font-semibold pb-10">
         <div className="flex justify-between lg:order-2 lg:gap-12">
-          <Link to={"."}>Privacy & Policy</Link>
-          <Link to={"."}>Terms & Condition</Link>
+          <Link to={"/privacy-policy"}>Privacy Policy</Link>
+          <Link to={"/terms-conditions"}>Terms & Conditions</Link>
         </div>
         <p className="lg:order-1">©2025 Rentina. All rights reserved</p>
       </div>
