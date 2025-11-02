@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { addFavorite, checkFavorite, removeFavorite } from "src/services/api";
 import useAuthStore from "src/store/authStore";
 import FuelIcon from "../../assets/Icons/FuelIcon";
@@ -11,6 +11,7 @@ import TransmissionIcon from "../../assets/Icons/TransmissionIcon";
 
 const CarCard = ({ isSlideCard = false, carData }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const filterParams = location.search;
   const [isFavorite, setIsFavorite] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -61,7 +62,7 @@ const CarCard = ({ isSlideCard = false, carData }) => {
   const handleFavorite = async () => {
     if (!isAuthenticated) {
       // Redirect to login if not authenticated
-      window.location.href = "/signin";
+      navigate("/signin");
       return;
     }
 
@@ -82,6 +83,18 @@ const CarCard = ({ isSlideCard = false, carData }) => {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Handle rent button click
+  const handleRent = (e) => {
+    e.preventDefault();
+    if (!isAuthenticated) {
+      // Redirect to login if not authenticated
+      navigate("/signin");
+      return;
+    }
+    // If authenticated, proceed to payment page
+    navigate(filterParams ? `/payment/${id}${filterParams}` : `/payment/${id}`);
   };
 
   return (
@@ -182,12 +195,12 @@ const CarCard = ({ isSlideCard = false, carData }) => {
             </div>
           )}
         </div>
-        <Link
-          to={filterParams ? `/payment/${id}${filterParams}` : `/payment/${id}`}
+        <button
+          onClick={handleRent}
           className="dark:text-secondary-200 text-white bg-primary-500 py-2 px-[20px] rounded text-xs font-medium"
         >
           Rent now
-        </Link>
+        </button>
       </div>
     </motion.div>
   );
