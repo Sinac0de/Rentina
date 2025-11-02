@@ -142,6 +142,7 @@ const Payment = () => {
     watch,
     setValue,
     trigger,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(
@@ -191,18 +192,35 @@ const Payment = () => {
 
   // Update resolver when step changes
   useEffect(() => {
-    // Reset validation mode when step changes
+    console.log("Step changed to:", activeStep);
+    // Trigger validation when step changes to ensure form state is up to date
     trigger();
   }, [activeStep, trigger]);
 
   const handleNextStep = async () => {
+    // Get current form values for debugging
+    const formData = getValues();
+    console.log("Current form data:", formData);
+    
     const isValid = await trigger();
+    console.log("Form validation result:", isValid);
+    console.log("Form errors:", errors);
+    
     if (isValid) {
       if (activeStep === "billing") {
         setActiveStep("rental");
       } else if (activeStep === "rental") {
         setActiveStep("payment");
       }
+    } else {
+      // Log specific validation errors
+      console.log("Validation failed for step:", activeStep);
+      Object.keys(errors).forEach(key => {
+        console.log(`Field ${key} error:`, errors[key]?.message);
+      });
+      
+      // Also show a more user-friendly error message
+      setSubmitError("Please correct the errors in the form before continuing.");
     }
   };
 
@@ -219,33 +237,126 @@ const Payment = () => {
     setSubmitError("");
 
     try {
-      // Calculate total price
-      const rentalPrice =
-        carData.pricePerDay || carData.specs?.rental_price || 0;
-      const discountPercent = carData.specs?.discount_percent || 0;
-      const totalPrice = rentalPrice * (1 - discountPercent / 100);
+      // Log the incoming data for debugging
+      console.log("Form data received in onSubmit:", data);
+      
+      // Also get the latest form values directly
+      const formData = getValues();
+      console.log("Current form values from getValues():", formData);
+
+      // Ensure we're on the payment step
+      if (activeStep !== "payment") {
+        console.log("Form submitted but not on payment step, current step:", activeStep);
+        throw new Error("Please complete all steps before submitting payment");
+      }
+
+      // Validate car data
+      if (!carData || !carData._id) {
+        throw new Error("Car data is not available. Please try again.");
+      }
+
+      // Simplified validation - check each field individually with better error messages
+      console.log("Starting validation checks...");
+      
+      // Billing info validation
+      if (!formData.name || formData.name.trim() === '') {
+        throw new Error("Full Name is required");
+      }
+      
+      if (!formData.address || formData.address.trim() === '') {
+        throw new Error("Address is required");
+      }
+      
+      if (!formData.phoneNumber || formData.phoneNumber.trim() === '') {
+        throw new Error("Phone Number is required");
+      }
+      
+      if (!formData.townCity || formData.townCity.trim() === '') {
+        throw new Error("Town/City is required");
+      }
+      
+      // Rental info validation
+      if (!formData.pickLocation || formData.pickLocation.trim() === '') {
+        throw new Error("Pick-up Location is required");
+      }
+      
+      if (!formData.pickDate || formData.pickDate.trim() === '') {
+        throw new Error("Pick-up Date is required");
+      }
+      
+      if (!formData.pickTime || formData.pickTime.trim() === '') {
+        throw new Error("Pick-up Time is required");
+      }
+      
+      if (!formData.dropLocation || formData.dropLocation.trim() === '') {
+        throw new Error("Drop-off Location is required");
+      }
+      
+      if (!formData.dropDate || formData.dropDate.trim() === '') {
+        throw new Error("Drop-off Date is required");
+      }
+      
+      if (!formData.dropTime || formData.dropTime.trim() === '') {
+        throw new Error("Drop-off Time is required");
+      }
+      
+      if (!formData.paymentMethod || formData.paymentMethod.trim() === '') {
+        throw new Error("Payment Method is required");
+      }
+
+      console.log("All validation checks passed!");
+
+      // Calculate total price - handle different data structures
+      // Some cars use pricePerDay, others use specs.rental_price
+      const rentalPrice = 
+        carData.pricePerDay || 
+        carData.specs?.rental_price || 
+        carData.specs?.pricePerDay || 
+        0;
+      
+      const discountPercent = 
+        carData.specs?.discount_percent || 
+        carData.discountPercent || 
+        0;
+      
+      const totalPrice = parseFloat((rentalPrice * (1 - discountPercent / 100)).toFixed(2));
+
+      // Format phone number (remove any non-digit characters)
+      const formattedPhoneNumber = formData.phoneNumber.replace(/\D/g, '');
 
       // Combine date and time
-      const pickupDateTime = new Date(`${data.pickDate}T${data.pickTime}`);
-      const dropoffDateTime = new Date(`${data.dropDate}T${data.dropTime}`);
+      const pickupDateTime = new Date(`${formData.pickDate}T${formData.pickTime}`);
+      const dropoffDateTime = new Date(`${formData.dropDate}T${formData.dropTime}`);
 
-      // Create rental data
+      // Validate dates
+      if (isNaN(pickupDateTime.getTime()) || isNaN(dropoffDateTime.getTime())) {
+        throw new Error("Invalid date or time format");
+      }
+
+      // Validate that drop-off date is after pick-up date
+      if (dropoffDateTime <= pickupDateTime) {
+        throw new Error("Drop-off date must be after pick-up date");
+      }
+
+      // Create rental data with proper date formatting
       const rentalData = {
         carId: carData._id,
-        startDate: pickupDateTime,
-        endDate: dropoffDateTime,
-        pickupLocation: data.pickLocation,
-        dropoffLocation: data.dropLocation,
+        startDate: pickupDateTime.toISOString(),
+        endDate: dropoffDateTime.toISOString(),
+        pickupLocation: formData.pickLocation,
+        dropoffLocation: formData.dropLocation,
         totalPrice: totalPrice,
-        paymentMethod: data.paymentMethod,
+        paymentMethod: formData.paymentMethod,
         billingInfo: {
-          name: data.name,
-          email: data.email,
-          address: data.address,
-          phoneNumber: data.phoneNumber,
-          townCity: data.townCity,
+          name: formData.name.trim(),
+          address: formData.address.trim(),
+          phoneNumber: formattedPhoneNumber,
+          townCity: formData.townCity.trim(),
         },
       };
+
+      // Log the data being sent for debugging
+      console.log("Sending rental data to backend:", rentalData);
 
       // Send to backend
       const response = await createRental(rentalData);
@@ -263,9 +374,14 @@ const Payment = () => {
       }
     } catch (error) {
       console.error("Error processing payment:", error);
-      setSubmitError(
-        error.message || "Failed to process payment. Please try again."
-      );
+      // Provide more specific error messages based on the error type
+      if (error.message) {
+        setSubmitError(error.message);
+      } else if (error.response?.data?.error) {
+        setSubmitError(`Error: ${error.response.data.error}`);
+      } else {
+        setSubmitError("Failed to process payment. Please try again.");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -323,13 +439,25 @@ const Payment = () => {
     );
   }
 
-  // Calculate pricing
-  const rentalPrice = carData.pricePerDay || carData.specs?.rental_price || 0;
-  const discountPercent = carData.specs?.discount_percent || 0;
+  // Calculate pricing - handle different data structures
+  const rentalPrice = 
+    carData.pricePerDay || 
+    carData.specs?.rental_price || 
+    carData.specs?.pricePerDay || 
+    0;
+  
+  const discountPercent = 
+    carData.specs?.discount_percent || 
+    carData.discountPercent || 
+    0;
+  
   const subtotal = rentalPrice;
   const discount = subtotal * (discountPercent / 100);
   const tax = (subtotal - discount) * 0.1;
   const total = subtotal - discount + tax;
+
+  // Fallback for year if not present
+  const carYear = carData.year || carData.specs?.year || 'N/A';
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 dark:bg-gray-900">
@@ -341,7 +469,7 @@ const Payment = () => {
               Complete Your Rental
             </h1>
             <p className="mt-2 text-gray-600 dark:text-gray-400">
-              Secure checkout for your {carData.make} {carData.model}
+              Secure checkout for your {carData.make} {carData.model} ({carYear})
             </p>
           </div>
 
@@ -409,14 +537,14 @@ const Payment = () => {
                     </div>
                   </div>
 
-                  {/* Error Alert */}
-                  {submitError && (
-                    <Alert variant="destructive" className="mb-6">
-                      <AlertDescription>{submitError}</AlertDescription>
-                    </Alert>
-                  )}
-
                   <form onSubmit={handleSubmit(onSubmit)}>
+                    {/* Error Alert */}
+                    {submitError && (
+                      <Alert variant="destructive" className="mb-6">
+                        <AlertDescription>{submitError}</AlertDescription>
+                      </Alert>
+                    )}
+
                     {/* Billing Info Step */}
                     {activeStep === "billing" && (
                       <div className="space-y-6">
@@ -821,7 +949,7 @@ const Payment = () => {
                         <h3 className="font-semibold">
                           {carData.make} {carData.model}
                         </h3>
-                        <p className="text-sm text-gray-500">{carData.year}</p>
+                        <p className="text-sm text-gray-500">{carYear}</p>
                       </div>
                     </div>
 

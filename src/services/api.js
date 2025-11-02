@@ -303,24 +303,57 @@ export async function updateUserProfile(userData) {
   }
 }
 
-// Booking API functions
-export async function createBooking(bookingData) {
+// Rental API functions
+export async function createRental(rentalData) {
   try {
-    const response = await API.post("/bookings", bookingData);
+    console.log("API call - Sending rental data:", rentalData);
+    const response = await API.post("/rentals", rentalData);
+    console.log("API call - Received response:", response.data);
     return response.data;
   } catch (error) {
-    console.error("Error creating booking:", error);
-    throw error.response?.data || { message: "Failed to create booking" };
+    console.error("Error creating rental:", error);
+    console.error("Error response:", error.response?.data);
+    console.error("Error status:", error.response?.status);
+    console.error("Error headers:", error.response?.headers);
+    
+    // If it's a 401 error, it might be an authentication issue
+    if (error.response?.status === 401) {
+      throw { message: "Authentication required. Please log in again." };
+    }
+    
+    // If it's a 400 error, it might be a validation issue
+    if (error.response?.status === 400) {
+      const errorMessage = error.response.data?.error || "Invalid data provided.";
+      throw { message: `Validation Error: ${errorMessage}` };
+    }
+    
+    // If it's a 404 error, the car might not exist
+    if (error.response?.status === 404) {
+      throw { message: "Car not found. Please try again with a different car." };
+    }
+    
+    throw error.response?.data || { message: "Failed to create rental" };
   }
 }
 
-export async function getUserBookings() {
+export async function getUserRentals() {
   try {
-    const response = await API.get("/bookings/mybookings");
+    const response = await API.get("/rentals");
     return response.data;
   } catch (error) {
-    console.error("Error fetching user bookings:", error);
-    throw error.response?.data || { message: "Failed to fetch bookings" };
+    console.error("Error fetching user rentals:", error);
+    throw error.response?.data || { message: "Failed to fetch rentals" };
+  }
+}
+
+// Rented Cars API functions
+export async function getUserRentedCars() {
+  try {
+    const response = await getUserRentals();
+    return response.data || [];
+  } catch (error) {
+    console.error("Error fetching user rented cars:", error);
+    throw error.response?.data || { message: "Failed to fetch rented cars" };
   }
 }
 

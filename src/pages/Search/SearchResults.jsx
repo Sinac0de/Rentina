@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useSearchParams, Link } from "react-router";
-import { globalSearch, searchCars } from "../../services/api";
+import { Link, useSearchParams } from "react-router";
 import CarCard from "../../components/CarCard/CarCard";
 import SkeletonCard from "../../components/CarCard/SkeletonCard";
-import BlogCard from "../Blogs/BlogCard";
+import { globalSearch } from "../../services/api";
+import BlogCard from "../Blog/BlogCard";
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
@@ -172,7 +172,7 @@ const SearchResults = () => {
                 </h2>
                 {results.blogs.length > 0 && (
                   <Link
-                    to={`/blogs?search=${encodeURIComponent(query)}`}
+                    to={`/blog?search=${encodeURIComponent(query)}`}
                     className="text-primary-500 hover:text-primary-600"
                   >
                     View all blog posts
